@@ -22,7 +22,6 @@ Partial Class Form1
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -46,6 +45,7 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.gBoxAnadirMeta = New System.Windows.Forms.GroupBox()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
@@ -64,22 +64,12 @@ Partial Class Form1
         Me.Label15 = New System.Windows.Forms.Label()
         Me.btnAnadirOds = New System.Windows.Forms.Button()
         Me.btnAnadirMeta = New System.Windows.Forms.Button()
-        Me.Label16 = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.gBoxModificar.SuspendLayout()
         Me.gBoxModMeta.SuspendLayout()
         Me.gBoxAnadirMeta.SuspendLayout()
         Me.gBoxAnadirOds.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox1.Location = New System.Drawing.Point(92, 72)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(695, 222)
-        Me.GroupBox1.TabIndex = 0
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "ODS y Metas"
         '
         'Label2
         '
@@ -293,6 +283,15 @@ Partial Class Form1
         Me.gBoxAnadirMeta.TabStop = False
         Me.gBoxAnadirMeta.Text = "Añadir Meta"
         '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(21, 97)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(70, 20)
+        Me.Label16.TabIndex = 16
+        Me.Label16.Text = "Carácter"
+        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -445,14 +444,15 @@ Partial Class Form1
         Me.btnAnadirMeta.Text = "Añadir Meta"
         Me.btnAnadirMeta.UseVisualStyleBackColor = True
         '
-        'Label16
+        'GroupBox1
         '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(21, 97)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(70, 20)
-        Me.Label16.TabIndex = 16
-        Me.Label16.Text = "Carácter"
+        Me.GroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GroupBox1.Location = New System.Drawing.Point(92, 72)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(695, 222)
+        Me.GroupBox1.TabIndex = 0
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "ODS y Metas"
         '
         'Form1
         '
@@ -492,8 +492,6 @@ Partial Class Form1
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label1 As Label
@@ -536,4 +534,5 @@ Partial Class Form1
     Friend WithEvents Label16 As Label
     Friend WithEvents btnAnadirOds As Button
     Friend WithEvents btnAnadirMeta As Button
+    Friend WithEvents GroupBox1 As GroupBox
 End Class

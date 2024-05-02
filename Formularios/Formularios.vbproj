@@ -120,6 +120,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Entidades\Entidades.vbproj">
+      <Project>{98c81d5c-567e-4e26-9629-896fff08d63f}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GestionBd\GestionBd.vbproj">
       <Project>{1a8acd07-c38d-4420-a220-6528622288e5}</Project>
       <Name>GestionBd</Name>
