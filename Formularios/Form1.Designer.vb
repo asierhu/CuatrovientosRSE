@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form1
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form1
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -64,14 +64,10 @@ Partial Class Form1
         Me.Label15 = New System.Windows.Forms.Label()
         Me.btnAnadirOds = New System.Windows.Forms.Button()
         Me.btnAnadirMeta = New System.Windows.Forms.Button()
-        Me.dgvods = New System.Windows.Forms.DataGridView()
-        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.gBoxModificar.SuspendLayout()
         Me.gBoxModMeta.SuspendLayout()
         Me.gBoxAnadirMeta.SuspendLayout()
         Me.gBoxAnadirOds.SuspendLayout()
-        CType(Me.dgvods, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -107,7 +103,7 @@ Partial Class Form1
         '
         'btnVerOds
         '
-        Me.btnVerOds.Location = New System.Drawing.Point(232, 195)
+        Me.btnVerOds.Location = New System.Drawing.Point(201, 125)
         Me.btnVerOds.Margin = New System.Windows.Forms.Padding(2)
         Me.btnVerOds.Name = "btnVerOds"
         Me.btnVerOds.Size = New System.Drawing.Size(166, 38)
@@ -493,29 +489,11 @@ Partial Class Form1
         Me.btnAnadirMeta.Text = "Añadir Meta"
         Me.btnAnadirMeta.UseVisualStyleBackColor = True
         '
-        'dgvods
-        '
-        Me.dgvods.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvods.Location = New System.Drawing.Point(62, 59)
-        Me.dgvods.Name = "dgvods"
-        Me.dgvods.Size = New System.Drawing.Size(501, 126)
-        Me.dgvods.TabIndex = 25
-        '
-        'DataGridView2
-        '
-        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Location = New System.Drawing.Point(354, 130)
-        Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.Size = New System.Drawing.Size(8, 8)
-        Me.DataGridView2.TabIndex = 26
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(862, 462)
-        Me.Controls.Add(Me.DataGridView2)
-        Me.Controls.Add(Me.dgvods)
         Me.Controls.Add(Me.btnVerOds)
         Me.Controls.Add(Me.btnAnadirMeta)
         Me.Controls.Add(Me.btnAnadirOds)
@@ -545,8 +523,6 @@ Partial Class Form1
         Me.gBoxAnadirMeta.PerformLayout()
         Me.gBoxAnadirOds.ResumeLayout(False)
         Me.gBoxAnadirOds.PerformLayout()
-        CType(Me.dgvods, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -593,6 +569,4 @@ Partial Class Form1
     Friend WithEvents Label16 As Label
     Friend WithEvents btnAnadirOds As Button
     Friend WithEvents btnAnadirMeta As Button
-    Friend WithEvents dgvods As DataGridView
-    Friend WithEvents DataGridView2 As DataGridView
 End Class
