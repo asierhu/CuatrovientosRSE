@@ -1,4 +1,5 @@
-﻿Imports Entidades
+﻿Imports System.IO
+Imports Entidades
 Imports GestionBd
 
 Public Class VerODSMetas
@@ -6,6 +7,7 @@ Public Class VerODSMetas
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboods.SelectedIndexChanged
         Dim mensajerror As String = ""
         dgvmetas.DataSource = gestion.VerMetasDeODS(cboods.SelectedIndex, mensajerror)
+        pbods.BackgroundImage = Image.FromFile($"imagenes/{cboods.SelectedIndex + 1}.jpg")
     End Sub
 
     Private Sub VerODSMetas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
