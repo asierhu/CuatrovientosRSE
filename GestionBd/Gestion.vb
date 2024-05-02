@@ -17,22 +17,30 @@ Public Class Gestion
             Return $"El ODS número {numODS} no existe"
         End If
         Dim odsGuardado As ODS = _Agenda2030(_Agenda2030.IndexOf(nuevoODS))
-        If CambioContieneAsrterisco(nuevoODS.Nombre, odsGuardado.Nombre, cambios) Then
+        If nuevoODS.Nombre.Contains("*") Then
             Return "El nombre del ODS no puede contener el caracter '*'"
         End If
-        If CambioContieneAsrterisco(nuevoODS.Descripcion, odsGuardado.Descripcion, cambios) Then
+        If Not nuevoODS.Nombre.ToLower = odsGuardado.Nombre.ToLower Then
+            cambios = True
+            odsGuardado.Nombre = nuevoODS.Nombre
+        End If
+        If nuevoODS.Descripcion.Contains("*") Then
             Return "La descripción del ODS no puede contener el caracter '*'"
         End If
-        For i = 0 To nuevoODS.Metas.Count
-            If odsGuardado.Metas(i) IsNot Nothing Then
-                If CambioContieneAsrterisco(nuevoODS.Metas(i).Descripcion, odsGuardado.Metas(i).Descripcion, cambios) Then
-                    Return $"La descripcion de la meta {nuevoODS.Metas(i).ToString(True)} no puede contener el caracter '*'"
-                End If
-            Else
-                If nuevoODS.Metas(i).Descripcion.Contains("*") Then
-                    cambios = True
-                    Return $"La descripcion de la nueva meta {nuevoODS.Metas(i).ToString(True)} no puede contener el caracter '*'"
-                End If
+        If Not nuevoODS.Descripcion.ToLower = odsGuardado.Descripcion.ToLower Then
+            cambios = True
+            odsGuardado.Descripcion = nuevoODS.Descripcion
+        End If
+        Dim metaODSGuardado As Meta
+        For i = 0 To nuevoODS.Metas.Count - 1
+            Dim metaODSNuevo As Meta = nuevoODS.Metas(i)
+            metaODSGuardado = odsGuardado.Metas(i)
+            If metaODSNuevo.Descripcion.Contains("*") Then
+                Return $"La descripcion de la meta {metaODSNuevo.ToString(True)} no puede contener el caracter '*'"
+            End If
+            If Not metaODSNuevo.Descripcion.ToLower = metaODSGuardado.Descripcion.ToLower Then
+                cambios = True
+                metaODSGuardado.Descripcion = metaODSNuevo.Descripcion
             End If
         Next
         If Not cambios Then
@@ -40,14 +48,16 @@ Public Class Gestion
         End If
         Return ""
     End Function
-    Private Function CambioContieneAsrterisco(textoNuevo As String, textoGuardado As String, ByRef cambios As Boolean) As Boolean
-        If Not textoNuevo.Equals(textoGuardado) Then
-            cambios = True
-            If textoNuevo.Contains("*") Then
-                Return True
-            End If
+    Public Function AnyadirMeta(meta As Meta) As String
+        Dim odsGuardado As ODS = _Agenda2030(meta.NumeroODS - 1)
+        Dim indiceMeta As Integer = odsGuardado.Metas.IndexOf(meta)
+        If indiceMeta <> -1 Then
+            Return $"La meta {odsGuardado.Metas(indiceMeta).ToString(True)} ya existía en {odsGuardado.Nombre}"
         End If
-        Return False
+        If meta.Descripcion.Contains("*") Then
+            Return $"La descripcion de la nueva meta {meta.ToString(True)} no puede contener el caracter '*'"
+        End If
+        odsGuardado.Metas.Add(meta)
+        Return ""
     End Function
-
 End Class
