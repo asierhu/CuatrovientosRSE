@@ -1,7 +1,10 @@
 ﻿Imports System.Collections.ObjectModel
+Imports System.Data.SqlClient
 Imports Entidades
 Public Class Gestion
     Private _Agenda2030 As List(Of ODS)
+    Private Const CADENA_CONEXION = "Data Source = .; Initial Catalog = CUATROVIENTOSRSE; Integrated Security = SSPI; MultipleActiveResultSets=true" ' Cadena de conexión para indicar la base de datos con la que vamos a conectar
+
     Public ReadOnly Property Agenda2030 As ReadOnlyCollection(Of ODS)
         Get
             Return _Agenda2030.AsReadOnly
@@ -60,4 +63,26 @@ Public Class Gestion
         odsGuardado.Metas.Add(meta)
         Return ""
     End Function
+    Public Function VerMetasDeODS(numODS As Byte, ByRef msgError As String) As ReadOnlyCollection(Of Meta)
+        Dim metas As List(Of Meta)
+        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim cmdProv As New SqlCommand("SELECT METAS.NUMERO_ODS FROM METAS", conect)
+        Try
+            conect.Open()
+            Dim drProvincias As SqlDataReader = cmdProv.ExecuteReader
+            If Not drProvincias.HasRows Then
+                msgError = "No hay provincias"
+            End If
+            While drProvincias.Read
+                metas.Add(New Meta())
+            End While
+        Catch ex As Exception
+            msgError = ex.Message
+        Finally
+            conect.Close()
+        End Try
+        Return metas.AsReadOnly
+
+    End Function
+
 End Class
