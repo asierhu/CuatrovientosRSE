@@ -66,15 +66,18 @@ Public Class Gestion
     Public Function VerMetasDeODS(numODS As Byte, ByRef msgError As String) As ReadOnlyCollection(Of Meta)
         Dim metas As List(Of Meta)
         Dim conect As New SqlConnection(CADENA_CONEXION)
-        Dim cmdProv As New SqlCommand("SELECT METAS.NUMERO_ODS FROM METAS", conect)
+        Dim sql As String = "SELECT METAS.NUMERO_ODS,METAS.CARACTER_META,METAS.DESCRIPCION FROM METAS WHERE METAS.NUMERO_ODS=@NumODS"
+
         Try
             conect.Open()
-            Dim drProvincias As SqlDataReader = cmdProv.ExecuteReader
-            If Not drProvincias.HasRows Then
-                msgError = "No hay provincias"
+            Dim cmdMeta As New SqlCommand(sql, conect)
+            cmdMeta.Parameters.AddWithValue("@NumODS", numODS)
+            Dim drMetas As SqlDataReader = cmdMeta.ExecuteReader
+            If Not drMetas.HasRows Then
+                msgError = "Este ODS no tiene metas registradas"
             End If
-            While drProvincias.Read
-                metas.Add(New Meta())
+            While drMetas.Read
+                metas.Add(New Meta(drMetas("NUMERO_ODS"), drMetas("CARACTER_META"), drMetas("DESCRIPCION")))
             End While
         Catch ex As Exception
             msgError = ex.Message
@@ -82,7 +85,6 @@ Public Class Gestion
             conect.Close()
         End Try
         Return metas.AsReadOnly
-
     End Function
 
 End Class
