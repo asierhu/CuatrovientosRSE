@@ -34,24 +34,13 @@ Public Class Gestion
         Dim metaODSGuardado As Meta
         For i = 0 To nuevoODS.Metas.Count - 1
             Dim metaODSNuevo As Meta = nuevoODS.Metas(i)
-            If odsGuardado.Metas(i) IsNot Nothing Then
-                metaODSGuardado = odsGuardado.Metas(i)
-                If metaODSNuevo.Descripcion.Contains("*") Then
-                    Return $"La descripcion de la meta {metaODSNuevo.ToString(True)} no puede contener el caracter '*'"
-                End If
-                If Not metaODSNuevo.Descripcion.ToLower = metaODSGuardado.Descripcion.ToLower Then
-                    cambios = True
-                    metaODSGuardado.Descripcion = metaODSNuevo.Descripcion
-                End If
-            Else
-                Dim indiceMeta As Integer = odsGuardado.Metas.IndexOf(metaODSNuevo)
-                If indiceMeta <> -1 Then
-                    Return $"La meta {odsGuardado.Metas(indiceMeta).ToString(True)} ya existía en {odsGuardado.Nombre}"
-                End If
-                If metaODSNuevo.Descripcion.Contains("*") Then
-                    Return $"La descripcion de la nueva meta {nuevoODS.Metas(i).ToString(True)} no puede contener el caracter '*'"
-                End If
-                odsGuardado.Metas.Add(New Meta(numODS, metaODSNuevo.IDMeta, metaODSNuevo.Descripcion))
+            metaODSGuardado = odsGuardado.Metas(i)
+            If metaODSNuevo.Descripcion.Contains("*") Then
+                Return $"La descripcion de la meta {metaODSNuevo.ToString(True)} no puede contener el caracter '*'"
+            End If
+            If Not metaODSNuevo.Descripcion.ToLower = metaODSGuardado.Descripcion.ToLower Then
+                cambios = True
+                metaODSGuardado.Descripcion = metaODSNuevo.Descripcion
             End If
         Next
         If Not cambios Then
@@ -59,5 +48,16 @@ Public Class Gestion
         End If
         Return ""
     End Function
-
+    Public Function AnyadirMeta(meta As Meta) As String
+        Dim odsGuardado As ODS = _Agenda2030(meta.NumeroODS - 1)
+        Dim indiceMeta As Integer = odsGuardado.Metas.IndexOf(meta)
+        If indiceMeta <> -1 Then
+            Return $"La meta {odsGuardado.Metas(indiceMeta).ToString(True)} ya existía en {odsGuardado.Nombre}"
+        End If
+        If meta.Descripcion.Contains("*") Then
+            Return $"La descripcion de la nueva meta {meta.ToString(True)} no puede contener el caracter '*'"
+        End If
+        odsGuardado.Metas.Add(meta)
+        Return ""
+    End Function
 End Class

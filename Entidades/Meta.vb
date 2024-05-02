@@ -5,7 +5,7 @@
     Public Property IDMeta As String
     Public Property Descripcion As String
 
-    Public Overloads Function ToString(simple As Boolean)
+    Public Overloads Function ToString(simple As Boolean) As String
         If simple Then
             Return $"{NumeroODS}.{IDMeta}"
         Else
