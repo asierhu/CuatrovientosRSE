@@ -12,7 +12,12 @@ Public Class ODS
         Me.NumeroODS = numeroODS
         Me.Nombre = ""
         Me.Descripcion = ""
-        Me.Descripcion = ""
+    End Sub
+
+    Public Sub New(numeroODS As Byte, nombre As String, descripcion As String)
+        Me.NumeroODS = numeroODS
+        Me.Nombre = nombre
+        Me.Descripcion = descripcion
     End Sub
     Public Overrides Function Equals(obj As Object) As Boolean
         Return Equals(TryCast(obj, ODS))
@@ -22,15 +27,15 @@ Public Class ODS
         Return other IsNot Nothing AndAlso
                NumeroODS = other.NumeroODS
     End Function
-    Public Function ODS(simple As Boolean) As String
-        If simple Then
-            Return $"{NumeroODS}: {Nombre}"
-        Else
-            Dim metasEnMensaje As String = ""
-            For Each meta In Metas
-                metasEnMensaje += $"{meta.ToString(False)}\n"
-            Next
-            Return $"{NumeroODS}: {Nombre}\n{Descripcion}\n{metasEnMensaje}"
-        End If
+    Public Function ODS() As String
+        Dim metasEnMensaje As String = ""
+        For Each meta In Metas
+            metasEnMensaje += $"{meta.ToString(False)}\n"
+        Next
+        Return $"{NumeroODS}: {Nombre}\n{Descripcion}\n{metasEnMensaje}"
+    End Function
+
+    Public Overrides Function ToString() As String
+        Return $"{NumeroODS}: {Nombre}"
     End Function
 End Class

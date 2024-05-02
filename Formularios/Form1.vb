@@ -1,8 +1,12 @@
 ﻿Imports GestionBd
 Public Class Form1
-    Public gestion = New Gestion
+
     Private Sub btnVerOds_Click(sender As Object, e As EventArgs) Handles btnVerOds.Click
-        VerODSMetas = New VerODSMetas
+        Dim VerODSMetas = New VerODSMetas
         VerODSMetas.Show()
+    End Sub
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        gestion = New Gestion
     End Sub
 End Class

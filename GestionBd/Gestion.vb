@@ -12,6 +12,19 @@ Public Class Gestion
     End Property
     Public Sub New()
         _Agenda2030 = New List(Of ODS)
+        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim sql As String = "SELECT NUMERO_ODS, NOMBRE, DESCRIPCION FROM ODS"
+        Try
+            conect.Open()
+            Dim cmdMeta As New SqlCommand(sql, conect)
+            Dim drODS As SqlDataReader = cmdMeta.ExecuteReader
+            While drODS.Read
+                _Agenda2030.Add(New ODS(drODS("NUMERO_ODS"), drODS("NOMBRE"), drODS("DESCRIPCION")))
+            End While
+        Catch ex As Exception
+        Finally
+            conect.Close()
+        End Try
     End Sub
     Public Function ModificarODS(nuevoODS As ODS) As String
         Dim numODS As Byte = nuevoODS.NumeroODS
@@ -64,7 +77,7 @@ Public Class Gestion
         Return ""
     End Function
     Public Function VerMetasDeODS(numODS As Byte, ByRef msgError As String) As ReadOnlyCollection(Of Meta)
-        Dim metas As List(Of Meta)
+        Dim metas As New List(Of Meta)
         Dim conect As New SqlConnection(CADENA_CONEXION)
         Dim sql As String = "SELECT METAS.NUMERO_ODS,METAS.CARACTER_META,METAS.DESCRIPCION FROM METAS WHERE METAS.NUMERO_ODS=@NumODS"
 
