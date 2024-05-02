@@ -7,7 +7,7 @@ Public Class ODS
     Public Property Nombre As String
     Public Property Descripcion As String
     Public Property Metas As List(Of Meta)
-    Public Property Imagen As String = $"ODS{NumeroODS}.png"
+    Public Property Imagen As String = $"{NumeroODS}.png"
     Public Sub New(numeroODS As Byte)
         Me.NumeroODS = numeroODS
         Me.Nombre = ""
