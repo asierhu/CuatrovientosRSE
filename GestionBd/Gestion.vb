@@ -102,9 +102,15 @@ Public Class Gestion
     End Function
     Public Function AnyadirMeta(meta As Meta) As String
         Dim odsGuardado As ODS = _Agenda2030(meta.NumeroODS - 1)
-        Dim indiceMeta As Integer = odsGuardado.Metas.IndexOf(meta)
+        Dim indiceMeta As Integer = odsGuardado.Metas.IndexOf(New Meta(meta.NumeroODS, meta.IDMeta))
+        For i = 0 To odsGuardado.Metas.Count - 1
+            If odsGuardado.Metas(i).Equals(meta) Then
+                indiceMeta = i
+                Exit For
+            End If
+        Next
         If indiceMeta <> -1 Then
-            Return $"La meta {odsGuardado.Metas(indiceMeta).ToString(True)} ya existía en {odsGuardado.Nombre}"
+            Return $"La meta {meta.ToString} ya existía en {odsGuardado.Nombre}"
         End If
         If meta.Descripcion.Contains("*") Then
             Return $"La descripcion de la nueva meta {meta.ToString(True)} no puede contener el caracter '*'"
