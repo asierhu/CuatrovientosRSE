@@ -23,25 +23,26 @@ Partial Class VerODSMetas
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Me.cboods = New System.Windows.Forms.ComboBox()
-        Me.dgvmetas = New System.Windows.Forms.DataGridView()
+        Me.cboODS = New System.Windows.Forms.ComboBox()
+        Me.dgvMetas = New System.Windows.Forms.DataGridView()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.pbods = New System.Windows.Forms.PictureBox()
-        CType(Me.dgvmetas, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pbods, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pbODS = New System.Windows.Forms.PictureBox()
+        CType(Me.dgvMetas, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbODS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'cboods
+        'cboODS
         '
-        Me.cboods.FormattingEnabled = True
-        Me.cboods.Location = New System.Drawing.Point(34, 63)
-        Me.cboods.Name = "cboods"
-        Me.cboods.Size = New System.Drawing.Size(738, 21)
-        Me.cboods.TabIndex = 0
+        Me.cboODS.FormattingEnabled = True
+        Me.cboODS.Location = New System.Drawing.Point(45, 78)
+        Me.cboODS.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cboODS.Name = "cboODS"
+        Me.cboODS.Size = New System.Drawing.Size(983, 24)
+        Me.cboODS.TabIndex = 0
         '
-        'dgvmetas
+        'dgvMetas
         '
-        Me.dgvmetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvMetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -49,51 +50,56 @@ Partial Class VerODSMetas
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvmetas.DefaultCellStyle = DataGridViewCellStyle1
-        Me.dgvmetas.Location = New System.Drawing.Point(34, 114)
-        Me.dgvmetas.Name = "dgvmetas"
-        Me.dgvmetas.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.dgvmetas.Size = New System.Drawing.Size(738, 190)
-        Me.dgvmetas.TabIndex = 1
+        Me.dgvMetas.DefaultCellStyle = DataGridViewCellStyle1
+        Me.dgvMetas.Location = New System.Drawing.Point(45, 140)
+        Me.dgvMetas.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvMetas.Name = "dgvMetas"
+        Me.dgvMetas.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.dgvMetas.RowHeadersWidth = 51
+        Me.dgvMetas.Size = New System.Drawing.Size(984, 234)
+        Me.dgvMetas.TabIndex = 1
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(299, 31)
+        Me.Label1.Location = New System.Drawing.Point(399, 38)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(196, 13)
+        Me.Label1.Size = New System.Drawing.Size(244, 16)
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "Selecciona un ODS para ver sus metas:"
         '
-        'pbods
+        'pbODS
         '
-        Me.pbods.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pbods.Location = New System.Drawing.Point(349, 326)
-        Me.pbods.Name = "pbods"
-        Me.pbods.Size = New System.Drawing.Size(122, 112)
-        Me.pbods.TabIndex = 3
-        Me.pbods.TabStop = False
+        Me.pbODS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.pbODS.Location = New System.Drawing.Point(465, 397)
+        Me.pbODS.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pbODS.Name = "pbODS"
+        Me.pbODS.Size = New System.Drawing.Size(163, 138)
+        Me.pbODS.TabIndex = 3
+        Me.pbODS.TabStop = False
         '
         'VerODSMetas
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 456)
-        Me.Controls.Add(Me.pbods)
+        Me.ClientSize = New System.Drawing.Size(1067, 561)
+        Me.Controls.Add(Me.pbODS)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.dgvmetas)
-        Me.Controls.Add(Me.cboods)
+        Me.Controls.Add(Me.dgvMetas)
+        Me.Controls.Add(Me.cboODS)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "VerODSMetas"
         Me.Text = "VerODSMetas"
-        CType(Me.dgvmetas, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pbods, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvMetas, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbODS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents cboods As ComboBox
-    Friend WithEvents dgvmetas As DataGridView
+    Friend WithEvents cboODS As ComboBox
+    Friend WithEvents dgvMetas As DataGridView
     Friend WithEvents Label1 As Label
-    Friend WithEvents pbods As PictureBox
+    Friend WithEvents pbODS As PictureBox
 End Class

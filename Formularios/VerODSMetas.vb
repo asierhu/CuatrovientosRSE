@@ -4,14 +4,14 @@ Imports GestionBd
 
 Public Class VerODSMetas
 
-    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboods.SelectedIndexChanged
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboODS.SelectedIndexChanged
         Dim mensajerror As String = ""
-        dgvmetas.DataSource = gestion.VerMetasDeODS(cboods.SelectedIndex, mensajerror)
-        pbods.BackgroundImage = Image.FromFile($"imagenes/{cboods.SelectedIndex + 1}.jpg")
+        Dim odsSeleccionado As ODS = TryCast(cboODS.SelectedItem, ODS)
+        dgvMetas.DataSource = gestion.VerMetasDeODS(odsSeleccionado.NumeroODS, mensajerror)
+        pbODS.BackgroundImage = Image.FromFile($"imagenes/{odsSeleccionado.NumeroODS}.jpg")
     End Sub
 
     Private Sub VerODSMetas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        cboods.DisplayMember = ToString()
-        cboods.Items.AddRange(gestion.Agenda2030.ToArray)
+        cboODS.Items.AddRange(gestion.Agenda2030.ToArray)
     End Sub
 End Class

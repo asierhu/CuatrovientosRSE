@@ -5,12 +5,8 @@
     Public Property IDMeta As String
     Public Property Descripcion As String
 
-    Public Overloads Function ToString(simple As Boolean) As String
-        If simple Then
-            Return $"{NumeroODS}.{IDMeta}"
-        Else
-            Return $"{NumeroODS}.{IDMeta}: {Descripcion}"
-        End If
+    Public Overrides Function ToString() As String
+        Return $"{IDMeta}"
     End Function
     Public Sub New(numeroODS As Byte, idMeta As String)
         Me.NumeroODS = numeroODS
