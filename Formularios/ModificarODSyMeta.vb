@@ -12,7 +12,7 @@ Public Class ModificarODSyMeta
         cboCarMeta.Items.Clear()
         txtDescripcionMeta.Text = ""
         Dim msgError As String = ""
-        cboCarMeta.Items.AddRange(gestion.VerMetasDeODS(odsSeleccionado.NumeroODS, msgError).ToArray)
+        cboCarMeta.Items.AddRange(gestion.Agenda2030(gestion.Agenda2030.IndexOf(New ODS(odsSeleccionado.NumeroODS))).Metas.ToArray)
         If msgError <> "" Then
             MessageBox.Show(msgError)
         End If

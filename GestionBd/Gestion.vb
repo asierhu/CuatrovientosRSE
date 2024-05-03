@@ -76,8 +76,9 @@ Public Class Gestion
     End Function
     Public Function ModificarMeta(metaModificada As Meta) As String
         Dim cambios As Boolean = False
-        Dim metasODS As List(Of Meta) = _Agenda2030(_Agenda2030.IndexOf(New ODS(metaModificada.NumeroODS))).Metas
-        Dim metaGuardada As Meta = metasODS(metasODS.IndexOf(New Meta(metaModificada.NumeroODS, metaModificada.IDMeta)))
+        Dim odsAux As ODS = _Agenda2030(_Agenda2030.IndexOf(New ODS(metaModificada.NumeroODS)))
+        Dim indiceMetaODS As Integer = odsAux.Metas.IndexOf(New Meta(metaModificada.NumeroODS, metaModificada.IDMeta))
+        Dim metaGuardada As Meta = odsAux.Metas(indiceMetaODS)
         If Not metaModificada.IDMeta.ToLower = metaGuardada.IDMeta.ToLower Then
             If metaModificada.IDMeta.Contains("*") Then
                 Return "El identificador de una meta no puede contener el caracter '*'"
@@ -95,6 +96,7 @@ Public Class Gestion
         If Not cambios Then
             Return "No has hecho cambios"
         End If
+        _Agenda2030(_Agenda2030.IndexOf(New ODS(metaModificada.NumeroODS))) = odsAux
         Return ""
 
     End Function
