@@ -30,18 +30,15 @@ Public Class Gestion
     End Sub
     Private Sub RellenarMetasDeODS()
         Dim conect As New SqlConnection(CADENA_CONEXION)
-        Dim sql As String = "SELECT METAS.NUMERO_ODS,METAS.CARACTER_META,METAS.DESCRIPCION FROM METAS WHERE METAS.NUMERO_ODS=@NumODS"
+        Dim sql As String = "SELECT METAS.NUMERO_ODS,METAS.CARACTER_META,METAS.DESCRIPCION FROM METAS"
         Try
             conect.Open()
             Dim cmdMeta As New SqlCommand(sql, conect)
             Dim drODS As SqlDataReader
-            For Each ods In _Agenda2030
-                cmdMeta.Parameters.AddWithValue("@NumODS", ods.NumeroODS)
-                drODS = cmdMeta.ExecuteReader
-                While drODS.Read
-                    ods.Metas.Add(New Meta(drODS("NUMERO_ODS"), drODS("CARACTER_META"), drODS("DESCRIPCION")))
-                End While
-            Next
+            drODS = cmdMeta.ExecuteReader
+            While drODS.Read
+                _Agenda2030(_Agenda2030.IndexOf(New ODS(drODS("NUMERO_ODS")))).Metas.Add(New Meta(drODS("NUMERO_ODS"), drODS("CARACTER_META"), drODS("DESCRIPCION")))
+            End While
         Catch ex As Exception
 
         Finally
@@ -79,8 +76,8 @@ Public Class Gestion
     End Function
     Public Function ModificarMeta(metaModificada As Meta) As String
         Dim cambios As Boolean = False
-        Dim odsAux As ODS = _Agenda2030(_Agenda2030.IndexOf(New ODS(metaModificada.NumeroODS)))
-        Dim metaGuardada As Meta = odsAux.Metas(odsAux.Metas.IndexOf(metaModificada))
+        Dim metasODS As List(Of Meta) = _Agenda2030(_Agenda2030.IndexOf(New ODS(metaModificada.NumeroODS))).Metas
+        Dim metaGuardada As Meta = metasODS(metasODS.IndexOf(New Meta(metaModificada.NumeroODS, metaModificada.IDMeta)))
         If Not metaModificada.IDMeta.ToLower = metaGuardada.IDMeta.ToLower Then
             If metaModificada.IDMeta.Contains("*") Then
                 Return "El identificador de una meta no puede contener el caracter '*'"

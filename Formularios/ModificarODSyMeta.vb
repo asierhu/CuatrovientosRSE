@@ -30,7 +30,7 @@ Public Class ModificarODSyMeta
     End Sub
 
     Private Sub btnModMeta_Click(sender As Object, e As EventArgs) Handles btnModMeta.Click
-        Dim msg As String = gestion.ModificarMeta(New Meta(odsSeleccionado.NumeroODS, cboCarMeta.SelectedText, txtDescripcionMeta.Text))
+        Dim msg As String = gestion.ModificarMeta(New Meta(odsSeleccionado.NumeroODS, cboCarMeta.SelectedItem.ToString, txtDescripcionMeta.Text))
         If msg <> "" Then
             MessageBox.Show(msg)
         End If
