@@ -34,7 +34,7 @@ Partial Class Form1
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.btnAnadirOds = New System.Windows.Forms.Button()
+        Me.btncrearini = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
@@ -72,7 +72,7 @@ Partial Class Form1
         'btnVerOds
         '
         Me.btnVerOds.Location = New System.Drawing.Point(342, 131)
-        Me.btnVerOds.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnVerOds.Margin = New System.Windows.Forms.Padding(2)
         Me.btnVerOds.Name = "btnVerOds"
         Me.btnVerOds.Size = New System.Drawing.Size(166, 38)
         Me.btnVerOds.TabIndex = 11
@@ -82,7 +82,7 @@ Partial Class Form1
         'btnModOds
         '
         Me.btnModOds.Location = New System.Drawing.Point(380, 212)
-        Me.btnModOds.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnModOds.Margin = New System.Windows.Forms.Padding(2)
         Me.btnModOds.Name = "btnModOds"
         Me.btnModOds.Size = New System.Drawing.Size(92, 32)
         Me.btnModOds.TabIndex = 12
@@ -143,15 +143,15 @@ Partial Class Form1
         Me.Label15.Size = New System.Drawing.Size(0, 13)
         Me.Label15.TabIndex = 17
         '
-        'btnAnadirOds
+        'btncrearini
         '
-        Me.btnAnadirOds.Location = New System.Drawing.Point(380, 284)
-        Me.btnAnadirOds.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.btnAnadirOds.Name = "btnAnadirOds"
-        Me.btnAnadirOds.Size = New System.Drawing.Size(92, 32)
-        Me.btnAnadirOds.TabIndex = 23
-        Me.btnAnadirOds.Text = "Añadir ODS"
-        Me.btnAnadirOds.UseVisualStyleBackColor = True
+        Me.btncrearini.Location = New System.Drawing.Point(380, 284)
+        Me.btncrearini.Margin = New System.Windows.Forms.Padding(2)
+        Me.btncrearini.Name = "btncrearini"
+        Me.btncrearini.Size = New System.Drawing.Size(92, 32)
+        Me.btncrearini.TabIndex = 23
+        Me.btncrearini.Text = "Crear iniciativas"
+        Me.btncrearini.UseVisualStyleBackColor = True
         '
         'Button1
         '
@@ -171,7 +171,7 @@ Partial Class Form1
         Me.ClientSize = New System.Drawing.Size(812, 462)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnVerOds)
-        Me.Controls.Add(Me.btnAnadirOds)
+        Me.Controls.Add(Me.btncrearini)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.Label9)
@@ -182,7 +182,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "Form1"
         Me.Text = "Cuatrovientos ODS"
         Me.ResumeLayout(False)
@@ -200,6 +200,6 @@ Partial Class Form1
     Friend WithEvents Label10 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents Label15 As Label
-    Friend WithEvents btnAnadirOds As Button
+    Friend WithEvents btncrearini As Button
     Friend WithEvents Button1 As Button
 End Class
