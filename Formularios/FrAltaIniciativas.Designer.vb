@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrAltaIniciativas
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class FrAltaIniciativas
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.cboods = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -32,6 +32,7 @@ Partial Class FrAltaIniciativas
         Me.lstbmeta = New System.Windows.Forms.ListBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.seltdmeta = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'cboods
@@ -67,7 +68,7 @@ Partial Class FrAltaIniciativas
         Me.cbometa.FormattingEnabled = True
         Me.cbometa.Location = New System.Drawing.Point(172, 103)
         Me.cbometa.Name = "cbometa"
-        Me.cbometa.Size = New System.Drawing.Size(276, 21)
+        Me.cbometa.Size = New System.Drawing.Size(142, 21)
         Me.cbometa.TabIndex = 2
         '
         'lstbods
@@ -90,7 +91,7 @@ Partial Class FrAltaIniciativas
         'selmeta
         '
         Me.selmeta.Enabled = False
-        Me.selmeta.Location = New System.Drawing.Point(463, 103)
+        Me.selmeta.Location = New System.Drawing.Point(329, 103)
         Me.selmeta.Name = "selmeta"
         Me.selmeta.Size = New System.Drawing.Size(75, 23)
         Me.selmeta.TabIndex = 6
@@ -123,11 +124,22 @@ Partial Class FrAltaIniciativas
         Me.Button2.Text = "Dar de alta"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'seltdmeta
+        '
+        Me.seltdmeta.Enabled = False
+        Me.seltdmeta.Location = New System.Drawing.Point(410, 103)
+        Me.seltdmeta.Name = "seltdmeta"
+        Me.seltdmeta.Size = New System.Drawing.Size(114, 23)
+        Me.seltdmeta.TabIndex = 10
+        Me.seltdmeta.Text = "Seleccionar todas"
+        Me.seltdmeta.UseVisualStyleBackColor = True
+        '
         'FrAltaIniciativas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.seltdmeta)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.lstbmeta)
@@ -155,4 +167,5 @@ Partial Class FrAltaIniciativas
     Friend WithEvents lstbmeta As ListBox
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents seltdmeta As Button
 End Class
