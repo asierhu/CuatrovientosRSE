@@ -2,7 +2,7 @@
 Public Class Form1
 
     Private Sub btnVerOds_Click(sender As Object, e As EventArgs) Handles btnVerOds.Click
-        Dim verODSMetas = New VerODSMetas
+        Dim verODSMetas = New frmVerODSMetas
         verODSMetas.Show()
     End Sub
 
@@ -11,7 +11,7 @@ Public Class Form1
     End Sub
 
     Private Sub btnModOds_Click(sender As Object, e As EventArgs) Handles btnModOds.Click
-        Dim modificarODSyMeta = New ModificarODSyMeta
+        Dim modificarODSyMeta = New frmModificarODSyMeta
         modificarODSyMeta.Show()
     End Sub
 

@@ -2,7 +2,7 @@
 Imports Entidades
 Imports GestionBd
 
-Public Class VerODSMetas
+Public Class frmVerODSMetas
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboODS.SelectedIndexChanged
         Dim mensajerror As String = ""
