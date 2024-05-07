@@ -6,7 +6,7 @@
     Public Property Descripcion As String
 
     Public Overrides Function ToString() As String
-        Return $"{IDMeta}"
+        Return $"{NumeroODS}.{IDMeta}"
     End Function
     Public Sub New(numeroODS As Byte, idMeta As String)
         Me.NumeroODS = numeroODS

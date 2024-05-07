@@ -1,7 +1,7 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports Entidades
 
-Public Class ModificarODSyMeta
+Public Class frmModificarODSyMeta
     Private odsSeleccionado As ODS
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboODS.SelectedIndexChanged
         odsSeleccionado = TryCast(cboODS.SelectedItem, ODS)
