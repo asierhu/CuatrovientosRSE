@@ -1,4 +1,5 @@
-﻿Imports Entidades
+﻿Imports System.Runtime.CompilerServices
+Imports Entidades
 
 Public Class ModificarODSyMeta
     Private odsSeleccionado As ODS
@@ -30,6 +31,10 @@ Public Class ModificarODSyMeta
     End Sub
 
     Private Sub btnModMeta_Click(sender As Object, e As EventArgs) Handles btnModMeta.Click
+        If cboCarMeta.SelectedItem Is Nothing Then
+            MessageBox.Show("Debes seleccionar una meta para poder modificarla")
+            Exit Sub
+        End If
         Dim msg As String = gestion.ModificarMeta(New Meta(odsSeleccionado.NumeroODS, cboCarMeta.SelectedItem.ToString, txtDescripcionMeta.Text))
         If msg <> "" Then
             MessageBox.Show(msg)
@@ -38,5 +43,18 @@ Public Class ModificarODSyMeta
 
     Private Sub cboCarMeta_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCarMeta.SelectedIndexChanged
         txtDescripcionMeta.Text = TryCast(cboCarMeta.SelectedItem, Meta).Descripcion
+    End Sub
+
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If cboODS.SelectedItem Is Nothing Then
+            MessageBox.Show("Debes seleccionar un ODS para poder añadir una meta")
+            Exit Sub
+        End If
+
+        Dim msg As String = gestion.AnyadirMeta(New Meta(odsSeleccionado.NumeroODS, txtCarMeta.Text, txtDescripcionMeta.Text))
+        If msg <> "" Then
+            MessageBox.Show(msg)
+        End If
     End Sub
 End Class
