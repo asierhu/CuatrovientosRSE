@@ -3,6 +3,7 @@ Imports Entidades
 
 Public Class ModificarODSyMeta
     Private odsSeleccionado As ODS
+    Private cambios As Boolean = False
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboODS.SelectedIndexChanged
         odsSeleccionado = TryCast(cboODS.SelectedItem, ODS)
         pbODS.BackgroundImage = Image.FromFile($"imagenes/{odsSeleccionado.NumeroODS}.jpg")

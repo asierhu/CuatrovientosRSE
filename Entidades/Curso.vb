@@ -2,13 +2,8 @@
     Implements IEquatable(Of Curso)
 
     Public Property Nombre As String
-    Public Property Asignaturas As List(Of Asignatura)
     Public Sub New(nombre As String)
         Me.Nombre = nombre
-    End Sub
-    Public Sub New(nombre As String, asignaturas As List(Of Asignatura))
-        Me.Nombre = nombre
-        Me.Asignaturas = asignaturas
     End Sub
 
     Public Overrides Function Equals(obj As Object) As Boolean

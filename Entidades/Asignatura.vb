@@ -1,8 +1,7 @@
 ﻿Public Class Asignatura
     Implements IEquatable(Of Asignatura)
-
-    Public Property CodAsignatura As Integer
     Public Property Nombre As String
+    Public Property CodAsignatura As Integer
     Public Sub New(codAsignatura As Integer)
         Me.CodAsignatura = codAsignatura
     End Sub

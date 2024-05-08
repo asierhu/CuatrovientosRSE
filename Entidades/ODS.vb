@@ -6,8 +6,10 @@ Public Class ODS
     Public Property NumeroODS As Byte
     Public Property Nombre As String
     Public Property Descripcion As String
-    Public Property Metas As New List(Of Meta)
     Public Property Imagen As String
+    Public Sub New()
+
+    End Sub
     Public Sub New(numeroODS As Byte)
         Me.NumeroODS = numeroODS
         Me.Nombre = ""
@@ -36,14 +38,6 @@ Public Class ODS
         Return other IsNot Nothing AndAlso
                NumeroODS = other.NumeroODS
     End Function
-    Public Function ODS() As String
-        Dim metasEnMensaje As String = ""
-        For Each meta In Metas
-            metasEnMensaje += $"{meta.ToString(False)}\n"
-        Next
-        Return $"{NumeroODS}: {Nombre}\n{Descripcion}\n{metasEnMensaje}"
-    End Function
-
     Public Overrides Function ToString() As String
         Return $"{NumeroODS}: {Nombre}"
     End Function

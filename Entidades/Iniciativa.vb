@@ -13,7 +13,6 @@
     Public Sub New(codIniciativa As Integer)
         Me.CodIniciativa = codIniciativa
     End Sub
-
     Public Sub New(codIniciativa As Integer, contratantes As List(Of Contratante), metas As List(Of Meta), profesores As List(Of Profesor), asignaturas As List(Of Asignatura), horas As Integer, titulo As String, fechaInicio As Date, fechaFin As Date)
         Me.CodIniciativa = codIniciativa
         Me.Contratantes = contratantes
