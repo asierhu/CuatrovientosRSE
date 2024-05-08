@@ -52,7 +52,7 @@ Public Class ModificarODSyMeta
             Exit Sub
         End If
 
-        Dim msg As String = gestion.AnyadirMeta(New Meta(odsSeleccionado.NumeroODS, txtCarMeta.Text, txtDescripcionMeta.Text))
+        Dim msg As String = gestion.AnyadirMeta(New Meta(odsSeleccionado.NumeroODS, txtCarMeta.Text, txtAnyadirDesc.Text))
         If msg <> "" Then
             MessageBox.Show(msg)
         End If

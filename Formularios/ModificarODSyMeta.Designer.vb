@@ -48,7 +48,7 @@ Partial Class ModificarODSyMeta
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtCarMeta = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtAnyadirDesc = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         CType(Me.pbODS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -285,7 +285,7 @@ Partial Class ModificarODSyMeta
         '
         Me.GroupBox1.Controls.Add(Me.txtCarMeta)
         Me.GroupBox1.Controls.Add(Me.Button1)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
+        Me.GroupBox1.Controls.Add(Me.txtAnyadirDesc)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Location = New System.Drawing.Point(32, 555)
@@ -315,14 +315,14 @@ Partial Class ModificarODSyMeta
         Me.Button1.Text = "Añadir Meta"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'TextBox1
+        'txtAnyadirDesc
         '
-        Me.TextBox1.Location = New System.Drawing.Point(116, 59)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(503, 109)
-        Me.TextBox1.TabIndex = 22
+        Me.txtAnyadirDesc.Location = New System.Drawing.Point(116, 59)
+        Me.txtAnyadirDesc.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.txtAnyadirDesc.Multiline = True
+        Me.txtAnyadirDesc.Name = "txtAnyadirDesc"
+        Me.txtAnyadirDesc.Size = New System.Drawing.Size(503, 109)
+        Me.txtAnyadirDesc.TabIndex = 22
         '
         'Label4
         '
@@ -395,7 +395,7 @@ Partial Class ModificarODSyMeta
     Friend WithEvents cboCarMeta As ComboBox
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Button1 As Button
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtAnyadirDesc As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents txtCarMeta As TextBox

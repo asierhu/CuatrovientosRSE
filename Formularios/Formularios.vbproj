@@ -122,6 +122,9 @@
     <EmbeddedResource Include="FrAltaIniciativas.resx">
       <DependentUpon>FrAltaIniciativas.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ModificarODSyMeta.resx">
+      <DependentUpon>ModificarODSyMeta.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
