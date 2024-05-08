@@ -19,7 +19,7 @@ Public Class Form1
         Me.Close()
     End Sub
 
-    Private Sub btncrearini_Click(sender As Object, e As EventArgs) Handles btncrearini.Click
+    Private Sub btncrearini_Click(sender As Object, e As EventArgs) Handles btnCrearIni.Click
         Dim FrAltaIniciativas As New FrAltaIniciativas
         FrAltaIniciativas.Show()
     End Sub
