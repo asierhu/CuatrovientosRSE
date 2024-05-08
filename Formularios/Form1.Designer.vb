@@ -34,7 +34,7 @@ Partial Class Form1
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.btncrearini = New System.Windows.Forms.Button()
+        Me.btnCrearIni = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
@@ -143,15 +143,15 @@ Partial Class Form1
         Me.Label15.Size = New System.Drawing.Size(0, 13)
         Me.Label15.TabIndex = 17
         '
-        'btncrearini
+        'btnCrearIni
         '
-        Me.btncrearini.Location = New System.Drawing.Point(380, 284)
-        Me.btncrearini.Margin = New System.Windows.Forms.Padding(2)
-        Me.btncrearini.Name = "btncrearini"
-        Me.btncrearini.Size = New System.Drawing.Size(92, 32)
-        Me.btncrearini.TabIndex = 23
-        Me.btncrearini.Text = "Crear iniciativas"
-        Me.btncrearini.UseVisualStyleBackColor = True
+        Me.btnCrearIni.Location = New System.Drawing.Point(380, 284)
+        Me.btnCrearIni.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnCrearIni.Name = "btnCrearIni"
+        Me.btnCrearIni.Size = New System.Drawing.Size(92, 32)
+        Me.btnCrearIni.TabIndex = 23
+        Me.btnCrearIni.Text = "Crear iniciativas"
+        Me.btnCrearIni.UseVisualStyleBackColor = True
         '
         'Button1
         '
@@ -171,7 +171,7 @@ Partial Class Form1
         Me.ClientSize = New System.Drawing.Size(812, 462)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnVerOds)
-        Me.Controls.Add(Me.btncrearini)
+        Me.Controls.Add(Me.btnCrearIni)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.Label9)
@@ -200,6 +200,6 @@ Partial Class Form1
     Friend WithEvents Label10 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents Label15 As Label
-    Friend WithEvents btncrearini As Button
+    Friend WithEvents btnCrearIni As Button
     Friend WithEvents Button1 As Button
 End Class
