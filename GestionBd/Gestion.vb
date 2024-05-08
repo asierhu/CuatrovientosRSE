@@ -127,36 +127,73 @@ Public Class Gestion
         Return profesores.AsReadOnly
     End Function
     Public Function ModificarODS(odsModificado As ODS) As String
-        Dim msgError As String
-        Dim cambios As Boolean = False
-        Dim odsGuardado As New ODS() = ODSEnBaseDeDatos(msgError)
+        Dim msgError As String = ""
+        Dim ods As ReadOnlyCollection(Of ODS) = ODSEnBaseDeDatos(msgError)
+        Dim odsGuardado As ODS = ods(ods.IndexOf(odsModificado))
         If msgError <> "" Then
             Return msgError
         End If
+        Dim nuevoNombre As String = ""
         If Not odsModificado.Nombre.ToLower = odsGuardado.Nombre.ToLower Then
             If odsModificado.Nombre.Contains("*") Then
                 Return "El nombre del ODS no puede contener el caracter '*'"
             End If
-            cambios = True
-            odsGuardado.Nombre = odsModificado.Nombre
+            nuevoNombre = odsModificado.Nombre
         End If
+        Dim nuevaDesc As String = ""
         If Not odsModificado.Descripcion.ToLower = odsGuardado.Descripcion.ToLower Then
             If odsModificado.Descripcion.Contains("*") Then
                 Return "La descripción del ODS no puede contener el caracter '*'"
             End If
-            cambios = True
-            odsGuardado.Descripcion = odsModificado.Descripcion
+            nuevaDesc = odsModificado.Descripcion
         End If
+        Dim nuevaImg As String = ""
         If Not odsModificado.Imagen.ToLower = odsGuardado.Imagen.ToLower Then
             If odsModificado.Imagen.Contains("*") Then
                 Return "La dirección de la imagen no puede contener el caracter '*'"
             End If
-            cambios = True
-            odsGuardado.Descripcion = odsModificado.Descripcion
+            nuevaImg = odsModificado.Imagen
         End If
-        If Not cambios Then
+
+        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim sql As String = "UPDATE ODS SET "
+        If nuevoNombre <> "" Then
+            sql += "NOMBRE=@NUEVONOMBRE"
+        End If
+        If nuevaDesc <> "" Then
+            If sql.EndsWith("@NUEVONOMBRE") Then
+                sql += ", "
+            End If
+            sql += "DESCRIPCION=@NUEVADESC"
+        End If
+        If nuevaImg <> "" Then
+            If sql.EndsWith("@NUEVONOMBRE") OrElse sql.EndsWith("@NUEVADESC") Then
+                sql += ", "
+            End If
+            sql += "IMAGEN=@NUEVAIMAGEN"
+        End If
+        If sql = "UPDATE ODS SET " Then
             Return "No has hecho cambios"
+        Else
+            sql += " WHERE NUMERO_ODS=@NUMODS"
         End If
+        Try
+            conect.Open()
+            Dim cmdODS As New SqlCommand(sql, conect)
+            If sql.Contains("@NUEVONOMBRE") Then
+                cmdODS.Parameters.AddWithValue("@NUEVONOMBRE", nuevoNombre)
+            End If
+            If sql.Contains("@NUEVADESC") Then
+                cmdODS.Parameters.AddWithValue("@NUEVADESC", nuevaDesc)
+            End If
+            If sql.Contains("@NUEVAIMAGEN") Then
+                cmdODS.Parameters.AddWithValue("@NUEVAIMAGEN", nuevaImg)
+            End If
+        Catch ex As Exception
+            msgError = ex.Message
+        Finally
+            conect.Close()
+        End Try
         Return ""
     End Function
     Public Function ModificarMeta(metaModificada As Meta) As String
@@ -186,21 +223,36 @@ Public Class Gestion
 
     End Function
     Public Function AnyadirMeta(meta As Meta) As String
-        Dim odsGuardado As ODS = _Agenda2030(meta.NumeroODS - 1)
-        Dim indiceMeta As Integer = odsGuardado.Metas.IndexOf(New Meta(meta.NumeroODS, meta.IDMeta))
-        For i = 0 To odsGuardado.Metas.Count - 1
-            If odsGuardado.Metas(i).Equals(meta) Then
-                indiceMeta = i
-                Exit For
-            End If
-        Next
+        Dim msgError = ""
+        Dim metas As ReadOnlyCollection(Of Meta) = VerMetasDeODS(meta.NumeroODS, msgError)
+        'For i = 0 To odsGuardado.Metas.Count - 1
+        '    If odsGuardado.Metas(i).Equals(meta) Then
+        '        indiceMeta = i
+        '        Exit For
+        '    End If
+        'Next
+        Dim indiceMeta As Integer = metas.IndexOf(meta)
         If indiceMeta <> -1 Then
-            Return $"La meta {meta} ya existía en {odsGuardado.Nombre}"
+            Return $"La meta {meta} ya existía en el ODS número {meta.NumeroODS}"
         End If
         If meta.Descripcion.Contains("*") Then
             Return $"La descripcion de la nueva meta {meta.ToString(True)} no puede contener el caracter '*'"
         End If
-        odsGuardado.Metas.Add(meta)
+        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim sql As String = "INSERT INTO METAS VALUES (@NUMODS, @CARMETA, @DESCRIPCION)"
+        Try
+            conect.Open()
+            Dim cmdODS As New SqlCommand(sql, conect)
+            cmdODS.Parameters.AddWithValue("@NUMODS", meta.NumeroODS)
+            cmdODS.Parameters.AddWithValue("@CARMETA", meta.IDMeta)
+            cmdODS.Parameters.AddWithValue("@DESCRIPCION", meta.Descripcion)
+            'EJECUTAR SENTENCIA INSERT
+        Catch ex As Exception
+            msgError = ex.Message
+        Finally
+            conect.Close()
+        End Try
+
         Return ""
     End Function
 

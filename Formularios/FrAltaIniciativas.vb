@@ -1,9 +1,18 @@
-﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Tab
+﻿Imports System.Collections.ObjectModel
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Tab
 Imports Entidades
 
 Public Class FrAltaIniciativas
     Private Sub FrAltaIniciativas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        cboOds.Items.AddRange(gestion.Agenda2030.ToArray)
+        Dim msgError As String = ""
+        Try
+            cboOds.Items.AddRange(gestion.ODSEnBaseDeDatos(msgError).ToArray)
+        Catch ex As Exception
+        Finally
+            If msgError <> "" Then
+                MessageBox.Show(msgError)
+            End If
+        End Try
     End Sub
     Private odsSeleccionado As ODS
     Private metaSeleccionada As Meta
@@ -40,11 +49,15 @@ Public Class FrAltaIniciativas
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles selTdMeta.Click
-        Dim metas = New List(Of Meta)
-        For Each meta In odsSeleccionado.Metas
+        Dim msgError As String = ""
+        Dim metas As ReadOnlyCollection(Of Meta) = gestion.VerMetasDeODS(odsSeleccionado.NumeroODS, msgError)
+        If msgError <> "" Then
+            MessageBox.Show(msgError)
+        End If
+        For Each meta In metas
             lstbMeta.Items.Remove(meta)
         Next
-        For Each meta In odsSeleccionado.Metas
+        For Each meta In metas
             If Not lstbMeta.Items.Contains(meta) Then
                 lstbMeta.Items.Add(meta)
             Else
