@@ -11,7 +11,7 @@ Public Class Form1
     End Sub
 
     Private Sub btnModOds_Click(sender As Object, e As EventArgs) Handles btnModOds.Click
-        Dim modificarODSyMeta = New frmModificarODSyMeta
+        Dim modificarODSyMeta = New ModificarODSyMeta
         modificarODSyMeta.Show()
     End Sub
 

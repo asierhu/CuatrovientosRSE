@@ -110,7 +110,7 @@ Public Class Gestion
             End If
         Next
         If indiceMeta <> -1 Then
-            Return $"La meta {meta.ToString} ya existía en {odsGuardado.Nombre}"
+            Return $"La meta {meta} ya existía en {odsGuardado.Nombre}"
         End If
         If meta.Descripcion.Contains("*") Then
             Return $"La descripcion de la nueva meta {meta.ToString(True)} no puede contener el caracter '*'"

@@ -1,7 +1,7 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports Entidades
 
-Public Class frmModificarODSyMeta
+Public Class ModificarODSyMeta
     Private odsSeleccionado As ODS
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboODS.SelectedIndexChanged
         odsSeleccionado = TryCast(cboODS.SelectedItem, ODS)
@@ -35,7 +35,7 @@ Public Class frmModificarODSyMeta
             MessageBox.Show("Debes seleccionar una meta para poder modificarla")
             Exit Sub
         End If
-        Dim msg As String = gestion.ModificarMeta(New Meta(odsSeleccionado.NumeroODS, cboCarMeta.SelectedItem.ToString, txtDescripcionMeta.Text))
+        Dim msg As String = gestion.ModificarMeta(New Meta(odsSeleccionado.NumeroODS, TryCast(cboCarMeta.SelectedItem, Meta).IDMeta, txtDescripcionMeta.Text))
         If msg <> "" Then
             MessageBox.Show(msg)
         End If
