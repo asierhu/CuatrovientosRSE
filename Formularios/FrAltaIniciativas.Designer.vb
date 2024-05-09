@@ -60,25 +60,29 @@ Partial Class FrAltaIniciativas
         Me.btnAlta = New System.Windows.Forms.Button()
         Me.btnReset = New System.Windows.Forms.Button()
         Me.numHoras = New System.Windows.Forms.NumericUpDown()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
         CType(Me.numHoras, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'cboOds
         '
         Me.cboOds.FormattingEnabled = True
-        Me.cboOds.Location = New System.Drawing.Point(232, 432)
-        Me.cboOds.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cboOds.Location = New System.Drawing.Point(174, 351)
         Me.cboOds.Name = "cboOds"
-        Me.cboOds.Size = New System.Drawing.Size(469, 24)
+        Me.cboOds.Size = New System.Drawing.Size(353, 21)
         Me.cboOds.TabIndex = 0
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(54, 432)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Location = New System.Drawing.Point(40, 351)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(163, 16)
+        Me.Label1.Size = New System.Drawing.Size(127, 13)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Elige los ODS implicados:"
         '
@@ -86,10 +90,9 @@ Partial Class FrAltaIniciativas
         '
         Me.lblmeta.AutoSize = True
         Me.lblmeta.Enabled = False
-        Me.lblmeta.Location = New System.Drawing.Point(54, 476)
-        Me.lblmeta.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblmeta.Location = New System.Drawing.Point(40, 387)
         Me.lblmeta.Name = "lblmeta"
-        Me.lblmeta.Size = New System.Drawing.Size(162, 16)
+        Me.lblmeta.Size = New System.Drawing.Size(127, 13)
         Me.lblmeta.TabIndex = 3
         Me.lblmeta.Text = "Elige las metas a trabajar:"
         '
@@ -97,19 +100,17 @@ Partial Class FrAltaIniciativas
         '
         Me.cboMeta.Enabled = False
         Me.cboMeta.FormattingEnabled = True
-        Me.cboMeta.Location = New System.Drawing.Point(231, 476)
-        Me.cboMeta.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cboMeta.Location = New System.Drawing.Point(173, 387)
         Me.cboMeta.Name = "cboMeta"
-        Me.cboMeta.Size = New System.Drawing.Size(188, 24)
+        Me.cboMeta.Size = New System.Drawing.Size(142, 21)
         Me.cboMeta.TabIndex = 2
         '
         'selMeta
         '
         Me.selMeta.Enabled = False
-        Me.selMeta.Location = New System.Drawing.Point(441, 476)
-        Me.selMeta.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.selMeta.Location = New System.Drawing.Point(331, 387)
         Me.selMeta.Name = "selMeta"
-        Me.selMeta.Size = New System.Drawing.Size(100, 28)
+        Me.selMeta.Size = New System.Drawing.Size(75, 23)
         Me.selMeta.TabIndex = 6
         Me.selMeta.Text = "Seleccionar"
         Me.selMeta.UseVisualStyleBackColor = True
@@ -117,19 +118,16 @@ Partial Class FrAltaIniciativas
         'lstbMeta
         '
         Me.lstbMeta.FormattingEnabled = True
-        Me.lstbMeta.ItemHeight = 16
-        Me.lstbMeta.Location = New System.Drawing.Point(231, 544)
-        Me.lstbMeta.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lstbMeta.Location = New System.Drawing.Point(173, 442)
         Me.lstbMeta.Name = "lstbMeta"
-        Me.lstbMeta.Size = New System.Drawing.Size(361, 148)
+        Me.lstbMeta.Size = New System.Drawing.Size(354, 121)
         Me.lstbMeta.TabIndex = 7
         '
         'btnBorrarMeta
         '
-        Me.btnBorrarMeta.Location = New System.Drawing.Point(877, 656)
-        Me.btnBorrarMeta.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnBorrarMeta.Location = New System.Drawing.Point(293, 579)
         Me.btnBorrarMeta.Name = "btnBorrarMeta"
-        Me.btnBorrarMeta.Size = New System.Drawing.Size(163, 28)
+        Me.btnBorrarMeta.Size = New System.Drawing.Size(122, 23)
         Me.btnBorrarMeta.TabIndex = 8
         Me.btnBorrarMeta.Text = "Borrar seleccionado"
         Me.btnBorrarMeta.UseVisualStyleBackColor = True
@@ -137,10 +135,9 @@ Partial Class FrAltaIniciativas
         'selTdMeta
         '
         Me.selTdMeta.Enabled = False
-        Me.selTdMeta.Location = New System.Drawing.Point(561, 476)
-        Me.selTdMeta.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.selTdMeta.Location = New System.Drawing.Point(421, 387)
         Me.selTdMeta.Name = "selTdMeta"
-        Me.selTdMeta.Size = New System.Drawing.Size(152, 28)
+        Me.selTdMeta.Size = New System.Drawing.Size(106, 23)
         Me.selTdMeta.TabIndex = 10
         Me.selTdMeta.Text = "Seleccionar todas"
         Me.selTdMeta.UseVisualStyleBackColor = True
@@ -148,29 +145,26 @@ Partial Class FrAltaIniciativas
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(227, 517)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Location = New System.Drawing.Point(170, 420)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(139, 16)
+        Me.Label3.Size = New System.Drawing.Size(110, 13)
         Me.Label3.TabIndex = 13
         Me.Label3.Text = "Metas seleccionadas:"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(2032, 319)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label4.Location = New System.Drawing.Point(840, 319)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(168, 16)
+        Me.Label4.Size = New System.Drawing.Size(131, 13)
         Me.Label4.TabIndex = 18
         Me.Label4.Text = "Profesores seleccionados:"
         '
         'selProf
         '
-        Me.selProf.Location = New System.Drawing.Point(1598, 161)
-        Me.selProf.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.selProf.Location = New System.Drawing.Point(1133, 286)
         Me.selProf.Name = "selProf"
-        Me.selProf.Size = New System.Drawing.Size(100, 28)
+        Me.selProf.Size = New System.Drawing.Size(75, 23)
         Me.selProf.TabIndex = 17
         Me.selProf.Text = "Seleccionar"
         Me.selProf.UseVisualStyleBackColor = True
@@ -178,49 +172,43 @@ Partial Class FrAltaIniciativas
         'lstbProf
         '
         Me.lstbProf.FormattingEnabled = True
-        Me.lstbProf.ItemHeight = 16
-        Me.lstbProf.Location = New System.Drawing.Point(2036, 346)
-        Me.lstbProf.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lstbProf.Location = New System.Drawing.Point(843, 341)
         Me.lstbProf.Name = "lstbProf"
-        Me.lstbProf.Size = New System.Drawing.Size(361, 148)
+        Me.lstbProf.Size = New System.Drawing.Size(272, 121)
         Me.lstbProf.TabIndex = 16
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(1032, 161)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label5.Location = New System.Drawing.Point(709, 286)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(134, 16)
+        Me.Label5.Size = New System.Drawing.Size(106, 13)
         Me.Label5.TabIndex = 15
         Me.Label5.Text = "Profesorado a cargo:"
         '
         'cboProf
         '
         Me.cboProf.FormattingEnabled = True
-        Me.cboProf.Location = New System.Drawing.Point(1210, 161)
-        Me.cboProf.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cboProf.Location = New System.Drawing.Point(843, 286)
         Me.cboProf.Name = "cboProf"
-        Me.cboProf.Size = New System.Drawing.Size(367, 24)
+        Me.cboProf.Size = New System.Drawing.Size(276, 21)
         Me.cboProf.TabIndex = 14
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(2032, 839)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label6.Location = New System.Drawing.Point(844, 547)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(173, 16)
+        Me.Label6.Size = New System.Drawing.Size(136, 13)
         Me.Label6.TabIndex = 23
         Me.Label6.Text = "Asignaturas seleccionados:"
         '
         'selAsign
         '
         Me.selAsign.Enabled = False
-        Me.selAsign.Location = New System.Drawing.Point(1598, 267)
-        Me.selAsign.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.selAsign.Location = New System.Drawing.Point(1137, 519)
         Me.selAsign.Name = "selAsign"
-        Me.selAsign.Size = New System.Drawing.Size(100, 28)
+        Me.selAsign.Size = New System.Drawing.Size(75, 23)
         Me.selAsign.TabIndex = 22
         Me.selAsign.Text = "Seleccionar"
         Me.selAsign.UseVisualStyleBackColor = True
@@ -228,21 +216,18 @@ Partial Class FrAltaIniciativas
         'lstbAsign
         '
         Me.lstbAsign.FormattingEnabled = True
-        Me.lstbAsign.ItemHeight = 16
-        Me.lstbAsign.Location = New System.Drawing.Point(2036, 866)
-        Me.lstbAsign.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lstbAsign.Location = New System.Drawing.Point(847, 569)
         Me.lstbAsign.Name = "lstbAsign"
-        Me.lstbAsign.Size = New System.Drawing.Size(361, 148)
+        Me.lstbAsign.Size = New System.Drawing.Size(272, 121)
         Me.lstbAsign.TabIndex = 21
         '
         'Label7
         '
         Me.Label7.AutoSize = True
         Me.Label7.Enabled = False
-        Me.Label7.Location = New System.Drawing.Point(1032, 267)
-        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label7.Location = New System.Drawing.Point(713, 519)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(161, 16)
+        Me.Label7.Size = New System.Drawing.Size(128, 13)
         Me.Label7.TabIndex = 20
         Me.Label7.Text = "Asignaturas involucradas:"
         '
@@ -250,47 +235,42 @@ Partial Class FrAltaIniciativas
         '
         Me.cboAsign.Enabled = False
         Me.cboAsign.FormattingEnabled = True
-        Me.cboAsign.Location = New System.Drawing.Point(1210, 267)
-        Me.cboAsign.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cboAsign.Location = New System.Drawing.Point(847, 519)
         Me.cboAsign.Name = "cboAsign"
-        Me.cboAsign.Size = New System.Drawing.Size(367, 24)
+        Me.cboAsign.Size = New System.Drawing.Size(276, 21)
         Me.cboAsign.TabIndex = 19
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(1033, 217)
-        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label9.Location = New System.Drawing.Point(714, 478)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(140, 16)
+        Me.Label9.Size = New System.Drawing.Size(112, 13)
         Me.Label9.TabIndex = 25
         Me.Label9.Text = "Cursos que participan:"
         '
         'cboCurso
         '
         Me.cboCurso.FormattingEnabled = True
-        Me.cboCurso.Location = New System.Drawing.Point(1210, 217)
-        Me.cboCurso.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cboCurso.Location = New System.Drawing.Point(847, 478)
         Me.cboCurso.Name = "cboCurso"
-        Me.cboCurso.Size = New System.Drawing.Size(361, 24)
+        Me.cboCurso.Size = New System.Drawing.Size(272, 21)
         Me.cboCurso.TabIndex = 24
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(2032, 73)
-        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label10.Location = New System.Drawing.Point(844, 94)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(177, 16)
+        Me.Label10.Size = New System.Drawing.Size(141, 13)
         Me.Label10.TabIndex = 33
         Me.Label10.Text = "Contratantes seleccionados:"
         '
         'selContratante
         '
-        Me.selContratante.Location = New System.Drawing.Point(1598, 100)
-        Me.selContratante.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.selContratante.Location = New System.Drawing.Point(1133, 61)
         Me.selContratante.Name = "selContratante"
-        Me.selContratante.Size = New System.Drawing.Size(100, 28)
+        Me.selContratante.Size = New System.Drawing.Size(75, 23)
         Me.selContratante.TabIndex = 32
         Me.selContratante.Text = "Seleccionar"
         Me.selContratante.UseVisualStyleBackColor = True
@@ -298,147 +278,182 @@ Partial Class FrAltaIniciativas
         'lstbContratantes
         '
         Me.lstbContratantes.FormattingEnabled = True
-        Me.lstbContratantes.ItemHeight = 16
-        Me.lstbContratantes.Location = New System.Drawing.Point(2036, 100)
-        Me.lstbContratantes.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lstbContratantes.Location = New System.Drawing.Point(847, 116)
         Me.lstbContratantes.Name = "lstbContratantes"
-        Me.lstbContratantes.Size = New System.Drawing.Size(361, 148)
+        Me.lstbContratantes.Size = New System.Drawing.Size(272, 121)
         Me.lstbContratantes.TabIndex = 31
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(1011, 100)
-        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label11.Location = New System.Drawing.Point(691, 62)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(158, 16)
+        Me.Label11.Size = New System.Drawing.Size(128, 13)
         Me.Label11.TabIndex = 30
         Me.Label11.Text = "Seleccionar contratantes:"
         '
         'cboContratantes
         '
         Me.cboContratantes.FormattingEnabled = True
-        Me.cboContratantes.Location = New System.Drawing.Point(1210, 100)
-        Me.cboContratantes.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cboContratantes.Location = New System.Drawing.Point(843, 61)
         Me.cboContratantes.Name = "cboContratantes"
-        Me.cboContratantes.Size = New System.Drawing.Size(367, 24)
+        Me.cboContratantes.Size = New System.Drawing.Size(276, 21)
         Me.cboContratantes.TabIndex = 29
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(28, 42)
-        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label12.Location = New System.Drawing.Point(21, 34)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(0, 16)
+        Me.Label12.Size = New System.Drawing.Size(0, 13)
         Me.Label12.TabIndex = 34
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(76, 76)
-        Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label13.Location = New System.Drawing.Point(57, 62)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(131, 16)
+        Me.Label13.Size = New System.Drawing.Size(108, 13)
         Me.Label13.TabIndex = 35
         Me.Label13.Text = "Título de la iniciativa:"
         '
         'txtTitulo
         '
-        Me.txtTitulo.Location = New System.Drawing.Point(252, 73)
-        Me.txtTitulo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtTitulo.Location = New System.Drawing.Point(189, 59)
         Me.txtTitulo.Name = "txtTitulo"
-        Me.txtTitulo.Size = New System.Drawing.Size(367, 22)
+        Me.txtTitulo.Size = New System.Drawing.Size(276, 20)
         Me.txtTitulo.TabIndex = 36
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(103, 125)
-        Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label14.Location = New System.Drawing.Point(77, 102)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(114, 16)
+        Me.Label14.Size = New System.Drawing.Size(91, 13)
         Me.Label14.TabIndex = 37
         Me.Label14.Text = "Numero de horas:"
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(115, 167)
-        Me.Label15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label15.Location = New System.Drawing.Point(86, 136)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(101, 16)
+        Me.Label15.Size = New System.Drawing.Size(82, 13)
         Me.Label15.TabIndex = 39
         Me.Label15.Text = "Fecha de inicio:"
         '
         'calInicio
         '
-        Me.calInicio.Location = New System.Drawing.Point(232, 167)
-        Me.calInicio.Margin = New System.Windows.Forms.Padding(12, 11, 12, 11)
+        Me.calInicio.Location = New System.Drawing.Point(174, 136)
         Me.calInicio.Name = "calInicio"
         Me.calInicio.TabIndex = 40
         '
         'calFinal
         '
-        Me.calFinal.Location = New System.Drawing.Point(651, 167)
-        Me.calFinal.Margin = New System.Windows.Forms.Padding(12, 11, 12, 11)
+        Me.calFinal.Location = New System.Drawing.Point(488, 136)
         Me.calFinal.Name = "calFinal"
         Me.calFinal.TabIndex = 42
         '
         'lblFinal
         '
         Me.lblFinal.AutoSize = True
-        Me.lblFinal.Location = New System.Drawing.Point(541, 167)
-        Me.lblFinal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblFinal.Location = New System.Drawing.Point(406, 136)
         Me.lblFinal.Name = "lblFinal"
-        Me.lblFinal.Size = New System.Drawing.Size(94, 16)
+        Me.lblFinal.Size = New System.Drawing.Size(77, 13)
         Me.lblFinal.TabIndex = 41
         Me.lblFinal.Text = "Fecha de final:"
         '
         'chkSinFinal
         '
         Me.chkSinFinal.AutoSize = True
-        Me.chkSinFinal.Location = New System.Drawing.Point(704, 381)
-        Me.chkSinFinal.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.chkSinFinal.Location = New System.Drawing.Point(528, 310)
         Me.chkSinFinal.Name = "chkSinFinal"
-        Me.chkSinFinal.Size = New System.Drawing.Size(130, 20)
+        Me.chkSinFinal.Size = New System.Drawing.Size(108, 17)
         Me.chkSinFinal.TabIndex = 43
         Me.chkSinFinal.Text = "Sin fecha de final"
         Me.chkSinFinal.UseVisualStyleBackColor = True
         '
         'btnAlta
         '
-        Me.btnAlta.Location = New System.Drawing.Point(2036, 1113)
-        Me.btnAlta.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnAlta.Location = New System.Drawing.Point(554, 740)
         Me.btnAlta.Name = "btnAlta"
-        Me.btnAlta.Size = New System.Drawing.Size(363, 63)
+        Me.btnAlta.Size = New System.Drawing.Size(272, 51)
         Me.btnAlta.TabIndex = 44
         Me.btnAlta.Text = "Dar de alta"
         Me.btnAlta.UseVisualStyleBackColor = True
         '
         'btnReset
         '
-        Me.btnReset.Location = New System.Drawing.Point(1252, 639)
-        Me.btnReset.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnReset.Location = New System.Drawing.Point(1020, 740)
         Me.btnReset.Name = "btnReset"
-        Me.btnReset.Size = New System.Drawing.Size(363, 63)
+        Me.btnReset.Size = New System.Drawing.Size(272, 51)
         Me.btnReset.TabIndex = 45
         Me.btnReset.Text = "Reiniciar"
         Me.btnReset.UseVisualStyleBackColor = True
         '
         'numHoras
         '
-        Me.numHoras.Location = New System.Drawing.Point(252, 122)
-        Me.numHoras.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.numHoras.Location = New System.Drawing.Point(189, 99)
         Me.numHoras.Name = "numHoras"
-        Me.numHoras.Size = New System.Drawing.Size(160, 22)
+        Me.numHoras.Size = New System.Drawing.Size(120, 20)
         Me.numHoras.TabIndex = 46
+        '
+        'Button1
+        '
+        Me.Button1.Enabled = False
+        Me.Button1.Location = New System.Drawing.Point(1218, 519)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(106, 23)
+        Me.Button1.TabIndex = 47
+        Me.Button1.Text = "Seleccionar todas"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Button2)
+        Me.GroupBox1.Controls.Add(Me.Label2)
+        Me.GroupBox1.Controls.Add(Me.ComboBox1)
+        Me.GroupBox1.Location = New System.Drawing.Point(60, 643)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(328, 148)
+        Me.GroupBox1.TabIndex = 49
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Ver datos de iniciativa"
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(66, 46)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(256, 21)
+        Me.ComboBox1.TabIndex = 0
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(17, 49)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(43, 13)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "Código:"
+        '
+        'Button2
+        '
+        Me.Button2.Enabled = False
+        Me.Button2.Location = New System.Drawing.Point(87, 91)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(133, 36)
+        Me.Button2.TabIndex = 2
+        Me.Button2.Text = "Eliminar"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'FrAltaIniciativas
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1710, 742)
+        Me.ClientSize = New System.Drawing.Size(1343, 819)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.numHoras)
         Me.Controls.Add(Me.btnReset)
         Me.Controls.Add(Me.btnAlta)
@@ -477,11 +492,11 @@ Partial Class FrAltaIniciativas
         Me.Controls.Add(Me.cboMeta)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.cboOds)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FrAltaIniciativas"
         Me.Text = "FrAltaIniciativas"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.numHoras, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -525,4 +540,9 @@ Partial Class FrAltaIniciativas
     Friend WithEvents btnAlta As Button
     Friend WithEvents btnReset As Button
     Friend WithEvents numHoras As NumericUpDown
+    Friend WithEvents Button1 As Button
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents Button2 As Button
 End Class
