@@ -25,6 +25,17 @@
         Me.FechaFin = fechaFin
     End Sub
 
+    Public Sub New(contratantes As List(Of Contratante), metas As List(Of Meta), profesores As List(Of Profesor), asignaturas As List(Of Asignatura), horas As Integer, titulo As String, fechaInicio As Date, fechaFin As Date)
+        Me.Contratantes = contratantes
+        Me.Metas = metas
+        Me.Profesores = profesores
+        Me.Asignaturas = asignaturas
+        Me.Horas = horas
+        Me.Titulo = titulo
+        Me.FechaInicio = fechaInicio
+        Me.FechaFin = fechaFin
+    End Sub
+
     Public Overrides Function Equals(obj As Object) As Boolean
         Return Equals(TryCast(obj, Iniciativa))
     End Function

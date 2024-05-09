@@ -39,7 +39,7 @@ Partial Class FrAltaIniciativas
         Me.Label6 = New System.Windows.Forms.Label()
         Me.selAsign = New System.Windows.Forms.Button()
         Me.lstbAsign = New System.Windows.Forms.ListBox()
-        Me.Label7 = New System.Windows.Forms.Label()
+        Me.lblasign = New System.Windows.Forms.Label()
         Me.cboAsign = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.cboCurso = New System.Windows.Forms.ComboBox()
@@ -53,26 +53,33 @@ Partial Class FrAltaIniciativas
         Me.txtTitulo = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.calInicio = New System.Windows.Forms.MonthCalendar()
-        Me.calFinal = New System.Windows.Forms.MonthCalendar()
         Me.lblFinal = New System.Windows.Forms.Label()
         Me.chkSinFinal = New System.Windows.Forms.CheckBox()
         Me.btnAlta = New System.Windows.Forms.Button()
         Me.btnReset = New System.Windows.Forms.Button()
         Me.numHoras = New System.Windows.Forms.NumericUpDown()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.seltdasign = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.cboVerDatos = New System.Windows.Forms.ComboBox()
+        Me.borrarcont = New System.Windows.Forms.Button()
+        Me.borrarprof = New System.Windows.Forms.Button()
+        Me.borrarasign = New System.Windows.Forms.Button()
+        Me.calInicio = New System.Windows.Forms.DateTimePicker()
+        Me.calFinal = New System.Windows.Forms.DateTimePicker()
+        Me.logo1 = New System.Windows.Forms.PictureBox()
+        Me.logo2 = New System.Windows.Forms.PictureBox()
         CType(Me.numHoras, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.logo1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.logo2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'cboOds
         '
         Me.cboOds.FormattingEnabled = True
-        Me.cboOds.Location = New System.Drawing.Point(174, 351)
+        Me.cboOds.Location = New System.Drawing.Point(192, 208)
         Me.cboOds.Name = "cboOds"
         Me.cboOds.Size = New System.Drawing.Size(353, 21)
         Me.cboOds.TabIndex = 0
@@ -80,7 +87,7 @@ Partial Class FrAltaIniciativas
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(40, 351)
+        Me.Label1.Location = New System.Drawing.Point(36, 208)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(127, 13)
         Me.Label1.TabIndex = 1
@@ -90,7 +97,7 @@ Partial Class FrAltaIniciativas
         '
         Me.lblmeta.AutoSize = True
         Me.lblmeta.Enabled = False
-        Me.lblmeta.Location = New System.Drawing.Point(40, 387)
+        Me.lblmeta.Location = New System.Drawing.Point(36, 244)
         Me.lblmeta.Name = "lblmeta"
         Me.lblmeta.Size = New System.Drawing.Size(127, 13)
         Me.lblmeta.TabIndex = 3
@@ -100,7 +107,7 @@ Partial Class FrAltaIniciativas
         '
         Me.cboMeta.Enabled = False
         Me.cboMeta.FormattingEnabled = True
-        Me.cboMeta.Location = New System.Drawing.Point(173, 387)
+        Me.cboMeta.Location = New System.Drawing.Point(191, 244)
         Me.cboMeta.Name = "cboMeta"
         Me.cboMeta.Size = New System.Drawing.Size(142, 21)
         Me.cboMeta.TabIndex = 2
@@ -108,7 +115,7 @@ Partial Class FrAltaIniciativas
         'selMeta
         '
         Me.selMeta.Enabled = False
-        Me.selMeta.Location = New System.Drawing.Point(331, 387)
+        Me.selMeta.Location = New System.Drawing.Point(349, 244)
         Me.selMeta.Name = "selMeta"
         Me.selMeta.Size = New System.Drawing.Size(75, 23)
         Me.selMeta.TabIndex = 6
@@ -118,14 +125,14 @@ Partial Class FrAltaIniciativas
         'lstbMeta
         '
         Me.lstbMeta.FormattingEnabled = True
-        Me.lstbMeta.Location = New System.Drawing.Point(173, 442)
+        Me.lstbMeta.Location = New System.Drawing.Point(191, 299)
         Me.lstbMeta.Name = "lstbMeta"
         Me.lstbMeta.Size = New System.Drawing.Size(354, 121)
         Me.lstbMeta.TabIndex = 7
         '
         'btnBorrarMeta
         '
-        Me.btnBorrarMeta.Location = New System.Drawing.Point(293, 579)
+        Me.btnBorrarMeta.Location = New System.Drawing.Point(311, 436)
         Me.btnBorrarMeta.Name = "btnBorrarMeta"
         Me.btnBorrarMeta.Size = New System.Drawing.Size(122, 23)
         Me.btnBorrarMeta.TabIndex = 8
@@ -135,7 +142,7 @@ Partial Class FrAltaIniciativas
         'selTdMeta
         '
         Me.selTdMeta.Enabled = False
-        Me.selTdMeta.Location = New System.Drawing.Point(421, 387)
+        Me.selTdMeta.Location = New System.Drawing.Point(439, 244)
         Me.selTdMeta.Name = "selTdMeta"
         Me.selTdMeta.Size = New System.Drawing.Size(106, 23)
         Me.selTdMeta.TabIndex = 10
@@ -145,7 +152,7 @@ Partial Class FrAltaIniciativas
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(170, 420)
+        Me.Label3.Location = New System.Drawing.Point(188, 277)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(110, 13)
         Me.Label3.TabIndex = 13
@@ -154,7 +161,7 @@ Partial Class FrAltaIniciativas
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(840, 319)
+        Me.Label4.Location = New System.Drawing.Point(818, 509)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(131, 13)
         Me.Label4.TabIndex = 18
@@ -162,7 +169,7 @@ Partial Class FrAltaIniciativas
         '
         'selProf
         '
-        Me.selProf.Location = New System.Drawing.Point(1133, 286)
+        Me.selProf.Location = New System.Drawing.Point(1111, 476)
         Me.selProf.Name = "selProf"
         Me.selProf.Size = New System.Drawing.Size(75, 23)
         Me.selProf.TabIndex = 17
@@ -172,7 +179,7 @@ Partial Class FrAltaIniciativas
         'lstbProf
         '
         Me.lstbProf.FormattingEnabled = True
-        Me.lstbProf.Location = New System.Drawing.Point(843, 341)
+        Me.lstbProf.Location = New System.Drawing.Point(821, 531)
         Me.lstbProf.Name = "lstbProf"
         Me.lstbProf.Size = New System.Drawing.Size(272, 121)
         Me.lstbProf.TabIndex = 16
@@ -180,7 +187,7 @@ Partial Class FrAltaIniciativas
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(709, 286)
+        Me.Label5.Location = New System.Drawing.Point(687, 476)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(106, 13)
         Me.Label5.TabIndex = 15
@@ -189,7 +196,7 @@ Partial Class FrAltaIniciativas
         'cboProf
         '
         Me.cboProf.FormattingEnabled = True
-        Me.cboProf.Location = New System.Drawing.Point(843, 286)
+        Me.cboProf.Location = New System.Drawing.Point(821, 476)
         Me.cboProf.Name = "cboProf"
         Me.cboProf.Size = New System.Drawing.Size(276, 21)
         Me.cboProf.TabIndex = 14
@@ -197,7 +204,7 @@ Partial Class FrAltaIniciativas
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(844, 547)
+        Me.Label6.Location = New System.Drawing.Point(818, 277)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(136, 13)
         Me.Label6.TabIndex = 23
@@ -206,7 +213,7 @@ Partial Class FrAltaIniciativas
         'selAsign
         '
         Me.selAsign.Enabled = False
-        Me.selAsign.Location = New System.Drawing.Point(1137, 519)
+        Me.selAsign.Location = New System.Drawing.Point(1111, 249)
         Me.selAsign.Name = "selAsign"
         Me.selAsign.Size = New System.Drawing.Size(75, 23)
         Me.selAsign.TabIndex = 22
@@ -216,26 +223,26 @@ Partial Class FrAltaIniciativas
         'lstbAsign
         '
         Me.lstbAsign.FormattingEnabled = True
-        Me.lstbAsign.Location = New System.Drawing.Point(847, 569)
+        Me.lstbAsign.Location = New System.Drawing.Point(821, 299)
         Me.lstbAsign.Name = "lstbAsign"
         Me.lstbAsign.Size = New System.Drawing.Size(272, 121)
         Me.lstbAsign.TabIndex = 21
         '
-        'Label7
+        'lblasign
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Enabled = False
-        Me.Label7.Location = New System.Drawing.Point(713, 519)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(128, 13)
-        Me.Label7.TabIndex = 20
-        Me.Label7.Text = "Asignaturas involucradas:"
+        Me.lblasign.AutoSize = True
+        Me.lblasign.Enabled = False
+        Me.lblasign.Location = New System.Drawing.Point(687, 249)
+        Me.lblasign.Name = "lblasign"
+        Me.lblasign.Size = New System.Drawing.Size(128, 13)
+        Me.lblasign.TabIndex = 20
+        Me.lblasign.Text = "Asignaturas involucradas:"
         '
         'cboAsign
         '
         Me.cboAsign.Enabled = False
         Me.cboAsign.FormattingEnabled = True
-        Me.cboAsign.Location = New System.Drawing.Point(847, 519)
+        Me.cboAsign.Location = New System.Drawing.Point(821, 249)
         Me.cboAsign.Name = "cboAsign"
         Me.cboAsign.Size = New System.Drawing.Size(272, 21)
         Me.cboAsign.TabIndex = 19
@@ -243,7 +250,7 @@ Partial Class FrAltaIniciativas
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(714, 478)
+        Me.Label9.Location = New System.Drawing.Point(688, 208)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(112, 13)
         Me.Label9.TabIndex = 25
@@ -252,7 +259,7 @@ Partial Class FrAltaIniciativas
         'cboCurso
         '
         Me.cboCurso.FormattingEnabled = True
-        Me.cboCurso.Location = New System.Drawing.Point(847, 478)
+        Me.cboCurso.Location = New System.Drawing.Point(821, 208)
         Me.cboCurso.Name = "cboCurso"
         Me.cboCurso.Size = New System.Drawing.Size(272, 21)
         Me.cboCurso.TabIndex = 24
@@ -260,7 +267,7 @@ Partial Class FrAltaIniciativas
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(844, 94)
+        Me.Label10.Location = New System.Drawing.Point(188, 509)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(141, 13)
         Me.Label10.TabIndex = 33
@@ -268,7 +275,7 @@ Partial Class FrAltaIniciativas
         '
         'selContratante
         '
-        Me.selContratante.Location = New System.Drawing.Point(1133, 61)
+        Me.selContratante.Location = New System.Drawing.Point(560, 472)
         Me.selContratante.Name = "selContratante"
         Me.selContratante.Size = New System.Drawing.Size(75, 23)
         Me.selContratante.TabIndex = 32
@@ -278,15 +285,15 @@ Partial Class FrAltaIniciativas
         'lstbContratantes
         '
         Me.lstbContratantes.FormattingEnabled = True
-        Me.lstbContratantes.Location = New System.Drawing.Point(847, 116)
+        Me.lstbContratantes.Location = New System.Drawing.Point(191, 531)
         Me.lstbContratantes.Name = "lstbContratantes"
-        Me.lstbContratantes.Size = New System.Drawing.Size(272, 121)
+        Me.lstbContratantes.Size = New System.Drawing.Size(354, 121)
         Me.lstbContratantes.TabIndex = 31
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(691, 62)
+        Me.Label11.Location = New System.Drawing.Point(35, 477)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(128, 13)
         Me.Label11.TabIndex = 30
@@ -295,9 +302,9 @@ Partial Class FrAltaIniciativas
         'cboContratantes
         '
         Me.cboContratantes.FormattingEnabled = True
-        Me.cboContratantes.Location = New System.Drawing.Point(843, 61)
+        Me.cboContratantes.Location = New System.Drawing.Point(187, 476)
         Me.cboContratantes.Name = "cboContratantes"
-        Me.cboContratantes.Size = New System.Drawing.Size(276, 21)
+        Me.cboContratantes.Size = New System.Drawing.Size(358, 21)
         Me.cboContratantes.TabIndex = 29
         '
         'Label12
@@ -311,7 +318,7 @@ Partial Class FrAltaIniciativas
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(57, 62)
+        Me.Label13.Location = New System.Drawing.Point(433, 58)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(108, 13)
         Me.Label13.TabIndex = 35
@@ -319,7 +326,7 @@ Partial Class FrAltaIniciativas
         '
         'txtTitulo
         '
-        Me.txtTitulo.Location = New System.Drawing.Point(189, 59)
+        Me.txtTitulo.Location = New System.Drawing.Point(565, 55)
         Me.txtTitulo.Name = "txtTitulo"
         Me.txtTitulo.Size = New System.Drawing.Size(276, 20)
         Me.txtTitulo.TabIndex = 36
@@ -327,7 +334,7 @@ Partial Class FrAltaIniciativas
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(77, 102)
+        Me.Label14.Location = New System.Drawing.Point(516, 95)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(91, 13)
         Me.Label14.TabIndex = 37
@@ -336,28 +343,16 @@ Partial Class FrAltaIniciativas
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(86, 136)
+        Me.Label15.Location = New System.Drawing.Point(325, 133)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(82, 13)
         Me.Label15.TabIndex = 39
         Me.Label15.Text = "Fecha de inicio:"
         '
-        'calInicio
-        '
-        Me.calInicio.Location = New System.Drawing.Point(174, 136)
-        Me.calInicio.Name = "calInicio"
-        Me.calInicio.TabIndex = 40
-        '
-        'calFinal
-        '
-        Me.calFinal.Location = New System.Drawing.Point(488, 136)
-        Me.calFinal.Name = "calFinal"
-        Me.calFinal.TabIndex = 42
-        '
         'lblFinal
         '
         Me.lblFinal.AutoSize = True
-        Me.lblFinal.Location = New System.Drawing.Point(406, 136)
+        Me.lblFinal.Location = New System.Drawing.Point(645, 133)
         Me.lblFinal.Name = "lblFinal"
         Me.lblFinal.Size = New System.Drawing.Size(77, 13)
         Me.lblFinal.TabIndex = 41
@@ -366,7 +361,7 @@ Partial Class FrAltaIniciativas
         'chkSinFinal
         '
         Me.chkSinFinal.AutoSize = True
-        Me.chkSinFinal.Location = New System.Drawing.Point(528, 310)
+        Me.chkSinFinal.Location = New System.Drawing.Point(776, 159)
         Me.chkSinFinal.Name = "chkSinFinal"
         Me.chkSinFinal.Size = New System.Drawing.Size(108, 17)
         Me.chkSinFinal.TabIndex = 43
@@ -375,7 +370,7 @@ Partial Class FrAltaIniciativas
         '
         'btnAlta
         '
-        Me.btnAlta.Location = New System.Drawing.Point(554, 740)
+        Me.btnAlta.Location = New System.Drawing.Point(998, 769)
         Me.btnAlta.Name = "btnAlta"
         Me.btnAlta.Size = New System.Drawing.Size(272, 51)
         Me.btnAlta.TabIndex = 44
@@ -384,7 +379,7 @@ Partial Class FrAltaIniciativas
         '
         'btnReset
         '
-        Me.btnReset.Location = New System.Drawing.Point(1020, 740)
+        Me.btnReset.Location = New System.Drawing.Point(37, 769)
         Me.btnReset.Name = "btnReset"
         Me.btnReset.Size = New System.Drawing.Size(272, 51)
         Me.btnReset.TabIndex = 45
@@ -393,74 +388,138 @@ Partial Class FrAltaIniciativas
         '
         'numHoras
         '
-        Me.numHoras.Location = New System.Drawing.Point(189, 99)
+        Me.numHoras.Location = New System.Drawing.Point(628, 92)
         Me.numHoras.Name = "numHoras"
         Me.numHoras.Size = New System.Drawing.Size(120, 20)
         Me.numHoras.TabIndex = 46
         '
-        'Button1
+        'seltdasign
         '
-        Me.Button1.Enabled = False
-        Me.Button1.Location = New System.Drawing.Point(1218, 519)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(106, 23)
-        Me.Button1.TabIndex = 47
-        Me.Button1.Text = "Seleccionar todas"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.seltdasign.Enabled = False
+        Me.seltdasign.Location = New System.Drawing.Point(1192, 249)
+        Me.seltdasign.Name = "seltdasign"
+        Me.seltdasign.Size = New System.Drawing.Size(106, 23)
+        Me.seltdasign.TabIndex = 47
+        Me.seltdasign.Text = "Seleccionar todas"
+        Me.seltdasign.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.Button2)
         Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.ComboBox1)
-        Me.GroupBox1.Location = New System.Drawing.Point(60, 637)
+        Me.GroupBox1.Controls.Add(Me.cboVerDatos)
+        Me.GroupBox1.Location = New System.Drawing.Point(525, 715)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(328, 154)
+        Me.GroupBox1.Size = New System.Drawing.Size(328, 110)
         Me.GroupBox1.TabIndex = 49
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Ver datos de iniciativa"
         '
-        'ComboBox1
-        '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(66, 46)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(256, 21)
-        Me.ComboBox1.TabIndex = 0
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(17, 49)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(43, 13)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Código:"
-        '
         'Button2
         '
         Me.Button2.Enabled = False
-        Me.Button2.Location = New System.Drawing.Point(103, 91)
+        Me.Button2.Location = New System.Drawing.Point(103, 69)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(133, 36)
         Me.Button2.TabIndex = 2
         Me.Button2.Text = "Eliminar"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(17, 33)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(43, 13)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "Código:"
+        '
+        'cboVerDatos
+        '
+        Me.cboVerDatos.FormattingEnabled = True
+        Me.cboVerDatos.Location = New System.Drawing.Point(66, 30)
+        Me.cboVerDatos.Name = "cboVerDatos"
+        Me.cboVerDatos.Size = New System.Drawing.Size(256, 21)
+        Me.cboVerDatos.TabIndex = 0
+        '
+        'borrarcont
+        '
+        Me.borrarcont.Location = New System.Drawing.Point(267, 658)
+        Me.borrarcont.Name = "borrarcont"
+        Me.borrarcont.Size = New System.Drawing.Size(122, 23)
+        Me.borrarcont.TabIndex = 50
+        Me.borrarcont.Text = "Borrar seleccionado"
+        Me.borrarcont.UseVisualStyleBackColor = True
+        '
+        'borrarprof
+        '
+        Me.borrarprof.Location = New System.Drawing.Point(901, 658)
+        Me.borrarprof.Name = "borrarprof"
+        Me.borrarprof.Size = New System.Drawing.Size(122, 23)
+        Me.borrarprof.TabIndex = 51
+        Me.borrarprof.Text = "Borrar seleccionado"
+        Me.borrarprof.UseVisualStyleBackColor = True
+        '
+        'borrarasign
+        '
+        Me.borrarasign.Location = New System.Drawing.Point(897, 426)
+        Me.borrarasign.Name = "borrarasign"
+        Me.borrarasign.Size = New System.Drawing.Size(122, 23)
+        Me.borrarasign.TabIndex = 52
+        Me.borrarasign.Text = "Borrar seleccionado"
+        Me.borrarasign.UseVisualStyleBackColor = True
+        '
+        'calInicio
+        '
+        Me.calInicio.Location = New System.Drawing.Point(428, 133)
+        Me.calInicio.Name = "calInicio"
+        Me.calInicio.Size = New System.Drawing.Size(197, 20)
+        Me.calInicio.TabIndex = 53
+        '
+        'calFinal
+        '
+        Me.calFinal.Location = New System.Drawing.Point(728, 133)
+        Me.calFinal.Name = "calFinal"
+        Me.calFinal.Size = New System.Drawing.Size(197, 20)
+        Me.calFinal.TabIndex = 54
+        '
+        'logo1
+        '
+        Me.logo1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.logo1.Location = New System.Drawing.Point(127, 34)
+        Me.logo1.Name = "logo1"
+        Me.logo1.Size = New System.Drawing.Size(135, 135)
+        Me.logo1.TabIndex = 55
+        Me.logo1.TabStop = False
+        '
+        'logo2
+        '
+        Me.logo2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.logo2.Location = New System.Drawing.Point(1018, 34)
+        Me.logo2.Name = "logo2"
+        Me.logo2.Size = New System.Drawing.Size(159, 135)
+        Me.logo2.TabIndex = 56
+        Me.logo2.TabStop = False
+        '
         'FrAltaIniciativas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1343, 819)
+        Me.ClientSize = New System.Drawing.Size(1312, 853)
+        Me.Controls.Add(Me.logo2)
+        Me.Controls.Add(Me.logo1)
+        Me.Controls.Add(Me.calFinal)
+        Me.Controls.Add(Me.calInicio)
+        Me.Controls.Add(Me.borrarasign)
+        Me.Controls.Add(Me.borrarprof)
+        Me.Controls.Add(Me.borrarcont)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.seltdasign)
         Me.Controls.Add(Me.numHoras)
         Me.Controls.Add(Me.btnReset)
         Me.Controls.Add(Me.btnAlta)
         Me.Controls.Add(Me.chkSinFinal)
-        Me.Controls.Add(Me.calFinal)
         Me.Controls.Add(Me.lblFinal)
-        Me.Controls.Add(Me.calInicio)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.txtTitulo)
@@ -476,7 +535,7 @@ Partial Class FrAltaIniciativas
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.selAsign)
         Me.Controls.Add(Me.lstbAsign)
-        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.lblasign)
         Me.Controls.Add(Me.cboAsign)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.selProf)
@@ -497,6 +556,8 @@ Partial Class FrAltaIniciativas
         CType(Me.numHoras, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.logo1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.logo2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -519,7 +580,7 @@ Partial Class FrAltaIniciativas
     Friend WithEvents Label6 As Label
     Friend WithEvents selAsign As Button
     Friend WithEvents lstbAsign As ListBox
-    Friend WithEvents Label7 As Label
+    Friend WithEvents lblasign As Label
     Friend WithEvents cboAsign As ComboBox
     Friend WithEvents Label9 As Label
     Friend WithEvents cboCurso As ComboBox
@@ -533,16 +594,21 @@ Partial Class FrAltaIniciativas
     Friend WithEvents txtTitulo As TextBox
     Friend WithEvents Label14 As Label
     Friend WithEvents Label15 As Label
-    Friend WithEvents calInicio As MonthCalendar
-    Friend WithEvents calFinal As MonthCalendar
     Friend WithEvents lblFinal As Label
     Friend WithEvents chkSinFinal As CheckBox
     Friend WithEvents btnAlta As Button
     Friend WithEvents btnReset As Button
     Friend WithEvents numHoras As NumericUpDown
-    Friend WithEvents Button1 As Button
+    Friend WithEvents seltdasign As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cboVerDatos As ComboBox
     Friend WithEvents Button2 As Button
+    Friend WithEvents borrarcont As Button
+    Friend WithEvents borrarprof As Button
+    Friend WithEvents borrarasign As Button
+    Friend WithEvents calInicio As DateTimePicker
+    Friend WithEvents calFinal As DateTimePicker
+    Friend WithEvents logo1 As PictureBox
+    Friend WithEvents logo2 As PictureBox
 End Class

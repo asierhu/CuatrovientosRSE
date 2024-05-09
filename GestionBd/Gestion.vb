@@ -68,7 +68,7 @@ Public Class Gestion
         Return cursos.AsReadOnly
     End Function
 
-    Private Function VerAsignaturasDeCurso(nombreCurso As String, ByRef msgError As String) As ReadOnlyCollection(Of Asignatura)
+    Public Function VerAsignaturasDeCurso(nombreCurso As String, ByRef msgError As String) As ReadOnlyCollection(Of Asignatura)
         Dim asignaturasDeCurso As New List(Of Asignatura)
         Dim conect As New SqlConnection(CADENA_CONEXION)
         Dim sql As String = "SELECT COD_ASIGNATURA, NOMBRE_ASIGNATURA FROM ASIGNATURA WHERE ASIGNATURA.NOMBRE_CURSO = @NOMBRECURSO"
