@@ -241,13 +241,13 @@ Public Class Gestion
             If sql.Contains("@NUEVADESC") Then
                 cmdODS.Parameters.AddWithValue("@NUEVADESC", nuevaDesc)
             End If
+            cmdODS.Parameters.AddWithValue("@IDANTERIOR", caracterAnterior)
             cmdODS.ExecuteNonQuery()
         Catch ex As Exception
             msgError = ex.Message
         Finally
             conect.Close()
         End Try
-
         Return ""
     End Function
     Public Function AnyadirMeta(meta As Meta) As String
