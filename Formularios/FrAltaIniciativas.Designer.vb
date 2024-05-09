@@ -237,7 +237,7 @@ Partial Class FrAltaIniciativas
         Me.cboAsign.FormattingEnabled = True
         Me.cboAsign.Location = New System.Drawing.Point(847, 519)
         Me.cboAsign.Name = "cboAsign"
-        Me.cboAsign.Size = New System.Drawing.Size(276, 21)
+        Me.cboAsign.Size = New System.Drawing.Size(272, 21)
         Me.cboAsign.TabIndex = 19
         '
         'Label9
@@ -413,9 +413,9 @@ Partial Class FrAltaIniciativas
         Me.GroupBox1.Controls.Add(Me.Button2)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.ComboBox1)
-        Me.GroupBox1.Location = New System.Drawing.Point(60, 643)
+        Me.GroupBox1.Location = New System.Drawing.Point(60, 637)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(328, 148)
+        Me.GroupBox1.Size = New System.Drawing.Size(328, 154)
         Me.GroupBox1.TabIndex = 49
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Ver datos de iniciativa"
@@ -440,7 +440,7 @@ Partial Class FrAltaIniciativas
         'Button2
         '
         Me.Button2.Enabled = False
-        Me.Button2.Location = New System.Drawing.Point(87, 91)
+        Me.Button2.Location = New System.Drawing.Point(103, 91)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(133, 36)
         Me.Button2.TabIndex = 2
