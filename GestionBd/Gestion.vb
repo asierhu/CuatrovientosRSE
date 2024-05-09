@@ -241,6 +241,7 @@ Public Class Gestion
             If sql.Contains("@NUEVADESC") Then
                 cmdODS.Parameters.AddWithValue("@NUEVADESC", nuevaDesc)
             End If
+            cmdODS.Parameters.AddWithValue("@NUMODS", metaGuardada.NumeroODS)
             cmdODS.Parameters.AddWithValue("@IDANTERIOR", caracterAnterior)
             cmdODS.ExecuteNonQuery()
         Catch ex As Exception
@@ -248,6 +249,7 @@ Public Class Gestion
         Finally
             conect.Close()
         End Try
+
         Return ""
     End Function
     Public Function AnyadirMeta(meta As Meta) As String

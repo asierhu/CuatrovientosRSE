@@ -44,7 +44,7 @@ Public Class ModificarODSyMeta
             MessageBox.Show("Debes seleccionar una meta para poder modificarla")
             Exit Sub
         End If
-        Dim msg As String = gestion.ModificarMeta(New Meta(odsSeleccionado.NumeroODS, TryCast(cboCarMeta.SelectedItem, Meta).IDMeta, txtDescripcionMeta.Text), TryCast(cboCarMeta.SelectedItem, Meta).IDMeta)
+        Dim msg As String = gestion.ModificarMeta(New Meta(odsSeleccionado.NumeroODS, txtIDModMeta.Text, txtDescripcionMeta.Text), TryCast(cboCarMeta.SelectedItem, Meta).IDMeta)
         If msg <> "" Then
             MessageBox.Show(msg)
         End If
@@ -52,15 +52,15 @@ Public Class ModificarODSyMeta
 
     Private Sub cboCarMeta_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCarMeta.SelectedIndexChanged
         txtDescripcionMeta.Text = TryCast(cboCarMeta.SelectedItem, Meta).Descripcion
+        txtIDModMeta.Text = TryCast(cboCarMeta.SelectedItem, Meta).IDMeta
     End Sub
 
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnAnyadirMeta.Click
         If cboODS.SelectedItem Is Nothing Then
             MessageBox.Show("Debes seleccionar un ODS para poder añadir una meta")
             Exit Sub
         End If
-
         Dim msg As String = gestion.AnyadirMeta(New Meta(odsSeleccionado.NumeroODS, txtCarMeta.Text, txtAnyadirDesc.Text))
         If msg <> "" Then
             MessageBox.Show(msg)
