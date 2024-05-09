@@ -189,6 +189,7 @@ Public Class Gestion
             If sql.Contains("@NUEVAIMAGEN") Then
                 cmdODS.Parameters.AddWithValue("@NUEVAIMAGEN", nuevaImg)
             End If
+            cmdODS.ExecuteNonQuery()
         Catch ex As Exception
             msgError = ex.Message
         Finally
@@ -196,31 +197,58 @@ Public Class Gestion
         End Try
         Return ""
     End Function
-    Public Function ModificarMeta(metaModificada As Meta) As String
-        Dim cambios As Boolean = False
-        Dim odsAux As ODS = _Agenda2030(_Agenda2030.IndexOf(New ODS(metaModificada.NumeroODS)))
-        Dim indiceMetaODS As Integer = odsAux.Metas.IndexOf(New Meta(metaModificada.NumeroODS, metaModificada.IDMeta))
-        Dim metaGuardada As Meta = odsAux.Metas(indiceMetaODS)
+    Public Function ModificarMeta(metaModificada As Meta, caracterAnterior As String) As String
+        Dim msgError As String = ""
+        Dim metas As ReadOnlyCollection(Of Meta) = VerMetasDeODS(metaModificada.NumeroODS, msgError)
+        Dim metaGuardada As Meta = metas(metas.IndexOf(New Meta(metaModificada.NumeroODS, caracterAnterior)))
+        Dim nuevaID As String = ""
         If Not metaModificada.IDMeta.ToLower = metaGuardada.IDMeta.ToLower Then
             If metaModificada.IDMeta.Contains("*") Then
                 Return "El identificador de una meta no puede contener el caracter '*'"
             End If
-            cambios = True
-            metaGuardada.IDMeta = metaModificada.IDMeta
+            nuevaID = metaModificada.IDMeta
         End If
+        Dim nuevaDesc As String = ""
         If Not metaModificada.Descripcion.ToLower = metaGuardada.Descripcion.ToLower Then
             If metaModificada.Descripcion.Contains("*") Then
                 Return "La descripción de la meta no puede contener el caracter '*'"
             End If
-            cambios = True
-            metaGuardada.Descripcion = metaModificada.Descripcion
+            nuevaDesc = metaModificada.Descripcion
         End If
-        If Not cambios Then
+        'UPDATE
+        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim sql As String = "UPDATE METAS SET "
+        If nuevaID <> "" Then
+            sql += "CARACTER_META=@NUEVAID"
+        End If
+        If nuevaDesc <> "" Then
+            If sql.EndsWith("@NUEVAID") Then
+                sql += ", "
+            End If
+            sql += "DESCRIPCION=@NUEVADESC"
+        End If
+        If sql = "UPDATE METAS SET " Then
             Return "No has hecho cambios"
+        Else
+            sql += " WHERE NUMERO_ODS=@NUMODS AND CARACTER_META=@IDANTERIOR"
         End If
-        _Agenda2030(_Agenda2030.IndexOf(New ODS(metaModificada.NumeroODS))) = odsAux
-        Return ""
+        Try
+            conect.Open()
+            Dim cmdODS As New SqlCommand(sql, conect)
+            If sql.Contains("@NUEVAID") Then
+                cmdODS.Parameters.AddWithValue("@NUEVAID", nuevaID)
+            End If
+            If sql.Contains("@NUEVADESC") Then
+                cmdODS.Parameters.AddWithValue("@NUEVADESC", nuevaDesc)
+            End If
+            cmdODS.ExecuteNonQuery()
+        Catch ex As Exception
+            msgError = ex.Message
+        Finally
+            conect.Close()
+        End Try
 
+        Return ""
     End Function
     Public Function AnyadirMeta(meta As Meta) As String
         Dim msgError = ""
@@ -246,13 +274,12 @@ Public Class Gestion
             cmdODS.Parameters.AddWithValue("@NUMODS", meta.NumeroODS)
             cmdODS.Parameters.AddWithValue("@CARMETA", meta.IDMeta)
             cmdODS.Parameters.AddWithValue("@DESCRIPCION", meta.Descripcion)
-            'EJECUTAR SENTENCIA INSERT
+            cmdODS.ExecuteNonQuery()
         Catch ex As Exception
             msgError = ex.Message
         Finally
             conect.Close()
         End Try
-
         Return ""
     End Function
 

@@ -12,6 +12,15 @@ Public Class frmVerODSMetas
     End Sub
 
     Private Sub VerODSMetas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        cboODS.Items.AddRange(gestion.Agenda2030.ToArray)
+        Dim msgError As String = ""
+        Try
+            cboODS.Items.AddRange(gestion.ODSEnBaseDeDatos(msgError).ToArray)
+        Catch ex As Exception
+        Finally
+            If msgError <> "" Then
+                MessageBox.Show(msgError)
+            End If
+        End Try
+
     End Sub
 End Class

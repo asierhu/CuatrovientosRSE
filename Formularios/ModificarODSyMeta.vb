@@ -44,7 +44,7 @@ Public Class ModificarODSyMeta
             MessageBox.Show("Debes seleccionar una meta para poder modificarla")
             Exit Sub
         End If
-        Dim msg As String = gestion.ModificarMeta(New Meta(odsSeleccionado.NumeroODS, TryCast(cboCarMeta.SelectedItem, Meta).IDMeta, txtDescripcionMeta.Text))
+        Dim msg As String = gestion.ModificarMeta(New Meta(odsSeleccionado.NumeroODS, TryCast(cboCarMeta.SelectedItem, Meta).IDMeta, txtDescripcionMeta.Text), TryCast(cboCarMeta.SelectedItem, Meta).IDMeta)
         If msg <> "" Then
             MessageBox.Show(msg)
         End If
