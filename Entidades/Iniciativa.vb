@@ -1,11 +1,13 @@
-﻿Public Class Iniciativa
+﻿Imports System.Collections.ObjectModel
+
+Public Class Iniciativa
     Implements IEquatable(Of Iniciativa)
 
     Public Property CodIniciativa As Integer
-    Public Property Contratantes As List(Of Contratante)
-    Public Property Metas As List(Of Meta)
-    Public Property Profesores As List(Of Profesor)
-    Public Property Asignaturas As List(Of Asignatura)
+    Public Property Contratantes As ReadOnlyCollection(Of Contratante)
+    Public Property Metas As ReadOnlyCollection(Of Meta)
+    Public Property Profesores As ReadOnlyCollection(Of Profesor)
+    Public Property Asignaturas As ReadOnlyCollection(Of Asignatura)
     Public Property Horas As Integer
     Public Property Titulo As String
     Public Property FechaInicio As Date
@@ -13,7 +15,7 @@
     Public Sub New(codIniciativa As Integer)
         Me.CodIniciativa = codIniciativa
     End Sub
-    Public Sub New(codIniciativa As Integer, contratantes As List(Of Contratante), metas As List(Of Meta), profesores As List(Of Profesor), asignaturas As List(Of Asignatura), horas As Integer, titulo As String, fechaInicio As Date, fechaFin As Date)
+    Public Sub New(codIniciativa As Integer, contratantes As ReadOnlyCollection(Of Contratante), metas As ReadOnlyCollection(Of Meta), profesores As ReadOnlyCollection(Of Profesor), asignaturas As ReadOnlyCollection(Of Asignatura), horas As Integer, titulo As String, fechaInicio As Date, fechaFin As Date)
         Me.CodIniciativa = codIniciativa
         Me.Contratantes = contratantes
         Me.Metas = metas
@@ -25,7 +27,7 @@
         Me.FechaFin = fechaFin
     End Sub
 
-    Public Sub New(contratantes As List(Of Contratante), metas As List(Of Meta), profesores As List(Of Profesor), asignaturas As List(Of Asignatura), horas As Integer, titulo As String, fechaInicio As Date, fechaFin As Date)
+    Public Sub New(contratantes As ReadOnlyCollection(Of Contratante), metas As ReadOnlyCollection(Of Meta), profesores As ReadOnlyCollection(Of Profesor), asignaturas As ReadOnlyCollection(Of Asignatura), horas As Integer, titulo As String, fechaInicio As Date, fechaFin As Date)
         Me.Contratantes = contratantes
         Me.Metas = metas
         Me.Profesores = profesores

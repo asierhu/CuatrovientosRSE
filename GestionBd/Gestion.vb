@@ -133,7 +133,7 @@ Public Class Gestion
             Dim codIniciativa As Integer
             While drIni.Read
                 codIniciativa = drIni("COD_INICIATIVA")
-                iniciativas.Add(New Iniciativa(codIniciativa, ContratantesDeIniciativa(codIniciativa), MetasDeIniciativa(codIniciativa),)
+                iniciativas.Add(New Iniciativa(codIniciativa, ContratantesDeIniciativa(codIniciativa), MetasDeIniciativa(codIniciativa), ProfesoresDeIniciativa(codIniciativa), AsignaturasDeIniciativa(codIniciativa), drIni("HORAS"), drIni("TITULO"), drIni("FECHA_INICIO"), drIni("FECHA_FIN")))
             End While
         Catch ex As Exception
             msgError = ex.Message
@@ -195,6 +195,25 @@ Public Class Gestion
             Dim drMetas As SqlDataReader = cmdMeta.ExecuteReader
             While drMetas.Read
                 metas.Add(New Meta(drMetas("NUMERO_ODS"), drMetas("CARACTER_META"), drMetas("DESCRIPCION")))
+            End While
+        Catch ex As Exception
+
+        Finally
+            conect.Close()
+        End Try
+        Return metas.AsReadOnly
+    End Function
+    Private Function AsignaturasDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Asignatura)
+        Dim metas As New List(Of Asignatura)
+        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim sql As String = "SELECT COD_ASIGNATURA, NOMBRE_ASIGNATURA FROM ASIGNATURA WHERE COD_ASIGNATURA=(SELECT COD_ASIGNATURA FROM ASIGNATURAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO) AND CARACTER_META=(SELECT NOMBRE_CURSO FROM ASIGNATURAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
+        Try
+            conect.Open()
+            Dim cmdMeta As New SqlCommand(sql, conect)
+            cmdMeta.Parameters.AddWithValue("@CODIGO", codIniciativa)
+            Dim drMetas As SqlDataReader = cmdMeta.ExecuteReader
+            While drMetas.Read
+                metas.Add(New Asignatura(drMetas("COD_ASIGNATURA"), drMetas("NOMBRE_ASIGNATURA")))
             End While
         Catch ex As Exception
 
