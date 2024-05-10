@@ -220,17 +220,17 @@ Public Class FrAltaIniciativas
         Dim listaMetas As New List(Of Meta)
         Dim listaProfesores As New List(Of Profesor)
         Dim listaAsignaturas As New List(Of Asignatura)
-        For i = 0 To cboContratantes.Items.Count - 1
+        For i = 0 To lstbContratantes.Items.Count - 1
             listaContratantes.Add(lstbContratantes.Items(i))
         Next
-        For i = 0 To cboMeta.Items.Count - 1
+        For i = 0 To lstbMeta.Items.Count - 1
             listaMetas.Add(lstbMeta.Items(i))
         Next
-        For i = 0 To cboProf.Items.Count - 1
+        For i = 0 To lstbProf.Items.Count - 1
             listaProfesores.Add(lstbProf.Items(i))
         Next
         Dim asigAux As Asignatura
-        For i = 0 To cboAsign.Items.Count - 1
+        For i = 0 To lstbAsign.Items.Count - 1
             asigAux = TryCast(lstbAsign.Items(i), Asignatura)
             listaAsignaturas.Add(New Asignatura(asigAux.CodAsignatura, asigAux.Nombre, asigAux.NombreCurso))
         Next
@@ -265,5 +265,21 @@ Public Class FrAltaIniciativas
         If msg <> "" Then
             MessageBox.Show(msg)
         End If
+    End Sub
+
+    Private Sub cboAsign_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboAsign.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cboMeta_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboMeta.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cboContratantes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboContratantes.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cboProf_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboProf.SelectedIndexChanged
+
     End Sub
 End Class
