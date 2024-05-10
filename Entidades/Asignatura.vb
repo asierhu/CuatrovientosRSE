@@ -1,6 +1,7 @@
 ﻿Public Class Asignatura
     Implements IEquatable(Of Asignatura)
     Public Property Nombre As String
+    Public Property NombreCurso As String
     Public Property CodAsignatura As Integer
     Public Sub New(codAsignatura As Integer)
         Me.CodAsignatura = codAsignatura
@@ -9,6 +10,12 @@
         Me.CodAsignatura = codAsignatura
         Me.Nombre = nombreAsignatura
     End Sub
+    Public Sub New(codAsignatura As Integer, nombreAsignatura As String, nombreCurso As String)
+        Me.CodAsignatura = codAsignatura
+        Me.Nombre = nombreAsignatura
+        Me.NombreCurso = nombreCurso
+    End Sub
+
 
     Public Overrides Function Equals(obj As Object) As Boolean
         Return Equals(TryCast(obj, Asignatura))

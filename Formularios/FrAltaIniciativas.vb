@@ -21,6 +21,7 @@ Public Class FrAltaIniciativas
                 MessageBox.Show(msgError)
             End If
         End Try
+        cboVerDatos.Items.AddRange(gestion.IniciativasEnBaseDeDatos(msgError).ToArray)
     End Sub
     Private odsSeleccionado As ODS
     Private metaSeleccionada As Meta
@@ -220,34 +221,42 @@ Public Class FrAltaIniciativas
         Dim listaProfesores As New List(Of Profesor)
         Dim listaAsignaturas As New List(Of Asignatura)
         For i = 0 To cboContratantes.Items.Count - 1
-            listaContratantes.Add(cboContratantes.Items(i))
+            listaContratantes.Add(lstbContratantes.Items(i))
         Next
         For i = 0 To cboMeta.Items.Count - 1
-            listaMetas.Add(cboMeta.Items(i))
+            listaMetas.Add(lstbMeta.Items(i))
         Next
         For i = 0 To cboProf.Items.Count - 1
-            listaProfesores.Add(cboProf.Items(i))
+            listaProfesores.Add(lstbProf.Items(i))
         Next
+        Dim asigAux As Asignatura
         For i = 0 To cboAsign.Items.Count - 1
-            listaAsignaturas.Add(cboAsign.Items(i))
+            asigAux = TryCast(lstbAsign.Items(i), Asignatura)
+            listaAsignaturas.Add(New Asignatura(asigAux.CodAsignatura, asigAux.Nombre, asigAux.NombreCurso))
         Next
-        Dim iniciativaNueva As New Iniciativa(listaContratantes, listaMetas, listaProfesores, listaAsignaturas, numHoras.Value, txtTitulo.Text, calInicio.Value, calFinal.Value)
+        Dim iniciativaNueva As New Iniciativa(listaContratantes.AsReadOnly, listaMetas.AsReadOnly, listaProfesores.AsReadOnly, listaAsignaturas.AsReadOnly, numHoras.Value, txtTitulo.Text, calInicio.Value, calFinal.Value)
+        gestion.AnyadirIniciativa(iniciativaNueva)
     End Sub
 
-    'Private Sub cboVerDatos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboVerDatos.SelectedIndexChanged
-    '    Dim iniciativaNueva = New Iniciativa '(cboVerDatos.SelectedIndex[todos los datos])
-    '    txtTitulo = iniciativaNueva.Titulo
-    '    numHoras = iniciativaNueva.Horas
-    '    calInicio.Value = iniciativaNueva.FechaInicio
-    '    If iniciativaNueva.FechaFin Is Not Nothing Then
-    '        chkSinFinal.Checked = False
-    '        calFinal.Value = iniciativaNueva.FechaFin
-    '    Else
-    '        chkSinFinal.Checked = True
-    '    End If
-    '    lstbMeta.Items = iniciativaNueva.Metas
-    '    lstbContratantes.Items = iniciativaNueva.Contratantes
-    '    lstbProf.Items = iniciativaNueva.Profesores
-    '    lstbAsign.Items = iniciativaNueva.Asignaturas
-    'End Sub
+    Private Sub cboVerDatos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboVerDatos.SelectedIndexChanged
+        btnEliminar.Enabled = True
+        Dim iniciativaNueva As Iniciativa = cboVerDatos.SelectedItem
+        txtTitulo.Text = iniciativaNueva.Titulo
+        numHoras.Value = iniciativaNueva.Horas
+        calInicio.Value = iniciativaNueva.FechaInicio
+        If iniciativaNueva.FechaFin <> Nothing Then
+            chkSinFinal.Checked = False
+            calFinal.Value = iniciativaNueva.FechaFin
+        Else
+            chkSinFinal.Checked = True
+        End If
+        lstbMeta.Items.AddRange(iniciativaNueva.Metas.ToArray)
+        lstbContratantes.Items.AddRange(iniciativaNueva.Contratantes.ToArray)
+        lstbProf.Items.AddRange(iniciativaNueva.Profesores.ToArray)
+        lstbAsign.Items.AddRange(iniciativaNueva.Asignaturas.ToArray)
+    End Sub
+
+    Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
+
+    End Sub
 End Class

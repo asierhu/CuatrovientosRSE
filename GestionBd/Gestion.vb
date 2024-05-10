@@ -67,7 +67,7 @@ Public Class Gestion
     Public Function VerAsignaturasDeCurso(nombreCurso As String, ByRef msgError As String) As ReadOnlyCollection(Of Asignatura)
         Dim asignaturasDeCurso As New List(Of Asignatura)
         Dim conect As New SqlConnection(CADENA_CONEXION)
-        Dim sql As String = "SELECT COD_ASIGNATURA, NOMBRE_ASIGNATURA FROM ASIGNATURA WHERE ASIGNATURA.NOMBRE_CURSO = @NOMBRECURSO"
+        Dim sql As String = "SELECT COD_ASIGNATURA, NOMBRE_ASIGNATURA,NOMBRE_CURSO FROM ASIGNATURA WHERE ASIGNATURA.NOMBRE_CURSO = @NOMBRECURSO"
         Try
             conect.Open()
             Dim cmdAsignatura As New SqlCommand(sql, conect)
@@ -77,7 +77,7 @@ Public Class Gestion
                 msgError = "Este ODS no tiene metas registradas"
             End If
             While drAsignaturas.Read
-                asignaturasDeCurso.Add(New Asignatura(drAsignaturas("COD_ASIGNATURA"), drAsignaturas("NOMBRE_ASIGNATURA")))
+                asignaturasDeCurso.Add(New Asignatura(drAsignaturas("COD_ASIGNATURA"), drAsignaturas("NOMBRE_ASIGNATURA"), drAsignaturas("NOMBRE_CURSO")))
             End While
         Catch ex As Exception
             msgError = ex.Message
@@ -206,14 +206,14 @@ Public Class Gestion
     Private Function AsignaturasDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Asignatura)
         Dim metas As New List(Of Asignatura)
         Dim conect As New SqlConnection(CADENA_CONEXION)
-        Dim sql As String = "SELECT COD_ASIGNATURA, NOMBRE_ASIGNATURA FROM ASIGNATURA WHERE COD_ASIGNATURA=(SELECT COD_ASIGNATURA FROM ASIGNATURAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO) AND CARACTER_META=(SELECT NOMBRE_CURSO FROM ASIGNATURAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
+        Dim sql As String = "SELECT COD_ASIGNATURA, NOMBRE_ASIGNATURA, NOMBRE_CURSO FROM ASIGNATURA WHERE COD_ASIGNATURA=(SELECT COD_ASIGNATURA FROM ASIGNATURAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO) AND CARACTER_META=(SELECT NOMBRE_CURSO FROM ASIGNATURAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
         Try
             conect.Open()
             Dim cmdMeta As New SqlCommand(sql, conect)
             cmdMeta.Parameters.AddWithValue("@CODIGO", codIniciativa)
             Dim drMetas As SqlDataReader = cmdMeta.ExecuteReader
             While drMetas.Read
-                metas.Add(New Asignatura(drMetas("COD_ASIGNATURA"), drMetas("NOMBRE_ASIGNATURA")))
+                metas.Add(New Asignatura(drMetas("COD_ASIGNATURA"), drMetas("NOMBRE_ASIGNATURA"), drMetas("NOMBRE_CURSO")))
             End While
         Catch ex As Exception
 
@@ -383,7 +383,11 @@ Public Class Gestion
     End Function
 
     Public Function AnyadirIniciativa(iniciativa As Iniciativa) As String
-        Dim iniciativas As ReadOnlyCollection(Of Iniciativa)
+        Dim msgError As String = ""
+        Dim iniciativas As ReadOnlyCollection(Of Iniciativa) = IniciativasEnBaseDeDatos(msgError)
+        If msgError <> "" Then
+            Return msgError
+        End If
         Dim indiceIniciativa As Integer = iniciativas.IndexOf(iniciativa)
         If indiceIniciativa <> -1 Then
             Return $"La iniciativa ya existe"
@@ -409,7 +413,61 @@ Public Class Gestion
         If iniciativa.Asignaturas.Count = 0 Then
             Return "En la iniciativa tiene que participar como mínimo una asignatura"
         End If
-        'insert iniciativa
+
+        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim sql As String = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI,@FECHAFIN)"
+        Try
+            conect.Open()
+            'insert iniciativa
+            Dim cmdINI As New SqlCommand(sql, conect)
+            cmdINI.Parameters.AddWithValue("@HORAS", iniciativa.Horas)
+            cmdINI.Parameters.AddWithValue("@TITULO", iniciativa.Titulo)
+            cmdINI.Parameters.AddWithValue("@FECHAINI", iniciativa.FechaInicio)
+            cmdINI.Parameters.AddWithValue("@FECHAFIN", iniciativa.FechaFin)
+            cmdINI.ExecuteNonQuery()
+            'insert ASIGNATURAS_INICIATIVA
+            Dim nuevoCod As Integer = IniciativasEnBaseDeDatos(msgError).Count
+            For Each asignatura In iniciativa.Asignaturas
+                sql = "INSERT INTO ASIGNATURAS_INICIATIVA VALUES (@NOMBRECURSO,@CODASIGNATURA,@CODINICIATIVA)"
+                cmdINI = New SqlCommand(sql, conect)
+                cmdINI.Parameters.AddWithValue("@NOMBRECURSO", asignatura.NombreCurso)
+                cmdINI.Parameters.AddWithValue("@CODASIGNATURA", asignatura.CodAsignatura)
+                cmdINI.Parameters.AddWithValue("@CODINICIATIVA", nuevoCod)
+                cmdINI.ExecuteNonQuery()
+            Next
+            'insert METAS_INICIATIVA
+            For Each meta In iniciativa.Metas
+                sql = "INSERT INTO METAS_INICIATIVA VALUES (@NUMODS,@CARMETA,@CODINICIATIVA)"
+                cmdINI = New SqlCommand(sql, conect)
+                cmdINI.Parameters.AddWithValue("@NUMODS", meta.NumeroODS)
+                cmdINI.Parameters.AddWithValue("@CARMETA", meta.IDMeta)
+                cmdINI.Parameters.AddWithValue("@CODINICIATIVA", nuevoCod)
+                cmdINI.ExecuteNonQuery()
+            Next
+            'INSERT CONTRATANTE_INICIATIVA
+            For Each cont In iniciativa.Contratantes
+                sql = "INSERT INTO CONTRATANTE_INICIATIVA VALUES (@CODCONTRATANTE,@CODINICIATIVA)"
+                cmdINI = New SqlCommand(sql, conect)
+                cmdINI.Parameters.AddWithValue("@CODCONTRATANTE", cont.CodContratante)
+                cmdINI.Parameters.AddWithValue("@CODINICIATIVA", nuevoCod)
+                cmdINI.ExecuteNonQuery()
+            Next
+            'insert PROFESORES_INICIATIVA
+            For Each prof In iniciativa.Profesores
+                sql = "INSERT INTO PROFESORES_INICIATIVA VALUES (@IDPROF,@CODINICIATIVA)"
+                cmdINI = New SqlCommand(sql, conect)
+                cmdINI.Parameters.AddWithValue("@IDPROF", prof.IdProfesor)
+                cmdINI.Parameters.AddWithValue("@CODINICIATIVA", nuevoCod)
+                cmdINI.ExecuteNonQuery()
+            Next
+        Catch ex As Exception
+            msgError = ex.Message
+        Finally
+            conect.Close()
+        End Try
         Return ""
+    End Function
+    Public Function EliminarIni(codIniciativa As Integer) As String
+
     End Function
 End Class
