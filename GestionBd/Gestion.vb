@@ -3,10 +3,6 @@ Imports System.Data.SqlClient
 Imports Entidades
 Public Class Gestion
 
-    Private Iniciativas As List(Of Iniciativa)
-    Private Profesores As List(Of Profesor)
-    Private Contratantes As List(Of Contratante)
-    Private Cursos As List(Of Curso)
     Private Const CADENA_CONEXION = "Data Source = .; Initial Catalog = CUATROVIENTOSRSE; Integrated Security = SSPI; MultipleActiveResultSets=true" ' Cadena de conexión para indicar la base de datos con la que vamos a conectar
 
     Public Function ODSEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of ODS)
@@ -96,10 +92,10 @@ Public Class Gestion
         Dim sql As String = "SELECT COD_CONTRATANTE, NOMBRE_CONTRATANTE, DESCRIPCION FROM CONTRATANTE"
         Try
             conect.Open()
-            Dim cmdODS As New SqlCommand(sql, conect)
-            Dim drODS As SqlDataReader = cmdODS.ExecuteReader
-            While drODS.Read
-                contratantes.Add(New Contratante(drODS("COD_CONTRATANTE"), drODS("NOMBRE_CONTRATANTE"), drODS("DESCRIPCION")))
+            Dim cmdCont As New SqlCommand(sql, conect)
+            Dim drCont As SqlDataReader = cmdCont.ExecuteReader
+            While drCont.Read
+                contratantes.Add(New Contratante(drCont("COD_CONTRATANTE"), drCont("NOMBRE_CONTRATANTE"), drCont("DESCRIPCION")))
             End While
         Catch ex As Exception
             msgError = ex.Message
@@ -114,10 +110,10 @@ Public Class Gestion
         Dim sql As String = "SELECT ID_PROFESOR, NOMBRE_PROFESOR, APELLIDO1, APELLIDO2, FECHA_NACIMIENTO FROM PROFESORES"
         Try
             conect.Open()
-            Dim cmdODS As New SqlCommand(sql, conect)
-            Dim drODS As SqlDataReader = cmdODS.ExecuteReader
-            While drODS.Read
-                profesores.Add(New Profesor(drODS("ID_PROFESOR"), drODS("NOMBRE_PROFESOR"), drODS("APELLIDO1"), drODS("APELLIDO2"), drODS("FECHA_NACIMIENTO")))
+            Dim cmdProfe As New SqlCommand(sql, conect)
+            Dim drProfe As SqlDataReader = cmdProfe.ExecuteReader
+            While drProfe.Read
+                profesores.Add(New Profesor(drProfe("ID_PROFESOR"), drProfe("NOMBRE_PROFESOR"), drProfe("APELLIDO1"), drProfe("APELLIDO2"), drProfe("FECHA_NACIMIENTO")))
             End While
         Catch ex As Exception
             msgError = ex.Message
@@ -126,6 +122,88 @@ Public Class Gestion
         End Try
         Return profesores.AsReadOnly
     End Function
+    Public Function IniciativasEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of Iniciativa)
+        Dim iniciativas = New List(Of Iniciativa)
+        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim sql As String = "SELECT COD_INICIATIVA, HORAS, TITULO, FECHA_INICIO, FECHA_FIN FROM INICIATIVAS"
+        Try
+            conect.Open()
+            Dim cmdIni As New SqlCommand(sql, conect)
+            Dim drIni As SqlDataReader = cmdIni.ExecuteReader
+            Dim codIniciativa As Integer
+            While drIni.Read
+                codIniciativa = drIni("COD_INICIATIVA")
+                iniciativas.Add(New Iniciativa(codIniciativa, ContratantesDeIniciativa(codIniciativa), MetasDeIniciativa(codIniciativa),)
+            End While
+        Catch ex As Exception
+            msgError = ex.Message
+        Finally
+            conect.Close()
+        End Try
+        Return iniciativas.AsReadOnly
+
+    End Function
+    Private Function ContratantesDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Contratante)
+        Dim contratantes = New List(Of Contratante)
+        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim sql As String = "SELECT COD_CONTRATANTE, NOMBRE_CONTRATANTE, DESCRIPCION FROM CONTRATANTE WHERE COD_CONTRATANTE=(SELECT COD_CONTRATANTE FROM CONTRATANTE_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
+        Try
+            conect.Open()
+            Dim cmdCont As New SqlCommand(sql, conect)
+            cmdCont.Parameters.AddWithValue("@CODIGO", codIniciativa)
+            Dim drCont As SqlDataReader = cmdCont.ExecuteReader
+
+            While drCont.Read
+                contratantes.Add(New Contratante(drCont("COD_CONTRATANTE"), drCont("NOMBRE_CONTRATANTE"), drCont("DESCRIPCION")))
+            End While
+        Catch ex As Exception
+
+        Finally
+            conect.Close()
+        End Try
+        Return contratantes.AsReadOnly
+    End Function
+    Private Function ProfesoresDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Profesor)
+        Dim profesores = New List(Of Profesor)
+        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim sql As String = "SELECT ID_PROFESOR, NOMBRE_PROFESOR, APELLIDO1, APELLIDO2, FECHA_NACIMIENTO FROM PROFESORES WHERE ID_PROFESOR=(SELECT ID_PROFESOR FROM PROFESORES_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
+        Try
+            conect.Open()
+            Dim cmdProfe As New SqlCommand(sql, conect)
+            cmdProfe.Parameters.AddWithValue("@CODIGO", codIniciativa)
+            Dim drProfe As SqlDataReader = cmdProfe.ExecuteReader
+
+            While drProfe.Read
+                profesores.Add(New Profesor(drProfe("ID_PROFESOR"), drProfe("NOMBRE_PROFESOR"), drProfe("APELLIDO1"), drProfe("APELLIDO2"), drProfe("FECHA_NACIMIENTO")))
+            End While
+        Catch ex As Exception
+
+        Finally
+            conect.Close()
+        End Try
+        Return profesores.AsReadOnly
+    End Function
+
+    Private Function MetasDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Meta)
+        Dim metas As New List(Of Meta)
+        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim sql As String = "SELECT NUMERO_ODS, CARACTER_META, DESCRIPCION FROM METAS WHERE NUMERO_ODS=(SELECT NUMERO_ODS FROM METAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO) AND CARACTER_META=(SELECT CARACTER_META FROM METAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
+        Try
+            conect.Open()
+            Dim cmdMeta As New SqlCommand(sql, conect)
+            cmdMeta.Parameters.AddWithValue("@CODIGO", codIniciativa)
+            Dim drMetas As SqlDataReader = cmdMeta.ExecuteReader
+            While drMetas.Read
+                metas.Add(New Meta(drMetas("NUMERO_ODS"), drMetas("CARACTER_META"), drMetas("DESCRIPCION")))
+            End While
+        Catch ex As Exception
+
+        Finally
+            conect.Close()
+        End Try
+        Return metas.AsReadOnly
+    End Function
+
     Public Function ModificarODS(odsModificado As ODS) As String
         Dim msgError As String = ""
         Dim ods As ReadOnlyCollection(Of ODS) = ODSEnBaseDeDatos(msgError)
@@ -234,16 +312,16 @@ Public Class Gestion
         End If
         Try
             conect.Open()
-            Dim cmdODS As New SqlCommand(sql, conect)
+            Dim cmdMeta As New SqlCommand(sql, conect)
             If sql.Contains("@NUEVAID") Then
-                cmdODS.Parameters.AddWithValue("@NUEVAID", nuevaID)
+                cmdMeta.Parameters.AddWithValue("@NUEVAID", nuevaID)
             End If
             If sql.Contains("@NUEVADESC") Then
-                cmdODS.Parameters.AddWithValue("@NUEVADESC", nuevaDesc)
+                cmdMeta.Parameters.AddWithValue("@NUEVADESC", nuevaDesc)
             End If
-            cmdODS.Parameters.AddWithValue("@NUMODS", metaGuardada.NumeroODS)
-            cmdODS.Parameters.AddWithValue("@IDANTERIOR", caracterAnterior)
-            cmdODS.ExecuteNonQuery()
+            cmdMeta.Parameters.AddWithValue("@NUMODS", metaGuardada.NumeroODS)
+            cmdMeta.Parameters.AddWithValue("@IDANTERIOR", caracterAnterior)
+            cmdMeta.ExecuteNonQuery()
         Catch ex As Exception
             msgError = ex.Message
         Finally
@@ -272,11 +350,11 @@ Public Class Gestion
         Dim sql As String = "INSERT INTO METAS VALUES (@NUMODS, @CARMETA, @DESCRIPCION)"
         Try
             conect.Open()
-            Dim cmdODS As New SqlCommand(sql, conect)
-            cmdODS.Parameters.AddWithValue("@NUMODS", meta.NumeroODS)
-            cmdODS.Parameters.AddWithValue("@CARMETA", meta.IDMeta)
-            cmdODS.Parameters.AddWithValue("@DESCRIPCION", meta.Descripcion)
-            cmdODS.ExecuteNonQuery()
+            Dim cmdMeta As New SqlCommand(sql, conect)
+            cmdMeta.Parameters.AddWithValue("@NUMODS", meta.NumeroODS)
+            cmdMeta.Parameters.AddWithValue("@CARMETA", meta.IDMeta)
+            cmdMeta.Parameters.AddWithValue("@DESCRIPCION", meta.Descripcion)
+            cmdMeta.ExecuteNonQuery()
         Catch ex As Exception
             msgError = ex.Message
         Finally
@@ -286,7 +364,8 @@ Public Class Gestion
     End Function
 
     Public Function AnyadirIniciativa(iniciativa As Iniciativa) As String
-        Dim indiceIniciativa As Integer = Iniciativas.IndexOf(iniciativa)
+        Dim iniciativas As ReadOnlyCollection(Of Iniciativa)
+        Dim indiceIniciativa As Integer = iniciativas.IndexOf(iniciativa)
         If indiceIniciativa <> -1 Then
             Return $"La iniciativa ya existe"
         End If
@@ -311,20 +390,7 @@ Public Class Gestion
         If iniciativa.Asignaturas.Count = 0 Then
             Return "En la iniciativa tiene que participar como mínimo una asignatura"
         End If
-        Iniciativas.Add(iniciativa)
+        'insert iniciativa
         Return ""
     End Function
-    'Dim metaODSGuardado As Meta
-    'For i = 0 To nuevoODS.Metas.Count - 1
-    'Dim metaODSNuevo As Meta = nuevoODS.Metas(i)
-    '        metaODSGuardado = odsGuardado.Metas(i)
-    '        If metaODSNuevo.Descripcion.Contains("*") Then
-    'Return $"La descripcion de la meta {metaODSNuevo.ToString(True)} no puede contener el caracter '*'"
-    'End If
-    'If Not metaODSNuevo.Descripcion.ToLower = metaODSGuardado.Descripcion.ToLower Then
-    '            cambios = True
-    '            metaODSGuardado.Descripcion = metaODSNuevo.Descripcion
-    '        End If
-    'Next
-
 End Class
