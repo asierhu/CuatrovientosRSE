@@ -257,6 +257,13 @@ Public Class FrAltaIniciativas
     End Sub
 
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
-
+        If cboVerDatos.SelectedItem Is Nothing Then
+            MessageBox.Show("Selecciona una iniciativa a eliminar")
+            Exit Sub
+        End If
+        Dim msg As String = gestion.EliminarIni(TryCast(cboVerDatos.SelectedItem, Iniciativa))
+        If msg <> "" Then
+            MessageBox.Show(msg)
+        End If
     End Sub
 End Class
