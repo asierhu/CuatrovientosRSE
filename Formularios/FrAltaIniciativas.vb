@@ -234,20 +234,20 @@ Public Class FrAltaIniciativas
         Dim iniciativaNueva As New Iniciativa(listaContratantes, listaMetas, listaProfesores, listaAsignaturas, numHoras.Value, txtTitulo.Text, calInicio.Value, calFinal.Value)
     End Sub
 
-    Private Sub cboVerDatos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboVerDatos.SelectedIndexChanged
-        Dim iniciativaNueva = New Iniciativa '(cboVerDatos.SelectedIndex[todos los datos])
-        txtTitulo = iniciativaNueva.Titulo
-        numHoras = iniciativaNueva.Horas
-        calInicio.Value = iniciativaNueva.FechaInicio
-        If iniciativaNueva.FechaFin Is Not Nothing Then
-            chkSinFinal.Checked = False
-            calFinal.Value = iniciativaNueva.FechaFin
-        Else
-            chkSinFinal.Checked = True
-        End If
-        lstbMeta.Items = iniciativaNueva.Metas
-        lstbContratantes.Items = iniciativaNueva.Contratantes
-        lstbProf.Items = iniciativaNueva.Profesores
-        lstbAsign.Items = iniciativaNueva.Asignaturas
-    End Sub
+    'Private Sub cboVerDatos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboVerDatos.SelectedIndexChanged
+    '    Dim iniciativaNueva = New Iniciativa '(cboVerDatos.SelectedIndex[todos los datos])
+    '    txtTitulo = iniciativaNueva.Titulo
+    '    numHoras = iniciativaNueva.Horas
+    '    calInicio.Value = iniciativaNueva.FechaInicio
+    '    If iniciativaNueva.FechaFin Is Not Nothing Then
+    '        chkSinFinal.Checked = False
+    '        calFinal.Value = iniciativaNueva.FechaFin
+    '    Else
+    '        chkSinFinal.Checked = True
+    '    End If
+    '    lstbMeta.Items = iniciativaNueva.Metas
+    '    lstbContratantes.Items = iniciativaNueva.Contratantes
+    '    lstbProf.Items = iniciativaNueva.Profesores
+    '    lstbAsign.Items = iniciativaNueva.Asignaturas
+    'End Sub
 End Class
