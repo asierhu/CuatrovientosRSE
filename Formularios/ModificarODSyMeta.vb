@@ -24,7 +24,7 @@ Public Class ModificarODSyMeta
     End Sub
 
     Private Sub btnGuardarCambiosODS_Click(sender As Object, e As EventArgs) Handles btnGuardarCambiosODS.Click
-        Dim msg As String = gestion.ModificarODS(New ODS(lblNumero.Text, txtNomODS.Text, txtDesODS.Text, txtImagen.Text))
+        Dim msg As String = gestion.ModificarODS(New ODS(lblNumero.Text, txtNomODS.Text, txtDesODS.Text, txtImagen.Text)) ' todo PROFESORADO Si se cambia el ODS automáticamente debe cambiar en el combo
         If msg <> "" Then
             MessageBox.Show(msg)
         End If
