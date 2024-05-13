@@ -42,16 +42,17 @@ Partial Class ModificarODSyMeta
         Me.cboCarMeta = New System.Windows.Forms.ComboBox()
         Me.txtDescripcionMeta = New System.Windows.Forms.TextBox()
         Me.lblDesMeta = New System.Windows.Forms.Label()
-        Me.lblCarMeta = New System.Windows.Forms.Label()
         Me.btnModMeta = New System.Windows.Forms.Button()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtCarMeta = New System.Windows.Forms.TextBox()
+        Me.btnAnyadirMeta = New System.Windows.Forms.Button()
+        Me.txtAnyadirDesc = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.txtCarMeta = New System.Windows.Forms.TextBox()
+        Me.txtIDModMeta = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         CType(Me.pbODS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gBoxModificar.SuspendLayout()
         Me.gBoxModMeta.SuspendLayout()
@@ -215,16 +216,17 @@ Partial Class ModificarODSyMeta
         '
         'gBoxModMeta
         '
+        Me.gBoxModMeta.Controls.Add(Me.Label6)
+        Me.gBoxModMeta.Controls.Add(Me.txtIDModMeta)
         Me.gBoxModMeta.Controls.Add(Me.cboCarMeta)
         Me.gBoxModMeta.Controls.Add(Me.txtDescripcionMeta)
         Me.gBoxModMeta.Controls.Add(Me.lblDesMeta)
-        Me.gBoxModMeta.Controls.Add(Me.lblCarMeta)
         Me.gBoxModMeta.Controls.Add(Me.btnModMeta)
         Me.gBoxModMeta.Location = New System.Drawing.Point(32, 363)
         Me.gBoxModMeta.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.gBoxModMeta.Name = "gBoxModMeta"
         Me.gBoxModMeta.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.gBoxModMeta.Size = New System.Drawing.Size(771, 172)
+        Me.gBoxModMeta.Size = New System.Drawing.Size(771, 210)
         Me.gBoxModMeta.TabIndex = 25
         Me.gBoxModMeta.TabStop = False
         Me.gBoxModMeta.Text = "Modificar Meta"
@@ -232,16 +234,16 @@ Partial Class ModificarODSyMeta
         'cboCarMeta
         '
         Me.cboCarMeta.FormattingEnabled = True
-        Me.cboCarMeta.Location = New System.Drawing.Point(116, 30)
+        Me.cboCarMeta.Location = New System.Drawing.Point(116, 25)
         Me.cboCarMeta.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.cboCarMeta.MaxLength = 2
+        Me.cboCarMeta.MaxLength = 100
         Me.cboCarMeta.Name = "cboCarMeta"
-        Me.cboCarMeta.Size = New System.Drawing.Size(79, 24)
+        Me.cboCarMeta.Size = New System.Drawing.Size(331, 24)
         Me.cboCarMeta.TabIndex = 22
         '
         'txtDescripcionMeta
         '
-        Me.txtDescripcionMeta.Location = New System.Drawing.Point(116, 59)
+        Me.txtDescripcionMeta.Location = New System.Drawing.Point(116, 89)
         Me.txtDescripcionMeta.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtDescripcionMeta.Multiline = True
         Me.txtDescripcionMeta.Name = "txtDescripcionMeta"
@@ -251,24 +253,15 @@ Partial Class ModificarODSyMeta
         'lblDesMeta
         '
         Me.lblDesMeta.AutoSize = True
-        Me.lblDesMeta.Location = New System.Drawing.Point(19, 63)
+        Me.lblDesMeta.Location = New System.Drawing.Point(19, 93)
         Me.lblDesMeta.Name = "lblDesMeta"
         Me.lblDesMeta.Size = New System.Drawing.Size(82, 16)
         Me.lblDesMeta.TabIndex = 15
         Me.lblDesMeta.Text = "Descripción:"
         '
-        'lblCarMeta
-        '
-        Me.lblCarMeta.AutoSize = True
-        Me.lblCarMeta.Location = New System.Drawing.Point(19, 32)
-        Me.lblCarMeta.Name = "lblCarMeta"
-        Me.lblCarMeta.Size = New System.Drawing.Size(83, 16)
-        Me.lblCarMeta.TabIndex = 14
-        Me.lblCarMeta.Text = "Identificador:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
         'btnModMeta
         '
-        Me.btnModMeta.Location = New System.Drawing.Point(643, 50)
+        Me.btnModMeta.Location = New System.Drawing.Point(643, 89)
         Me.btnModMeta.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnModMeta.Name = "btnModMeta"
         Me.btnModMeta.Size = New System.Drawing.Size(123, 39)
@@ -295,11 +288,11 @@ Partial Class ModificarODSyMeta
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.txtCarMeta)
-        Me.GroupBox1.Controls.Add(Me.Button1)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
+        Me.GroupBox1.Controls.Add(Me.btnAnyadirMeta)
+        Me.GroupBox1.Controls.Add(Me.txtAnyadirDesc)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.Label5)
-        Me.GroupBox1.Location = New System.Drawing.Point(32, 555)
+        Me.GroupBox1.Location = New System.Drawing.Point(32, 577)
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
@@ -308,24 +301,32 @@ Partial Class ModificarODSyMeta
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Añadir Meta"
         '
-        'Button1
+        'txtCarMeta
         '
-        Me.Button1.Location = New System.Drawing.Point(643, 102)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(123, 39)
-        Me.Button1.TabIndex = 25
-        Me.Button1.Text = "Añadir Meta"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.txtCarMeta.Location = New System.Drawing.Point(116, 32)
+        Me.txtCarMeta.MaxLength = 2
+        Me.txtCarMeta.Name = "txtCarMeta"
+        Me.txtCarMeta.Size = New System.Drawing.Size(37, 22)
+        Me.txtCarMeta.TabIndex = 26
         '
-        'TextBox1
+        'btnAnyadirMeta
         '
-        Me.TextBox1.Location = New System.Drawing.Point(116, 59)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(503, 109)
-        Me.TextBox1.TabIndex = 22
+        Me.btnAnyadirMeta.Location = New System.Drawing.Point(643, 62)
+        Me.btnAnyadirMeta.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnAnyadirMeta.Name = "btnAnyadirMeta"
+        Me.btnAnyadirMeta.Size = New System.Drawing.Size(123, 38)
+        Me.btnAnyadirMeta.TabIndex = 25
+        Me.btnAnyadirMeta.Text = "Añadir Meta"
+        Me.btnAnyadirMeta.UseVisualStyleBackColor = True
+        '
+        'txtAnyadirDesc
+        '
+        Me.txtAnyadirDesc.Location = New System.Drawing.Point(116, 59)
+        Me.txtAnyadirDesc.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.txtAnyadirDesc.Multiline = True
+        Me.txtAnyadirDesc.Name = "txtAnyadirDesc"
+        Me.txtAnyadirDesc.Size = New System.Drawing.Size(503, 109)
+        Me.txtAnyadirDesc.TabIndex = 22
         '
         'Label4
         '
@@ -345,13 +346,22 @@ Partial Class ModificarODSyMeta
         Me.Label5.TabIndex = 14
         Me.Label5.Text = "Identificador:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
-        'txtCarMeta
+        'txtIDModMeta
         '
-        Me.txtCarMeta.Location = New System.Drawing.Point(116, 32)
-        Me.txtCarMeta.MaxLength = 2
-        Me.txtCarMeta.Name = "txtCarMeta"
-        Me.txtCarMeta.Size = New System.Drawing.Size(100, 22)
-        Me.txtCarMeta.TabIndex = 26
+        Me.txtIDModMeta.Location = New System.Drawing.Point(116, 55)
+        Me.txtIDModMeta.MaxLength = 2
+        Me.txtIDModMeta.Name = "txtIDModMeta"
+        Me.txtIDModMeta.Size = New System.Drawing.Size(100, 22)
+        Me.txtIDModMeta.TabIndex = 23
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(19, 58)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(83, 16)
+        Me.Label6.TabIndex = 27
+        Me.Label6.Text = "Identificador:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'ModificarODSyMeta
         '
@@ -399,16 +409,17 @@ Partial Class ModificarODSyMeta
     Friend WithEvents Label10 As Label
     Friend WithEvents gBoxModMeta As GroupBox
     Friend WithEvents lblDesMeta As Label
-    Friend WithEvents lblCarMeta As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents btnModMeta As Button
     Friend WithEvents txtDescripcionMeta As TextBox
     Friend WithEvents cboCarMeta As ComboBox
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents Button1 As Button
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents btnAnyadirMeta As Button
+    Friend WithEvents txtAnyadirDesc As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents txtCarMeta As TextBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents txtIDModMeta As TextBox
 End Class

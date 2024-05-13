@@ -5,10 +5,8 @@
     Public Property IDMeta As String
     Public Property Descripcion As String
 
-    Public Overrides Function ToString() As String ' todo PROFESORADO NO tiene sentido que solo saque el IDMeta
-        ' (como mínimo la clave compuesta) aunque estaría bien ponerle un . entre ambos
-        ' 'Debería seguir una lógica común con ODS, allí tiene la descripción y aquí solo parte del identificador
-        Return $"{IDMeta}"
+    Public Overrides Function ToString() As String
+        Return $"ODS: {NumeroODS}, Meta: {IDMeta}"
     End Function
     Public Sub New(numeroODS As Byte, idMeta As String) ' todo PROFESORADO Debería llamar al otro New en la forma Me.New(numeroODS, idMeta, "")
         Me.NumeroODS = numeroODS
@@ -27,7 +25,7 @@
     Public Overloads Function Equals(other As Meta) As Boolean Implements IEquatable(Of Meta).Equals
         Return other IsNot Nothing AndAlso
                NumeroODS = other.NumeroODS AndAlso
-               IDMeta = other.IDMeta + " " ' todo PROFESORADO ¿Qué significa " "? ¿Y qué ocurre si la letra está diferente escrita?
+               IDMeta = other.IDMeta + " "
     End Function
 
 End Class

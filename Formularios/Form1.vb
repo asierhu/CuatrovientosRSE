@@ -2,7 +2,7 @@
 Public Class Form1
 
     Private Sub btnVerOds_Click(sender As Object, e As EventArgs) Handles btnVerOds.Click
-        Dim verODSMetas = New VerODSMetas
+        Dim verODSMetas = New frmVerODSMetas
         verODSMetas.Show()
     End Sub
 
@@ -17,5 +17,10 @@ Public Class Form1
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Close()
+    End Sub
+
+    Private Sub btncrearini_Click(sender As Object, e As EventArgs) Handles btnCrearIni.Click
+        Dim FrAltaIniciativas As New FrAltaIniciativas
+        FrAltaIniciativas.Show()
     End Sub
 End Class

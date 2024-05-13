@@ -6,8 +6,10 @@ Public Class ODS
     Public Property NumeroODS As Byte
     Public Property Nombre As String
     Public Property Descripcion As String
-    Public Property Metas As New List(Of Meta)
-    Public Property Imagen As String ' todo PROFESORADO Debería ser de solo lectura
+    Public Property Imagen As String
+    Public Sub New()
+
+    End Sub
     Public Sub New(numeroODS As Byte)
         Me.NumeroODS = numeroODS
         Me.Nombre = ""
@@ -36,7 +38,7 @@ Public Class ODS
         Return other IsNot Nothing AndAlso
                NumeroODS = other.NumeroODS
     End Function
-    Public Function ODS() As String ' todo Además que el nombre no es lógico ¿para qué se quiere esta función? Si desde fuera se necesitan las metas ya las tiene como propiedad
+    Public Function ODS() As String
         Dim metasEnMensaje As String = ""
         For Each meta In Metas
             metasEnMensaje += $"{meta.ToString(False)}\n"
@@ -44,7 +46,7 @@ Public Class ODS
         Return $"{NumeroODS}: {Nombre}\n{Descripcion}\n{metasEnMensaje}"
     End Function
 
-    Public Overrides Function ToString() As String ' todo PROFESORADO Debería seguir una lógica común con Meta, aquí tiene la descripción y en Meta solo el id
+    Public Overrides Function ToString() As String
         Return $"{NumeroODS}: {Nombre}"
     End Function
 End Class
