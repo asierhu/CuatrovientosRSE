@@ -4,11 +4,16 @@ Imports System.IO
 Imports Entidades
 Public Class Gestion
 
-    Private Const CADENA_CONEXION = "Data Source = .; Initial Catalog = CUATROVIENTOSRSE; Integrated Security = SSPI; MultipleActiveResultSets=true" ' Cadena de conexión para indicar la base de datos con la que vamos a conectar
-
+    'Private CADENA_CONEXION = "Data Source = .; Initial Catalog = CUATROVIENTOSRSE; Integrated Security = SSPI; MultipleActiveResultSets=true" ' Cadena de conexión para indicar la base de datos con la que vamos a conectar
+    Private cadenaConexion As String
+    Public Sub New()
+        Dim servidor As String = "."
+        If Environment.MachineName = "4V-PRO-948" Then servidor = "4V-PRO-948\SQLEXPRESS"
+        cadenaConexion = $"Data Source = {servidor}; Initial Catalog = CUATROVIENTOSRSE; Integrated Security = SSPI; MultipleActiveResultSets=true"
+    End Sub
     Public Function ODSs(ByRef msgError As String) As ReadOnlyCollection(Of ODS)
         Dim ods = New List(Of ODS)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT NUMERO_ODS, NOMBRE, DESCRIPCION FROM ODS"
         Try
             conect.Open()
@@ -26,7 +31,7 @@ Public Class Gestion
     End Function
     Public Function VerMetasDeODS(numODS As Byte, ByRef msgError As String) As ReadOnlyCollection(Of Meta)
         Dim metas As New List(Of Meta)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT NUMERO_ODS, CARACTER_META, DESCRIPCION FROM METAS WHERE METAS.NUMERO_ODS=@NumODS"
         Try
             conect.Open()
@@ -49,7 +54,7 @@ Public Class Gestion
     End Function
     Public Function CursosEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of Curso)
         Dim cursos = New List(Of Curso)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT NOMBRE_CURSO FROM CURSO"
         Try
             conect.Open()
@@ -68,7 +73,7 @@ Public Class Gestion
 
     Public Function VerAsignaturasDeCurso(nombreCurso As String, ByRef msgError As String) As ReadOnlyCollection(Of Asignatura)
         Dim asignaturasDeCurso As New List(Of Asignatura)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT COD_ASIGNATURA, NOMBRE_ASIGNATURA,NOMBRE_CURSO FROM ASIGNATURA WHERE ASIGNATURA.NOMBRE_CURSO = @NOMBRECURSO"
         Try
             conect.Open()
@@ -90,7 +95,7 @@ Public Class Gestion
     End Function
     Public Function ContratantesEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of Contratante)
         Dim contratantes = New List(Of Contratante)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT COD_CONTRATANTE, NOMBRE_CONTRATANTE, DESCRIPCION FROM CONTRATANTE"
         Try
             conect.Open()
@@ -108,7 +113,7 @@ Public Class Gestion
     End Function
     Public Function ProfesoresEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of Profesor)
         Dim profesores = New List(Of Profesor)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT ID_PROFESOR, NOMBRE_PROFESOR, APELLIDO1, APELLIDO2, FECHA_NACIMIENTO FROM PROFESORES"
         Try
             conect.Open()
@@ -126,7 +131,7 @@ Public Class Gestion
     End Function
     Public Function IniciativasEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of Iniciativa)
         Dim iniciativas = New List(Of Iniciativa)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT COD_INICIATIVA, HORAS, TITULO, FECHA_INICIO, FECHA_FIN FROM INICIATIVAS"
         Try
             conect.Open()
@@ -147,7 +152,7 @@ Public Class Gestion
     End Function
     Private Function ContratantesDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Contratante)
         Dim contratantes = New List(Of Contratante)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT COD_CONTRATANTE, NOMBRE_CONTRATANTE, DESCRIPCION FROM CONTRATANTE WHERE COD_CONTRATANTE=(SELECT COD_CONTRATANTE FROM CONTRATANTE_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
         Try
             conect.Open()
@@ -167,7 +172,7 @@ Public Class Gestion
     End Function
     Private Function ProfesoresDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Profesor)
         Dim profesores = New List(Of Profesor)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT ID_PROFESOR, NOMBRE_PROFESOR, APELLIDO1, APELLIDO2, FECHA_NACIMIENTO FROM PROFESORES WHERE ID_PROFESOR=(SELECT ID_PROFESOR FROM PROFESORES_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
         Try
             conect.Open()
@@ -188,7 +193,7 @@ Public Class Gestion
 
     Private Function MetasDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Meta)
         Dim metas As New List(Of Meta)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT NUMERO_ODS, CARACTER_META, DESCRIPCION FROM METAS WHERE NUMERO_ODS=(SELECT NUMERO_ODS FROM METAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO) AND CARACTER_META=(SELECT CARACTER_META FROM METAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
         Try
             conect.Open()
@@ -207,7 +212,7 @@ Public Class Gestion
     End Function
     Private Function AsignaturasDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Asignatura)
         Dim metas As New List(Of Asignatura)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT COD_ASIGNATURA, NOMBRE_ASIGNATURA, NOMBRE_CURSO FROM ASIGNATURA WHERE COD_ASIGNATURA=(SELECT COD_ASIGNATURA FROM ASIGNATURAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO) AND CARACTER_META=(SELECT NOMBRE_CURSO FROM ASIGNATURAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
         Try
             conect.Open()
@@ -254,7 +259,7 @@ Public Class Gestion
             nuevaImg = odsModificado.Imagen
         End If
 
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "UPDATE ODS SET "
         If nuevoNombre <> "" Then
             sql += "NOMBRE=@NUEVONOMBRE"
@@ -315,7 +320,7 @@ Public Class Gestion
             nuevaDesc = metaModificada.Descripcion
         End If
         'UPDATE
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "UPDATE METAS SET "
         If nuevaID <> "" Then
             sql += "CARACTER_META=@NUEVAID"
@@ -367,7 +372,7 @@ Public Class Gestion
         If meta.Descripcion.Contains("*") Then
             Return $"La descripcion de la nueva meta {meta.ToString(True)} no puede contener el caracter '*'"
         End If
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "INSERT INTO METAS VALUES (@NUMODS, @CARMETA, @DESCRIPCION)"
         Try
             conect.Open()
@@ -416,7 +421,7 @@ Public Class Gestion
             Return "En la iniciativa tiene que participar como mínimo una asignatura"
         End If
 
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI,@FECHAFIN)"
         Try
             conect.Open()
@@ -470,7 +475,7 @@ Public Class Gestion
         Return ""
     End Function
     Public Function EliminarIni(ini As Iniciativa) As String
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "DELETE FROM ASIGNATURAS_INICIATIVA WHERE COD_INICIATIVA=@CODINICIATIVA"
         Try
             conect.Open()

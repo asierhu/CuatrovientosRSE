@@ -14,6 +14,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución",
 		SQL\SQLCUATROVIENTOSRSE.sql = SQL\SQLCUATROVIENTOSRSE.sql
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ComentariosProfesorado", "ComentariosProfesorado", "{FDB74D9B-2C23-4F06-BBCD-2115582D6FFE}"
+	ProjectSection(SolutionItems) = preProject
+		Profesorado\G2 Ibai Asier Mikel.docx = Profesorado\G2 Ibai Asier Mikel.docx
+		Profesorado\ODSVer1.xlsx = Profesorado\ODSVer1.xlsx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
