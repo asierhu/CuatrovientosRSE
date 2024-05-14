@@ -3,11 +3,13 @@ Imports System.Data.SqlClient
 Imports Entidades
 Public Class Gestion
     ' todo PROFESORADO Estamos en acceso conectado. Es decir, los datos están en la base de datos
-    ' Cuando los necesitamos recurrimos allí para obtenerlos, y lo mismo al modificarlos
+    ' Cuando los necesitamos recurrimos allí para obtenerlos, y lo mismo al modificarlos, por lo que no tieen sentido esta variable global ni la propiedad Agenda2020 que estaba antes
     Private _Agenda2030 As List(Of ODS)
     Private Const CADENA_CONEXION = "Data Source = .; Initial Catalog = CUATROVIENTOSRSE; Integrated Security = SSPI; MultipleActiveResultSets=true" ' Cadena de conexión para indicar la base de datos con la que vamos a conectar
+    ' Private Const CADENA_CONEXION = "Data Source = 4V-PRO-948\SQLEXPRESS; Initial Catalog = CUATROVIENTOSRSE; Integrated Security = SSPI; MultipleActiveResultSets=true"
 
-    Public Function ODSEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of ODS)
+    ' todo PROFESORADO: Antes había un Sub New mal planteado
+    Public Function ODSEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of ODS) ' todo PROFESORADO Sobra lo de EnBaseDeDatos
         Dim ods = New List(Of ODS)
         Dim conect As New SqlConnection(CADENA_CONEXION)
         Dim sql As String = "SELECT NUMERO_ODS, NOMBRE, DESCRIPCION FROM ODS"
@@ -35,7 +37,7 @@ Public Class Gestion
             cmdMeta.Parameters.AddWithValue("@NumODS", numODS)
             Dim drMetas As SqlDataReader = cmdMeta.ExecuteReader
             If Not drMetas.HasRows Then
-                msgError = "Este ODS no tiene metas registradas"
+                msgError = "Este ODS no tiene metas registradas" ' todo PROFESORADO No tiene sentido que entonces continúe
             End If
             While drMetas.Read
                 metas.Add(New Meta(drMetas("NUMERO_ODS"), drMetas("CARACTER_META"), drMetas("DESCRIPCION")))
@@ -86,7 +88,8 @@ Public Class Gestion
         Finally
             conect.Close()
         End Try
-        End Sub
+        ' todo PROFESORADO ¿qué devuelve?
+    End Function
     Public Function ModificarODS(odsModificado As ODS) As String
         Dim msgError As String = ""
         Dim ods As ReadOnlyCollection(Of ODS) = ODSEnBaseDeDatos(msgError)
@@ -101,11 +104,11 @@ Public Class Gestion
             End If
             nuevoNombre = odsModificado.Nombre
         End If
-        If Not odsModificado.Descripcion.ToLower = odsGuardado.Descripcion.ToLower Then
+        If Not odsModificado.Descripcion.ToLower = odsGuardado.Descripcion.ToLower Then ' todo PROFESORADO ¿??
             If odsModificado.Descripcion.Contains("*") Then
                 Return "La descripción del ODS no puede contener el caracter '*'"
             End If
-            nuevaDesc = odsModificado.Descripcion
+            nuevaDesc = odsModificado.Descripcion ' todo PROFESORADO Error de compilación
         End If
         If Not odsModificado.Imagen.ToLower = odsGuardado.Imagen.ToLower Then
             If odsModificado.Imagen.Contains("*") Then
@@ -140,7 +143,7 @@ Public Class Gestion
         Dim cambios As Boolean = False
         Dim odsAux As ODS = _Agenda2030(_Agenda2030.IndexOf(New ODS(metaModificada.NumeroODS)))
         Dim indiceMetaODS As Integer = odsAux.Metas.IndexOf(New Meta(metaModificada.NumeroODS, metaModificada.IDMeta))
-        Dim metaGuardada As Meta = odsAux.Metas(indiceMetaODS)
+        Dim metaGuardada As Meta = odsAux.Metas(indiceMetaODS) ' todo PROFESORADO ERROR de ejecución por el Equals de Meta
         If Not metaModificada.IDMeta.ToLower = metaGuardada.IDMeta.ToLower Then
             If metaModificada.IDMeta.Contains("*") Then ' todo Otra vez lo mismo que en ODS....
                 Return "El identificador de una meta no puede contener el caracter '*'"
@@ -195,7 +198,7 @@ Public Class Gestion
     Public Function AnyadirMeta(meta As Meta) As String
         Dim odsGuardado As ODS = _Agenda2030(meta.NumeroODS - 1)
         Dim indiceMeta As Integer = odsGuardado.Metas.IndexOf(New Meta(meta.NumeroODS, meta.IDMeta))
-        For i = 0 To odsGuardado.Metas.Count - 1
+        For i = 0 To odsGuardado.Metas.Count - 1 ' todo PROFESORADO Si Equals estuviese bien, valdría con Contains de odsGuardado.Metas.Contains 
             If odsGuardado.Metas(i).Equals(meta) Then
                 indiceMeta = i
                 Exit For

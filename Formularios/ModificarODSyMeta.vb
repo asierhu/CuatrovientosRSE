@@ -1,9 +1,9 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports Entidades
 
-Public Class ModificarODSyMeta
+Public Class ModificarODSyMeta ' todo Si es un formulario debe comenzar por Frm (cambiar en el explorador de soluciones)
     Private odsSeleccionado As ODS
-    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboODS.SelectedIndexChanged, btnAnyadirMeta.Click
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboODS.SelectedIndexChanged, btnAnyadirMeta.Click ' todo PROFESORADO El nombre del método no es lógico ComboBox1_SelectedIndexChanged: debería ser cboODS_SelectedIndexChanged
         odsSeleccionado = TryCast(cboODS.SelectedItem, ODS)
         pbODS.BackgroundImage = Image.FromFile($"imagenes/{odsSeleccionado.NumeroODS}.jpg")
         lblNumero.Text = odsSeleccionado.NumeroODS
@@ -44,7 +44,7 @@ Public Class ModificarODSyMeta
             MessageBox.Show("Debes seleccionar una meta para poder modificarla")
             Exit Sub
         End If
-        Dim msg As String = gestion.ModificarMeta(New Meta(odsSeleccionado.NumeroODS, txtIDModMeta.Text, txtDescripcionMeta.Text), TryCast(cboCarMeta.SelectedItem, Meta).IDMeta)
+        Dim msg As String = gestion.ModificarMeta(New Meta(odsSeleccionado.NumeroODS, txtIDModMeta.Text, txtDescripcionMeta.Text), TryCast(cboCarMeta.SelectedItem, Meta).IDMeta) ' todo PROFESORADO: Error de compilación
         If msg <> "" Then
             MessageBox.Show(msg)
         End If

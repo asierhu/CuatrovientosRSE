@@ -25,7 +25,7 @@
     Public Overloads Function Equals(other As Meta) As Boolean Implements IEquatable(Of Meta).Equals
         Return other IsNot Nothing AndAlso
                NumeroODS = other.NumeroODS AndAlso
-               IDMeta = other.IDMeta + " "
+               IDMeta = other.IDMeta + " " ' todo PROFESORADO ¿Qué significa " "? ¿Y qué ocurre si la letra está diferente escrita?
     End Function
 
 End Class
