@@ -1,5 +1,6 @@
 ﻿Imports System.Collections.ObjectModel
 Imports System.Data.SqlClient
+Imports System.IO
 Imports Entidades
 Public Class Gestion
 
@@ -504,5 +505,32 @@ Public Class Gestion
             conect.Close()
         End Try
         Return ""
+    End Function
+    Public Function LeerODSsYMetasDeFichero(nombreFichero As String) As String
+        If Not File.Exists(nombreFichero) Then
+            Return $"No existe el fichero {nombreFichero}"
+        End If
+        Dim lineas() As String = File.ReadAllLines(nombreFichero)
+        If lineas.Count = 0 Then
+            Return $"No hay nada en el fichero {nombreFichero}"
+        End If
+        Dim datos() As String
+        Dim msgError As String = ""
+        Dim odsEnBaseDeDatos As ReadOnlyCollection(Of ODS) = ODSs(msgError)
+        If msgError <> "" Then
+            Return msgError
+        End If
+        Dim odsDeFichero As New List(Of ODS)
+        Dim odsAux As ODS
+        Dim byteAux As Byte
+        For Each linea In lineas
+            datos = linea.Split("*")
+            If datos.Count = 4 Then
+                odsAux = New ODS(Byte.TryParse(linea(0), byteAux), linea(1), linea(2))
+                If odsEnBaseDeDatos.Contains(odsAux) Then
+
+                End If
+            End If
+        Next
     End Function
 End Class
