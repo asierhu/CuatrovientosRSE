@@ -1,9 +1,9 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports Entidades
 
-Public Class ModificarODSyMeta ' todo Si es un formulario debe comenzar por Frm (cambiar en el explorador de soluciones)
+Public Class ModificarODSyMeta
     Private odsSeleccionado As ODS
-    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboODS.SelectedIndexChanged, btnAnyadirMeta.Click ' todo PROFESORADO El nombre del método no es lógico ComboBox1_SelectedIndexChanged: debería ser cboODS_SelectedIndexChanged
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboODS.SelectedIndexChanged, btnAnyadirMeta.Click
         odsSeleccionado = TryCast(cboODS.SelectedItem, ODS)
         pbODS.BackgroundImage = Image.FromFile($"imagenes/{odsSeleccionado.NumeroODS}.jpg")
         lblNumero.Text = odsSeleccionado.NumeroODS
@@ -23,7 +23,7 @@ Public Class ModificarODSyMeta ' todo Si es un formulario debe comenzar por Frm 
     Private Sub ModificarODSyMeta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim msgError As String = ""
         Try
-            cboODS.Items.AddRange(gestion.ODSEnBaseDeDatos(msgError).ToArray)
+            cboODS.Items.AddRange(gestion.ODSs(msgError).ToArray)
         Catch ex As Exception
         Finally
             If msgError <> "" Then
@@ -33,7 +33,7 @@ Public Class ModificarODSyMeta ' todo Si es un formulario debe comenzar por Frm 
     End Sub
 
     Private Sub btnGuardarCambiosODS_Click(sender As Object, e As EventArgs) Handles btnGuardarCambiosODS.Click
-        Dim msg As String = gestion.ModificarODS(New ODS(lblNumero.Text, txtNomODS.Text, txtDesODS.Text, txtImagen.Text)) ' todo PROFESORADO Si se cambia el ODS automáticamente debe cambiar en el combo
+        Dim msg As String = gestion.ModificarODS(New ODS(lblNumero.Text, txtNomODS.Text, txtDesODS.Text, txtImagen.Text))
         If msg <> "" Then
             MessageBox.Show(msg)
         End If
@@ -44,7 +44,7 @@ Public Class ModificarODSyMeta ' todo Si es un formulario debe comenzar por Frm 
             MessageBox.Show("Debes seleccionar una meta para poder modificarla")
             Exit Sub
         End If
-        Dim msg As String = gestion.ModificarMeta(New Meta(odsSeleccionado.NumeroODS, txtIDModMeta.Text, txtDescripcionMeta.Text), TryCast(cboCarMeta.SelectedItem, Meta).IDMeta) ' todo PROFESORADO: Error de compilación
+        Dim msg As String = gestion.ModificarMeta(New Meta(odsSeleccionado.NumeroODS, txtIDModMeta.Text, txtDescripcionMeta.Text), TryCast(cboCarMeta.SelectedItem, Meta).IDMeta)
         If msg <> "" Then
             MessageBox.Show(msg)
         End If

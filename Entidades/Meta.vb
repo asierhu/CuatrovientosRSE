@@ -8,7 +8,7 @@
     Public Overrides Function ToString() As String
         Return $"ODS: {NumeroODS}, Meta: {IDMeta}"
     End Function
-    Public Sub New(numeroODS As Byte, idMeta As String) ' todo PROFESORADO Debería llamar al otro New en la forma Me.New(numeroODS, idMeta, "")
+    Public Sub New(numeroODS As Byte, idMeta As String)
         Me.NumeroODS = numeroODS
         Me.IDMeta = idMeta
         Me.Descripcion = ""
@@ -25,7 +25,7 @@
     Public Overloads Function Equals(other As Meta) As Boolean Implements IEquatable(Of Meta).Equals
         Return other IsNot Nothing AndAlso
                NumeroODS = other.NumeroODS AndAlso
-               IDMeta = other.IDMeta + " " ' todo PROFESORADO ¿Qué significa " "? ¿Y qué ocurre si la letra está diferente escrita?
+               (IDMeta = other.IDMeta + " " OrElse IDMeta = other.IDMeta)
     End Function
 
 End Class
