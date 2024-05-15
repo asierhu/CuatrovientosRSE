@@ -1,5 +1,6 @@
 ﻿Imports System.Collections.ObjectModel
 Imports System.Data.SqlClient
+Imports System.IO
 Imports Entidades
 Public Class Gestion
 
@@ -503,5 +504,10 @@ Public Class Gestion
             conect.Close()
         End Try
         Return ""
+    End Function
+
+    Public Function LeerFichero() As String
+        If Not File.Exists("/Ficheros/ODSMetas.txt") Then Return "El fichero no existe"
+        Dim lineas As String()
     End Function
 End Class
