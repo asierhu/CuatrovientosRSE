@@ -506,8 +506,28 @@ Public Class Gestion
         Return ""
     End Function
 
-    Public Function LeerFichero() As String
-        If Not File.Exists("/Ficheros/ODSMetas.txt") Then Return "El fichero no existe"
+    Public Sub LeerFichero()
+        Const RUTAFICHERODATOS As String = "/Ficheros/ODSMetas.txt"
+        Const RUTAFICHEROLOG As String = "/Ficheros/comentariosODS.log"
+        If Not File.Exists(RUTAFICHERODATOS) Then
+            File.AppendAllLines(RUTAFICHEROLOG, "EL fichero no existe".ToArray)
+        End If
         Dim lineas As String()
-    End Function
+        Dim linea As String()
+        lineas = File.ReadAllLines(RUTAFICHERODATOS)
+        For i = 0 To lineas.Length - 1
+            linea = lineas(i).Split("*")
+            For j = 0 To linea.Length - 1
+                If String.IsNullOrWhiteSpace(linea(j)) Then
+                    File.AppendAllLines(RUTAFICHEROLOG, New String() {$"El parámetro {j} está vacío"})
+                    Exit Sub
+                End If
+            Next
+            If lineas.Length = 3 Then Dim meta As New Meta(linea(0), linea(1), linea(2))
+            If lineas.Length = 4 Then Dim ODS As New ODS(linea(0), linea(1), linea(2), linea(3))
+            If Not lineas.Length = 3 Or Not lineas.Length = 4 Then
+                File.AppendAllLines(RUTAFICHEROLOG, New String() {$"EL numero de parametros no es el correcto"})
+            End If
+        Next
+    End Sub
 End Class
