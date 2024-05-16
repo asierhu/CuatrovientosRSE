@@ -13,7 +13,6 @@ Public Class FrAltaIniciativas
             cboContratantes.Items.AddRange(gestion.ContratantesEnBaseDeDatos(msgError).ToArray)
             cboProf.Items.AddRange(gestion.ProfesoresEnBaseDeDatos(msgError).ToArray)
             cboCurso.Items.AddRange(gestion.CursosEnBaseDeDatos(msgError).ToArray)
-            'cboVerDatos.Items.AddRange(gestion.VerIniciativasEnBaseDeDatos(msgError).ToArray) PARA CUANDO SE HAGA EL METODO EN GESTION
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         Finally
@@ -220,9 +219,8 @@ Public Class FrAltaIniciativas
         Dim listaMetas As New List(Of Meta)
         Dim listaProfesores As New List(Of Profesor)
         Dim listaAsignaturas As New List(Of Asignatura)
-        For i = 0 To lstbContratantes.Items.Count - 1
-            listaContratantes.Add(lstbContratantes.Items(i))
-        Next
+
+        listaContratantes.AddRange(lstbContratantes.Items)
         For i = 0 To lstbMeta.Items.Count - 1
             listaMetas.Add(lstbMeta.Items(i))
         Next
