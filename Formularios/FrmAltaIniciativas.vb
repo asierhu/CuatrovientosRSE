@@ -21,6 +21,9 @@ Public Class FrmAltaIniciativas
             End If
         End Try
         cboVerDatos.Items.AddRange(gestion.IniciativasEnBaseDeDatos(msgError).ToArray)
+        If msgError <> "" Then
+            MessageBox.Show(msgError)
+        End If
     End Sub
     Private odsSeleccionado As ODS
     Private metaSeleccionada As Meta

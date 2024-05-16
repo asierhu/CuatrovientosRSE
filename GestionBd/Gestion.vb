@@ -427,9 +427,9 @@ Public Class Gestion
         Dim conect As New SqlConnection(cadenaConexion)
         Try
             conect.Open()
-            Dim sql As String = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI)"
-            If Not iniciativa.FechaFin = #1/1/0001 12:00:00 AM# Then
-                sql += ",@FECHAFIN"
+            Dim sql As String = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI,@FECHAFIN)"
+            If iniciativa.FechaFin = Nothing Then
+                sql = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI, NULL)"
             End If
             Dim cmdUltimoNumIni As New SqlCommand("NUEVOCODIGO", conect)
             cmdUltimoNumIni.CommandType = CommandType.StoredProcedure
