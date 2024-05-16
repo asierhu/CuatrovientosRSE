@@ -80,16 +80,16 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrAltaIniciativas.Designer.vb">
-      <DependentUpon>FrAltaIniciativas.vb</DependentUpon>
+    <Compile Include="FrmAltaIniciativas.Designer.vb">
+      <DependentUpon>FrmAltaIniciativas.vb</DependentUpon>
     </Compile>
-    <Compile Include="FrAltaIniciativas.vb">
+    <Compile Include="FrmAltaIniciativas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModificarODSyMeta.Designer.vb">
-      <DependentUpon>ModificarODSyMeta.vb</DependentUpon>
+    <Compile Include="FrmModificarODSyMeta.Designer.vb">
+      <DependentUpon>FrmModificarODSyMeta.vb</DependentUpon>
     </Compile>
-    <Compile Include="ModificarODSyMeta.vb">
+    <Compile Include="FrmModificarODSyMeta.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Module1.vb" />
@@ -109,10 +109,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="frmVerODSMetas.Designer.vb">
-      <DependentUpon>frmVerODSMetas.vb</DependentUpon>
+    <Compile Include="FrmVerODSMetas.Designer.vb">
+      <DependentUpon>FrmVerODSMetas.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmVerODSMetas.vb">
+    <Compile Include="FrmVerODSMetas.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -120,11 +120,11 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrAltaIniciativas.resx">
-      <DependentUpon>FrAltaIniciativas.vb</DependentUpon>
+    <EmbeddedResource Include="FrmAltaIniciativas.resx">
+      <DependentUpon>FrmAltaIniciativas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModificarODSyMeta.resx">
-      <DependentUpon>ModificarODSyMeta.vb</DependentUpon>
+    <EmbeddedResource Include="FrmModificarODSyMeta.resx">
+      <DependentUpon>FrmModificarODSyMeta.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -132,8 +132,8 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmVerODSMetas.resx">
-      <DependentUpon>frmVerODSMetas.vb</DependentUpon>
+    <EmbeddedResource Include="FrmVerODSMetas.resx">
+      <DependentUpon>FrmVerODSMetas.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
