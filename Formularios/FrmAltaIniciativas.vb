@@ -3,7 +3,7 @@ Imports System.Runtime.CompilerServices
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Tab
 Imports Entidades
 
-Public Class FrAltaIniciativas
+Public Class FrmAltaIniciativas
     Private Sub FrAltaIniciativas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         logo1.BackgroundImage = Image.FromFile("imagenes/logo.png")
         logo2.BackgroundImage = Image.FromFile("imagenes/logo2.png")
@@ -197,7 +197,7 @@ Public Class FrAltaIniciativas
         selAsign.Enabled = True
         seltdasign.Enabled = True
         Dim Msgerror As String = ""
-        cboAsign.Items.AddRange(gestion.VerAsignaturasDeCurso(cursoSeleccionado.Nombre, Msgerror).ToArray)
+        cboAsign.Items.AddRange(gestion.VerAsignaturasDeCurso(cursoseleccionado.Nombre, Msgerror).ToArray)
     End Sub
 
     Private Sub borrarLstb(sender As Object, e As EventArgs) Handles borrarcont.Click, borrarprof.Click, btnBorrarMeta.Click, borrarasign.Click
