@@ -234,8 +234,16 @@ Public Class FrAltaIniciativas
             asigAux = TryCast(lstbAsign.Items(i), Asignatura)
             listaAsignaturas.Add(New Asignatura(asigAux.CodAsignatura, asigAux.Nombre, asigAux.NombreCurso))
         Next
-        Dim iniciativaNueva As New Iniciativa(listaContratantes.AsReadOnly, listaMetas.AsReadOnly, listaProfesores.AsReadOnly, listaAsignaturas.AsReadOnly, numHoras.Value, txtTitulo.Text, calInicio.Value, calFinal.Value)
-        gestion.AnyadirIniciativa(iniciativaNueva)
+        Dim iniciativaNueva As Iniciativa
+        If chkSinFinal.Checked = True Then
+            iniciativaNueva = New Iniciativa(listaContratantes.AsReadOnly, listaMetas.AsReadOnly, listaProfesores.AsReadOnly, listaAsignaturas.AsReadOnly, numHoras.Value, txtTitulo.Text, calInicio.Value, Nothing)
+        Else
+            iniciativaNueva = New Iniciativa(listaContratantes.AsReadOnly, listaMetas.AsReadOnly, listaProfesores.AsReadOnly, listaAsignaturas.AsReadOnly, numHoras.Value, txtTitulo.Text, calInicio.Value, calFinal.Value)
+        End If
+        Dim msg As String = gestion.AnyadirIniciativa(iniciativaNueva)
+        If msg <> "" Then
+            MessageBox.Show(msg)
+        End If
     End Sub
 
     Private Sub cboVerDatos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboVerDatos.SelectedIndexChanged
