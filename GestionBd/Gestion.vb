@@ -514,19 +514,32 @@ Public Class Gestion
         End If
         Dim lineas As String()
         Dim linea As String()
+        Dim meta As Meta
+        Dim ods As ODS
+        Dim msgError As String = ""
         lineas = File.ReadAllLines(RUTAFICHERODATOS)
         For i = 0 To lineas.Length - 1
+            msgError = ""
             linea = lineas(i).Split("*")
             For j = 0 To linea.Length - 1
                 If String.IsNullOrWhiteSpace(linea(j)) Then
                     File.AppendAllLines(RUTAFICHEROLOG, New String() {$"El parámetro {j} está vacío"})
-                    Exit Sub
+                    Exit For
                 End If
             Next
-            If lineas.Length = 3 Then Dim meta As New Meta(linea(0), linea(1), linea(2))
-            If lineas.Length = 4 Then Dim ODS As New ODS(linea(0), linea(1), linea(2), linea(3))
+            If lineas.Length = 3 Then
+                meta = New Meta(linea(0), linea(1), linea(2))
+                msgError = AnyadirMeta(meta)
+            End If
+            If lineas.Length = 4 Then
+                ods = New ODS(linea(0), linea(1), linea(2), linea(3))
+
+            End If
             If Not lineas.Length = 3 Or Not lineas.Length = 4 Then
                 File.AppendAllLines(RUTAFICHEROLOG, New String() {$"EL numero de parametros no es el correcto"})
+            End If
+            If msgError <> "" Then
+                File.AppendAllLines(RUTAFICHEROLOG, msgError)
             End If
         Next
     End Sub
