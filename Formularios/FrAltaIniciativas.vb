@@ -220,7 +220,10 @@ Public Class FrAltaIniciativas
         Dim listaProfesores As New List(Of Profesor)
         Dim listaAsignaturas As New List(Of Asignatura)
 
-        listaContratantes.AddRange(lstbContratantes.Items)
+        For i = 0 To lstbContratantes.Items.Count - 1
+            listaContratantes.Add(lstbContratantes.Items(i))
+        Next
+
         For i = 0 To lstbMeta.Items.Count - 1
             listaMetas.Add(lstbMeta.Items(i))
         Next
