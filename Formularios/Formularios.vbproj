@@ -86,6 +86,12 @@
     <Compile Include="FrmAltaIniciativas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FrmIniciativasCiclo.Designer.vb">
+      <DependentUpon>FrmIniciativasCiclo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmIniciativasCiclo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmModificarODSyMeta.Designer.vb">
       <DependentUpon>FrmModificarODSyMeta.vb</DependentUpon>
     </Compile>
@@ -122,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAltaIniciativas.resx">
       <DependentUpon>FrmAltaIniciativas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmIniciativasCiclo.resx">
+      <DependentUpon>FrmIniciativasCiclo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmModificarODSyMeta.resx">
       <DependentUpon>FrmModificarODSyMeta.vb</DependentUpon>
