@@ -141,11 +141,7 @@ Public Class Gestion
             Dim codIniciativa As Integer
             While drIni.Read
                 codIniciativa = drIni("COD_INICIATIVA")
-                If drIni("FECHA_FIN") Is Nothing Then
-                    iniciativas.Add(New Iniciativa(codIniciativa, ContratantesDeIniciativa(codIniciativa), MetasDeIniciativa(codIniciativa), ProfesoresDeIniciativa(codIniciativa), AsignaturasDeIniciativa(codIniciativa), drIni("HORAS"), drIni("TITULO"), drIni("FECHA_INICIO")))
-                Else
-                    iniciativas.Add(New Iniciativa(codIniciativa, ContratantesDeIniciativa(codIniciativa), MetasDeIniciativa(codIniciativa), ProfesoresDeIniciativa(codIniciativa), AsignaturasDeIniciativa(codIniciativa), drIni("HORAS"), drIni("TITULO"), drIni("FECHA_INICIO"), drIni("FECHA_FIN")))
-                End If
+                iniciativas.Add(New Iniciativa(codIniciativa, ContratantesDeIniciativa(codIniciativa), MetasDeIniciativa(codIniciativa), ProfesoresDeIniciativa(codIniciativa), AsignaturasDeIniciativa(codIniciativa), drIni("HORAS"), drIni("TITULO"), drIni("FECHA_INICIO"), drIni("FECHA_FIN")))
             End While
         Catch ex As Exception
             msgError = ex.Message
@@ -433,7 +429,7 @@ Public Class Gestion
             conect.Open()
             Dim sql As String = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI,@FECHAFIN)"
             If iniciativa.FechaFin = Nothing Then
-                sql = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI, NULL)"
+                sql = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI, @FECHAFIN)"
             End If
             Dim cmdUltimoNumIni As New SqlCommand("NUEVOCODIGO", conect)
             cmdUltimoNumIni.CommandType = CommandType.StoredProcedure
@@ -443,9 +439,7 @@ Public Class Gestion
             cmdINI.Parameters.AddWithValue("@HORAS", iniciativa.Horas)
             cmdINI.Parameters.AddWithValue("@TITULO", iniciativa.Titulo)
             cmdINI.Parameters.AddWithValue("@FECHAINI", iniciativa.FechaInicio)
-            If sql.Contains(",@FECHAFIN") Then
-                cmdINI.Parameters.AddWithValue("@FECHAFIN", iniciativa.FechaFin)
-            End If
+            cmdINI.Parameters.AddWithValue("@FECHAFIN", iniciativa.FechaFin)
             cmdINI.ExecuteNonQuery()
             'insert ASIGNATURAS_INICIATIVA
             For Each asignatura In iniciativa.Asignaturas
