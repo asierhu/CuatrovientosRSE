@@ -407,7 +407,7 @@ Public Class Gestion
             Return "El titulo no puede quedar en blanco"
         End If
         If Not iniciativa.FechaFin = Nothing Then
-            If iniciativa.FechaFin < iniciativa.FechaInicio Then
+            If iniciativa.FechaFin.ToShortDateString < iniciativa.FechaInicio.ToShortDateString Then
                 Return "La fecha en la que finaliza una iniciativa no puede ser menor que la fecha en la que inicia"
             End If
         End If
@@ -428,6 +428,9 @@ Public Class Gestion
         Dim sql As String = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI,@FECHAFIN)"
         Try
             conect.Open()
+            Dim cmdUltimoNumIni As New SqlCommand("NUEVOCODIGO", conect)
+            cmdUltimoNumIni.CommandType = CommandType.StoredProcedure
+            Dim nuevoCod As Integer = cmdUltimoNumIni.ExecuteNonQuery
             'insert iniciativa
             Dim cmdINI As New SqlCommand(sql, conect)
             cmdINI.Parameters.AddWithValue("@HORAS", iniciativa.Horas)
@@ -436,7 +439,6 @@ Public Class Gestion
             cmdINI.Parameters.AddWithValue("@FECHAFIN", iniciativa.FechaFin)
             cmdINI.ExecuteNonQuery()
             'insert ASIGNATURAS_INICIATIVA
-            Dim nuevoCod As Integer = IniciativasEnBaseDeDatos(msgError).Count
             For Each asignatura In iniciativa.Asignaturas
                 sql = "INSERT INTO ASIGNATURAS_INICIATIVA VALUES (@NOMBRECURSO,@CODASIGNATURA,@CODINICIATIVA)"
                 cmdINI = New SqlCommand(sql, conect)
