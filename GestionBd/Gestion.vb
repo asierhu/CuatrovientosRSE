@@ -141,11 +141,7 @@ Public Class Gestion
             Dim codIniciativa As Integer
             While drIni.Read
                 codIniciativa = drIni("COD_INICIATIVA")
-                If drIni("FECHA_FIN") Is Nothing Then
-                    iniciativas.Add(New Iniciativa(codIniciativa, ContratantesDeIniciativa(codIniciativa), MetasDeIniciativa(codIniciativa), ProfesoresDeIniciativa(codIniciativa), AsignaturasDeIniciativa(codIniciativa), drIni("HORAS"), drIni("TITULO"), drIni("FECHA_INICIO")))
-                Else
-                    iniciativas.Add(New Iniciativa(codIniciativa, ContratantesDeIniciativa(codIniciativa), MetasDeIniciativa(codIniciativa), ProfesoresDeIniciativa(codIniciativa), AsignaturasDeIniciativa(codIniciativa), drIni("HORAS"), drIni("TITULO"), drIni("FECHA_INICIO"), drIni("FECHA_FIN")))
-                End If
+                iniciativas.Add(New Iniciativa(codIniciativa, ContratantesDeIniciativa(codIniciativa), MetasDeIniciativa(codIniciativa), ProfesoresDeIniciativa(codIniciativa), AsignaturasDeIniciativa(codIniciativa), drIni("HORAS"), drIni("TITULO"), drIni("FECHA_INICIO"), drIni("FECHA_FIN")))
             End While
         Catch ex As Exception
             msgError = ex.Message
