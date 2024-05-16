@@ -406,8 +406,10 @@ Public Class Gestion
         If String.IsNullOrWhiteSpace(iniciativa.Titulo) Then
             Return "El titulo no puede quedar en blanco"
         End If
-        If iniciativa.FechaFin < iniciativa.FechaInicio Then
-            Return "La fecha en la que finaliza una iniciativa no puede ser menor que la fecha en la que inicia"
+        If Not iniciativa.FechaFin = Nothing Then
+            If iniciativa.FechaFin < iniciativa.FechaInicio Then
+                Return "La fecha en la que finaliza una iniciativa no puede ser menor que la fecha en la que inicia"
+            End If
         End If
         If iniciativa.Contratantes.Count = 0 Then
             Return "Una iniciativa tiene que ser contratada por un contratante como mínimo"
