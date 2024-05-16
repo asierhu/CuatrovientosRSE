@@ -429,7 +429,7 @@ Public Class Gestion
             conect.Open()
             Dim sql As String = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI,@FECHAFIN)"
             If iniciativa.FechaFin = Nothing Then
-                sql = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI, NULL)"
+                sql = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI, @FECHAFIN)"
             End If
             Dim cmdUltimoNumIni As New SqlCommand("NUEVOCODIGO", conect)
             cmdUltimoNumIni.CommandType = CommandType.StoredProcedure
@@ -439,9 +439,7 @@ Public Class Gestion
             cmdINI.Parameters.AddWithValue("@HORAS", iniciativa.Horas)
             cmdINI.Parameters.AddWithValue("@TITULO", iniciativa.Titulo)
             cmdINI.Parameters.AddWithValue("@FECHAINI", iniciativa.FechaInicio)
-            If sql.Contains(",@FECHAFIN") Then
-                cmdINI.Parameters.AddWithValue("@FECHAFIN", iniciativa.FechaFin)
-            End If
+            cmdINI.Parameters.AddWithValue("@FECHAFIN", iniciativa.FechaFin)
             cmdINI.ExecuteNonQuery()
             'insert ASIGNATURAS_INICIATIVA
             For Each asignatura In iniciativa.Asignaturas

@@ -126,16 +126,6 @@ Public Class FrmAltaIniciativas
 
     End Sub
 
-    Private Sub chksinfinal_CheckedChanged(sender As Object, e As EventArgs) Handles chkSinFinal.CheckedChanged
-        If chkSinFinal.Checked Then
-            calFinal.Enabled = False
-            lblFinal.Enabled = False
-        Else
-            calFinal.Enabled = True
-            lblFinal.Enabled = True
-        End If
-    End Sub
-
     Private Sub btnreset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
         txtTitulo.Clear()
         numHoras.ResetText()
@@ -239,11 +229,7 @@ Public Class FrmAltaIniciativas
             listaAsignaturas.Add(New Asignatura(asigAux.CodAsignatura, asigAux.Nombre, asigAux.NombreCurso))
         Next
         Dim iniciativaNueva As Iniciativa
-        If chkSinFinal.Checked = True Then
-            iniciativaNueva = New Iniciativa(listaContratantes.AsReadOnly, listaMetas.AsReadOnly, listaProfesores.AsReadOnly, listaAsignaturas.AsReadOnly, numHoras.Value, txtTitulo.Text, calInicio.Value)
-        Else
-            iniciativaNueva = New Iniciativa(listaContratantes.AsReadOnly, listaMetas.AsReadOnly, listaProfesores.AsReadOnly, listaAsignaturas.AsReadOnly, numHoras.Value, txtTitulo.Text, calInicio.Value, calFinal.Value)
-        End If
+        iniciativaNueva = New Iniciativa(listaContratantes.AsReadOnly, listaMetas.AsReadOnly, listaProfesores.AsReadOnly, listaAsignaturas.AsReadOnly, numHoras.Value, txtTitulo.Text, calInicio.Value, calFinal.Value)
         Dim msg As String = gestion.AnyadirIniciativa(iniciativaNueva)
         If msg <> "" Then
             MessageBox.Show(msg)
@@ -256,12 +242,6 @@ Public Class FrmAltaIniciativas
         txtTitulo.Text = iniciativaNueva.Titulo
         numHoras.Value = iniciativaNueva.Horas
         calInicio.Value = iniciativaNueva.FechaInicio
-        If iniciativaNueva.FechaFin <> Nothing Then
-            chkSinFinal.Checked = False
-            calFinal.Value = iniciativaNueva.FechaFin
-        Else
-            chkSinFinal.Checked = True
-        End If
         lstbMeta.Items.AddRange(iniciativaNueva.Metas.ToArray)
         lstbContratantes.Items.AddRange(iniciativaNueva.Contratantes.ToArray)
         lstbProf.Items.AddRange(iniciativaNueva.Profesores.ToArray)
