@@ -425,9 +425,12 @@ Public Class Gestion
         End If
 
         Dim conect As New SqlConnection(cadenaConexion)
-        Dim sql As String = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI,@FECHAFIN)"
         Try
             conect.Open()
+            Dim sql As String = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI)"
+            If Not iniciativa.FechaFin = #1/1/0001 12:00:00 AM# Then
+                sql += ",@FECHAFIN"
+            End If
             Dim cmdUltimoNumIni As New SqlCommand("NUEVOCODIGO", conect)
             cmdUltimoNumIni.CommandType = CommandType.StoredProcedure
             Dim nuevoCod As Integer = cmdUltimoNumIni.ExecuteNonQuery
@@ -436,7 +439,9 @@ Public Class Gestion
             cmdINI.Parameters.AddWithValue("@HORAS", iniciativa.Horas)
             cmdINI.Parameters.AddWithValue("@TITULO", iniciativa.Titulo)
             cmdINI.Parameters.AddWithValue("@FECHAINI", iniciativa.FechaInicio)
-            cmdINI.Parameters.AddWithValue("@FECHAFIN", iniciativa.FechaFin)
+            If sql.Contains(",@FECHAFIN") Then
+                cmdINI.Parameters.AddWithValue("@FECHAFIN", iniciativa.FechaFin)
+            End If
             cmdINI.ExecuteNonQuery()
             'insert ASIGNATURAS_INICIATIVA
             For Each asignatura In iniciativa.Asignaturas
