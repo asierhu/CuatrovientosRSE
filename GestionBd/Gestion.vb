@@ -565,5 +565,4 @@ Public Class Gestion
             End If
         Next
     End Sub
-    Public Function 
 End Class
