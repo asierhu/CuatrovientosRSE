@@ -3,7 +3,7 @@ Imports System.Runtime.CompilerServices
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Tab
 Imports Entidades
 
-Public Class FrAltaIniciativas
+Public Class FrmAltaIniciativas
     Private Sub FrAltaIniciativas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         logo1.BackgroundImage = Image.FromFile("imagenes/logo.png")
         logo2.BackgroundImage = Image.FromFile("imagenes/logo2.png")
@@ -13,7 +13,6 @@ Public Class FrAltaIniciativas
             cboContratantes.Items.AddRange(gestion.ContratantesEnBaseDeDatos(msgError).ToArray)
             cboProf.Items.AddRange(gestion.ProfesoresEnBaseDeDatos(msgError).ToArray)
             cboCurso.Items.AddRange(gestion.CursosEnBaseDeDatos(msgError).ToArray)
-            'cboVerDatos.Items.AddRange(gestion.VerIniciativasEnBaseDeDatos(msgError).ToArray) PARA CUANDO SE HAGA EL METODO EN GESTION
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         Finally
@@ -22,6 +21,9 @@ Public Class FrAltaIniciativas
             End If
         End Try
         cboVerDatos.Items.AddRange(gestion.IniciativasEnBaseDeDatos(msgError).ToArray)
+        If msgError <> "" Then
+            MessageBox.Show(msgError)
+        End If
     End Sub
     Private odsSeleccionado As ODS
     Private metaSeleccionada As Meta
@@ -124,16 +126,6 @@ Public Class FrAltaIniciativas
 
     End Sub
 
-    Private Sub chksinfinal_CheckedChanged(sender As Object, e As EventArgs) Handles chkSinFinal.CheckedChanged
-        If chkSinFinal.Checked Then
-            calFinal.Enabled = False
-            lblFinal.Enabled = False
-        Else
-            calFinal.Enabled = True
-            lblFinal.Enabled = True
-        End If
-    End Sub
-
     Private Sub btnreset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
         txtTitulo.Clear()
         numHoras.ResetText()
@@ -197,7 +189,7 @@ Public Class FrAltaIniciativas
         selAsign.Enabled = True
         seltdasign.Enabled = True
         Dim Msgerror As String = ""
-        cboAsign.Items.AddRange(gestion.VerAsignaturasDeCurso(cursoSeleccionado.Nombre, Msgerror).ToArray)
+        cboAsign.Items.AddRange(gestion.VerAsignaturasDeCurso(cursoseleccionado.Nombre, Msgerror).ToArray)
     End Sub
 
     Private Sub borrarLstb(sender As Object, e As EventArgs) Handles borrarcont.Click, borrarprof.Click, btnBorrarMeta.Click, borrarasign.Click
@@ -220,9 +212,11 @@ Public Class FrAltaIniciativas
         Dim listaMetas As New List(Of Meta)
         Dim listaProfesores As New List(Of Profesor)
         Dim listaAsignaturas As New List(Of Asignatura)
+
         For i = 0 To lstbContratantes.Items.Count - 1
             listaContratantes.Add(lstbContratantes.Items(i))
         Next
+
         For i = 0 To lstbMeta.Items.Count - 1
             listaMetas.Add(lstbMeta.Items(i))
         Next
@@ -234,8 +228,12 @@ Public Class FrAltaIniciativas
             asigAux = TryCast(lstbAsign.Items(i), Asignatura)
             listaAsignaturas.Add(New Asignatura(asigAux.CodAsignatura, asigAux.Nombre, asigAux.NombreCurso))
         Next
-        Dim iniciativaNueva As New Iniciativa(listaContratantes.AsReadOnly, listaMetas.AsReadOnly, listaProfesores.AsReadOnly, listaAsignaturas.AsReadOnly, numHoras.Value, txtTitulo.Text, calInicio.Value, calFinal.Value)
-        gestion.AnyadirIniciativa(iniciativaNueva)
+        Dim iniciativaNueva As Iniciativa
+        iniciativaNueva = New Iniciativa(listaContratantes.AsReadOnly, listaMetas.AsReadOnly, listaProfesores.AsReadOnly, listaAsignaturas.AsReadOnly, numHoras.Value, txtTitulo.Text, calInicio.Value, calFinal.Value)
+        Dim msg As String = gestion.AnyadirIniciativa(iniciativaNueva)
+        If msg <> "" Then
+            MessageBox.Show(msg)
+        End If
     End Sub
 
     Private Sub cboVerDatos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboVerDatos.SelectedIndexChanged
@@ -244,12 +242,6 @@ Public Class FrAltaIniciativas
         txtTitulo.Text = iniciativaNueva.Titulo
         numHoras.Value = iniciativaNueva.Horas
         calInicio.Value = iniciativaNueva.FechaInicio
-        If iniciativaNueva.FechaFin <> Nothing Then
-            chkSinFinal.Checked = False
-            calFinal.Value = iniciativaNueva.FechaFin
-        Else
-            chkSinFinal.Checked = True
-        End If
         lstbMeta.Items.AddRange(iniciativaNueva.Metas.ToArray)
         lstbContratantes.Items.AddRange(iniciativaNueva.Contratantes.ToArray)
         lstbProf.Items.AddRange(iniciativaNueva.Profesores.ToArray)

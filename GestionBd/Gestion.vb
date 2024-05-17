@@ -2,13 +2,20 @@
 Imports System.Data.SqlClient
 Imports System.IO
 Imports Entidades
+Imports Microsoft.Win32
 Public Class Gestion
 
-    Private Const CADENA_CONEXION = "Data Source = .; Initial Catalog = CUATROVIENTOSRSE; Integrated Security = SSPI; MultipleActiveResultSets=true" ' Cadena de conexión para indicar la base de datos con la que vamos a conectar
-
+    Private cadenaConexion As String
+    Public Sub New()
+        Dim servidor As String = "."
+        If Environment.MachineName = "4V-PRO-948" Then
+            servidor = "4V-PRO-948\SQLEXPRESS"
+        End If
+        cadenaConexion = $"Data Source = {servidor}; Initial Catalog = CUATROVIENTOSRSE; Integrated Security = SSPI; MultipleActiveResultSets=true"
+    End Sub
     Public Function ODSEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of ODS)
         Dim ods = New List(Of ODS)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT NUMERO_ODS, NOMBRE, DESCRIPCION FROM ODS"
         Try
             conect.Open()
@@ -26,7 +33,7 @@ Public Class Gestion
     End Function
     Public Function VerMetasDeODS(numODS As Byte, ByRef msgError As String) As ReadOnlyCollection(Of Meta)
         Dim metas As New List(Of Meta)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT NUMERO_ODS, CARACTER_META, DESCRIPCION FROM METAS WHERE METAS.NUMERO_ODS=@NumODS"
         Try
             conect.Open()
@@ -48,7 +55,7 @@ Public Class Gestion
     End Function
     Public Function CursosEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of Curso)
         Dim cursos = New List(Of Curso)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT NOMBRE_CURSO FROM CURSO"
         Try
             conect.Open()
@@ -67,7 +74,7 @@ Public Class Gestion
 
     Public Function VerAsignaturasDeCurso(nombreCurso As String, ByRef msgError As String) As ReadOnlyCollection(Of Asignatura)
         Dim asignaturasDeCurso As New List(Of Asignatura)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT COD_ASIGNATURA, NOMBRE_ASIGNATURA,NOMBRE_CURSO FROM ASIGNATURA WHERE ASIGNATURA.NOMBRE_CURSO = @NOMBRECURSO"
         Try
             conect.Open()
@@ -89,7 +96,7 @@ Public Class Gestion
     End Function
     Public Function ContratantesEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of Contratante)
         Dim contratantes = New List(Of Contratante)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT COD_CONTRATANTE, NOMBRE_CONTRATANTE, DESCRIPCION FROM CONTRATANTE"
         Try
             conect.Open()
@@ -107,7 +114,7 @@ Public Class Gestion
     End Function
     Public Function ProfesoresEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of Profesor)
         Dim profesores = New List(Of Profesor)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT ID_PROFESOR, NOMBRE_PROFESOR, APELLIDO1, APELLIDO2, FECHA_NACIMIENTO FROM PROFESORES"
         Try
             conect.Open()
@@ -125,7 +132,7 @@ Public Class Gestion
     End Function
     Public Function IniciativasEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of Iniciativa)
         Dim iniciativas = New List(Of Iniciativa)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT COD_INICIATIVA, HORAS, TITULO, FECHA_INICIO, FECHA_FIN FROM INICIATIVAS"
         Try
             conect.Open()
@@ -146,7 +153,7 @@ Public Class Gestion
     End Function
     Private Function ContratantesDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Contratante)
         Dim contratantes = New List(Of Contratante)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT COD_CONTRATANTE, NOMBRE_CONTRATANTE, DESCRIPCION FROM CONTRATANTE WHERE COD_CONTRATANTE=(SELECT COD_CONTRATANTE FROM CONTRATANTE_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
         Try
             conect.Open()
@@ -166,7 +173,7 @@ Public Class Gestion
     End Function
     Private Function ProfesoresDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Profesor)
         Dim profesores = New List(Of Profesor)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT ID_PROFESOR, NOMBRE_PROFESOR, APELLIDO1, APELLIDO2, FECHA_NACIMIENTO FROM PROFESORES WHERE ID_PROFESOR=(SELECT ID_PROFESOR FROM PROFESORES_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
         Try
             conect.Open()
@@ -187,7 +194,7 @@ Public Class Gestion
 
     Private Function MetasDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Meta)
         Dim metas As New List(Of Meta)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT NUMERO_ODS, CARACTER_META, DESCRIPCION FROM METAS WHERE NUMERO_ODS=(SELECT NUMERO_ODS FROM METAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO) AND CARACTER_META=(SELECT CARACTER_META FROM METAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
         Try
             conect.Open()
@@ -206,7 +213,7 @@ Public Class Gestion
     End Function
     Private Function AsignaturasDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Asignatura)
         Dim metas As New List(Of Asignatura)
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT COD_ASIGNATURA, NOMBRE_ASIGNATURA, NOMBRE_CURSO FROM ASIGNATURA WHERE COD_ASIGNATURA=(SELECT COD_ASIGNATURA FROM ASIGNATURAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO) AND CARACTER_META=(SELECT NOMBRE_CURSO FROM ASIGNATURAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
         Try
             conect.Open()
@@ -253,7 +260,7 @@ Public Class Gestion
             nuevaImg = odsModificado.Imagen
         End If
 
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "UPDATE ODS SET "
         If nuevoNombre <> "" Then
             sql += "NOMBRE=@NUEVONOMBRE"
@@ -314,7 +321,7 @@ Public Class Gestion
             nuevaDesc = metaModificada.Descripcion
         End If
         'UPDATE
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "UPDATE METAS SET "
         If nuevaID <> "" Then
             sql += "CARACTER_META=@NUEVAID"
@@ -366,7 +373,7 @@ Public Class Gestion
         If meta.Descripcion.Contains("*") Then
             Return $"La descripcion de la nueva meta {meta.ToString(True)} no puede contener el caracter '*'"
         End If
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "INSERT INTO METAS VALUES (@NUMODS, @CARMETA, @DESCRIPCION)"
         Try
             conect.Open()
@@ -399,8 +406,10 @@ Public Class Gestion
         If String.IsNullOrWhiteSpace(iniciativa.Titulo) Then
             Return "El titulo no puede quedar en blanco"
         End If
-        If iniciativa.FechaFin < iniciativa.FechaInicio Then
-            Return "La fecha en la que finaliza una iniciativa no puede ser menor que la fecha en la que inicia"
+        If Not iniciativa.FechaFin = Nothing Then
+            If iniciativa.FechaFin.ToShortDateString < iniciativa.FechaInicio.ToShortDateString Then
+                Return "La fecha en la que finaliza una iniciativa no puede ser menor que la fecha en la que inicia"
+            End If
         End If
         If iniciativa.Contratantes.Count = 0 Then
             Return "Una iniciativa tiene que ser contratada por un contratante como mínimo"
@@ -415,10 +424,23 @@ Public Class Gestion
             Return "En la iniciativa tiene que participar como mínimo una asignatura"
         End If
 
-        Dim conect As New SqlConnection(CADENA_CONEXION)
-        Dim sql As String = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI,@FECHAFIN)"
+        Dim conect As New SqlConnection(cadenaConexion)
         Try
             conect.Open()
+            Dim sql As String = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI,@FECHAFIN)"
+            If iniciativa.FechaFin = Nothing Then
+                sql = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI, @FECHAFIN)"
+            End If
+            'Dim cmdUltimoNumIni As New SqlCommand("NUEVOCODIGO", conect)
+            'cmdUltimoNumIni.CommandType = CommandType.StoredProcedure
+            'Dim nuevoCod As Integer = cmdUltimoNumIni.ExecuteScalar
+            Dim cmdUltimoNumIni As New SqlCommand("NUEVOCODIGO", conect)
+            cmdUltimoNumIni.CommandType = CommandType.StoredProcedure
+            Dim returnValue As New SqlParameter("@ReturnVal", SqlDbType.Int)
+            returnValue.Direction = ParameterDirection.ReturnValue
+            cmdUltimoNumIni.Parameters.Add(returnValue)
+            cmdUltimoNumIni.ExecuteNonQuery()
+            Dim nuevoCod As Integer = Convert.ToInt32(returnValue.Value)
             'insert iniciativa
             Dim cmdINI As New SqlCommand(sql, conect)
             cmdINI.Parameters.AddWithValue("@HORAS", iniciativa.Horas)
@@ -427,7 +449,6 @@ Public Class Gestion
             cmdINI.Parameters.AddWithValue("@FECHAFIN", iniciativa.FechaFin)
             cmdINI.ExecuteNonQuery()
             'insert ASIGNATURAS_INICIATIVA
-            Dim nuevoCod As Integer = IniciativasEnBaseDeDatos(msgError).Count
             For Each asignatura In iniciativa.Asignaturas
                 sql = "INSERT INTO ASIGNATURAS_INICIATIVA VALUES (@NOMBRECURSO,@CODASIGNATURA,@CODINICIATIVA)"
                 cmdINI = New SqlCommand(sql, conect)
@@ -463,13 +484,14 @@ Public Class Gestion
             Next
         Catch ex As Exception
             msgError = ex.Message
+
         Finally
             conect.Close()
         End Try
         Return ""
     End Function
     Public Function EliminarIni(ini As Iniciativa) As String
-        Dim conect As New SqlConnection(CADENA_CONEXION)
+        Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "DELETE FROM ASIGNATURAS_INICIATIVA WHERE COD_INICIATIVA=@CODINICIATIVA"
         Try
             conect.Open()
@@ -514,19 +536,32 @@ Public Class Gestion
         End If
         Dim lineas As String()
         Dim linea As String()
+        Dim meta As Meta
+        Dim ods As ODS
+        Dim msgError As String = ""
         lineas = File.ReadAllLines(RUTAFICHERODATOS)
         For i = 0 To lineas.Length - 1
+            msgError = ""
             linea = lineas(i).Split("*")
             For j = 0 To linea.Length - 1
                 If String.IsNullOrWhiteSpace(linea(j)) Then
                     File.AppendAllLines(RUTAFICHEROLOG, New String() {$"El parámetro {j} está vacío"})
-                    Exit Sub
+                    Exit For
                 End If
             Next
-            If lineas.Length = 3 Then Dim meta As New Meta(linea(0), linea(1), linea(2))
-            If lineas.Length = 4 Then Dim ODS As New ODS(linea(0), linea(1), linea(2), linea(3))
+            If lineas.Length = 3 Then
+                meta = New Meta(linea(0), linea(1), linea(2))
+                msgError = AnyadirMeta(meta)
+            End If
+            If lineas.Length = 4 Then
+                ods = New ODS(linea(0), linea(1), linea(2), linea(3))
+
+            End If
             If Not lineas.Length = 3 Or Not lineas.Length = 4 Then
                 File.AppendAllLines(RUTAFICHEROLOG, New String() {$"EL numero de parametros no es el correcto"})
+            End If
+            If msgError <> "" Then
+                File.AppendAllLines(RUTAFICHEROLOG, msgError)
             End If
         Next
     End Sub

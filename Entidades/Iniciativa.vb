@@ -37,7 +37,6 @@ Public Class Iniciativa
         Me.FechaInicio = fechaInicio
         Me.FechaFin = fechaFin
     End Sub
-
     Public Overrides Function Equals(obj As Object) As Boolean
         Return Equals(TryCast(obj, Iniciativa))
     End Function
