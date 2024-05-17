@@ -592,4 +592,34 @@ Public Class Gestion
             End If
         Next
     End Sub
+    Public Function DatosDeCiclo(ciclo As Curso, ByRef iniciativas As List(Of String), ByRef metas As List(Of String), ByRef profes As List(Of String), ByRef odss As List(Of String)) As String
+        Dim conect As New SqlConnection(cadenaConexion)
+        Dim sql As String = "PROCEDIMIENTO3"
+        Try
+            conect.Open()
+            Dim cmdMeta As New SqlCommand(sql, conect)
+            cmdMeta.Parameters.AddWithValue("@CICLO", ciclo.Nombre)
+            cmdMeta.ExecuteNonQuery()
+            Dim drMetas As SqlDataReader = cmdMeta.ExecuteReader
+            While drMetas.Read
+                If Not iniciativas.Contains(drMetas("TITULO")) Then
+                    iniciativas.Add(drMetas("TITULO"))
+                End If
+                If Not metas.Contains(drMetas("DESCRIPCION")) Then
+                    metas.Add(drMetas("DESCRIPCION"))
+                End If
+                If Not odss.Contains(drMetas("NOMBRE")) Then
+                    odss.Add(drMetas("NOMBRE"))
+                End If
+                If Not iniciativas.Contains(drMetas("NOMBRE_PROFESOR")) Then
+                    iniciativas.Add(drMetas("NOMBRE_PROFESOR"))
+                End If
+            End While
+        Catch ex As Exception
+            Return ex.Message
+        Finally
+            conect.Close()
+        End Try
+        Return ""
+    End Function
 End Class
