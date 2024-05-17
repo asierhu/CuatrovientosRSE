@@ -389,6 +389,33 @@ Public Class Gestion
         End Try
         Return ""
     End Function
+    Public Function AnyadirODS(ods As ODS) As String
+        Dim msgError = ""
+        Dim odss As ReadOnlyCollection(Of ODS) = ODSEnBaseDeDatos(msgError)
+        Dim indiceMeta As Integer = odss.IndexOf(ods)
+        If indiceMeta <> -1 Then
+            Return $"El ODS {ods} ya existía"
+        End If
+        If ods.Descripcion.Contains("*") Then
+            Return $"La descripcion del ODS {ods} no puede contener el caracter '*'"
+        End If
+        Dim conect As New SqlConnection(cadenaConexion)
+        Dim sql As String = "INSERT INTO ODS VALUES (@NUMODS, @NOMBRE, @DESCRIPCION, @IMAGEN)"
+        Try
+            conect.Open()
+            Dim cmdMeta As New SqlCommand(sql, conect)
+            cmdMeta.Parameters.AddWithValue("@NUMODS", ods.NumeroODS)
+            cmdMeta.Parameters.AddWithValue("@NOMBRE", ods.Nombre)
+            cmdMeta.Parameters.AddWithValue("@DESCRIPCION", ods.Descripcion)
+            cmdMeta.Parameters.AddWithValue("@IMAGEN", ods.Imagen)
+            cmdMeta.ExecuteNonQuery()
+        Catch ex As Exception
+            msgError = ex.Message
+        Finally
+            conect.Close()
+        End Try
+        Return ""
+    End Function
 
     Public Function AnyadirIniciativa(iniciativa As Iniciativa) As String
         Dim msgError As String = ""
