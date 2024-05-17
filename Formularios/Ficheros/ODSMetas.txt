@@ -1,10 +1,11 @@
 1*"FIN DE LA POBREZA"*"Erradicar la pobreza extrema"
 2*"HAMBRE CERO"*"Acabar con el hambre"
 3*"SALUD Y BIENESTAR"*"Garantizar una vida sana"
+4*"EDUCACION DE CALIDAD"*"Asegurar educacion inclusiva"
+
 
 1*1*"Erradicar la pobreza extrema"
-1*2*"Reducir a la mitad la población que vive en la pobreza"
+1*2*"Reducir a la mitad las personas que viven en la pobreza"
+1*3*"Implementar medidas sociales y políticas para proteger los derechos de los pobres"
 3*1*"Reducir la tasa de mortalidad materna global"
-3*2*"Poner fin a las muertes prevenibles de recién nacidos"
-4*1*"Garantizar que todos los niños completen una educación primaria y secundaria gratuita"
-
+3*2*"Poner fin a las muertes prevenibles de recien nacidos"
