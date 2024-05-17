@@ -14,7 +14,7 @@ DELETE FROM ASIGNATURA
 DELETE FROM CURSO
 DELETE FROM CONTRATANTE
 DELETE FROM PROFESORES
-
+go
 --ODS DATOS
 INSERT INTO ODS VALUES (1,'FIN DE LA POBREZA','Erradicar la pobreza extrema para todas las personas en todo el mundo para 2030 es un objetivo fundamental de la Agenda 2030 para el desarrollo sostenible.','1.jpg')
 INSERT INTO ODS VALUES (2,'HAMBRE CERO','Acabar con el hambre, lograr la seguridad alimentaria, mejorar la nutrición y promover la agricultura sostenible.', '2.jpg')

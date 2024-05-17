@@ -431,9 +431,16 @@ Public Class Gestion
             If iniciativa.FechaFin = Nothing Then
                 sql = "INSERT INTO INICIATIVAS VALUES (@HORAS,@TITULO,@FECHAINI, @FECHAFIN)"
             End If
+            'Dim cmdUltimoNumIni As New SqlCommand("NUEVOCODIGO", conect)
+            'cmdUltimoNumIni.CommandType = CommandType.StoredProcedure
+            'Dim nuevoCod As Integer = cmdUltimoNumIni.ExecuteScalar
             Dim cmdUltimoNumIni As New SqlCommand("NUEVOCODIGO", conect)
             cmdUltimoNumIni.CommandType = CommandType.StoredProcedure
-            Dim nuevoCod As Integer = cmdUltimoNumIni.ExecuteNonQuery
+            Dim returnValue As New SqlParameter("@ReturnVal", SqlDbType.Int)
+            returnValue.Direction = ParameterDirection.ReturnValue
+            cmdUltimoNumIni.Parameters.Add(returnValue)
+            cmdUltimoNumIni.ExecuteNonQuery()
+            Dim nuevoCod As Integer = Convert.ToInt32(returnValue.Value)
             'insert iniciativa
             Dim cmdINI As New SqlCommand(sql, conect)
             cmdINI.Parameters.AddWithValue("@HORAS", iniciativa.Horas)
@@ -477,6 +484,7 @@ Public Class Gestion
             Next
         Catch ex As Exception
             msgError = ex.Message
+
         Finally
             conect.Close()
         End Try
@@ -557,4 +565,5 @@ Public Class Gestion
             End If
         Next
     End Sub
+    Public Function 
 End Class

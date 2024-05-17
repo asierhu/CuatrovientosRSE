@@ -37,17 +37,6 @@ Public Class Iniciativa
         Me.FechaInicio = fechaInicio
         Me.FechaFin = fechaFin
     End Sub
-    Public Sub New(contratantes As ReadOnlyCollection(Of Contratante), metas As ReadOnlyCollection(Of Meta), profesores As ReadOnlyCollection(Of Profesor), asignaturas As ReadOnlyCollection(Of Asignatura), horas As Integer, titulo As String, fechaInicio As Date)
-        Me.Contratantes = contratantes
-        Me.Metas = metas
-        Me.Profesores = profesores
-        Me.Asignaturas = asignaturas
-        Me.Horas = horas
-        Me.Titulo = titulo
-        Me.FechaInicio = fechaInicio
-        Me.FechaFin = Nothing
-    End Sub
-
     Public Overrides Function Equals(obj As Object) As Boolean
         Return Equals(TryCast(obj, Iniciativa))
     End Function
