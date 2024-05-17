@@ -242,6 +242,10 @@ Public Class FrmAltaIniciativas
         txtTitulo.Text = iniciativaNueva.Titulo
         numHoras.Value = iniciativaNueva.Horas
         calInicio.Value = iniciativaNueva.FechaInicio
+        lstbAsign.Items.Clear()
+        lstbContratantes.Items.Clear()
+        lstbMeta.Items.Clear()
+        lstbProf.Items.Clear()
         lstbMeta.Items.AddRange(iniciativaNueva.Metas.ToArray)
         lstbContratantes.Items.AddRange(iniciativaNueva.Contratantes.ToArray)
         lstbProf.Items.AddRange(iniciativaNueva.Profesores.ToArray)

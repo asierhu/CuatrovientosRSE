@@ -154,7 +154,7 @@ Public Class Gestion
     Private Function ContratantesDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Contratante)
         Dim contratantes = New List(Of Contratante)
         Dim conect As New SqlConnection(cadenaConexion)
-        Dim sql As String = "SELECT COD_CONTRATANTE, NOMBRE_CONTRATANTE, DESCRIPCION FROM CONTRATANTE WHERE COD_CONTRATANTE=(SELECT COD_CONTRATANTE FROM CONTRATANTE_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
+        Dim sql As String = "SELECT COD_CONTRATANTE, NOMBRE_CONTRATANTE, DESCRIPCION FROM CONTRATANTE WHERE COD_CONTRATANTE IN(SELECT COD_CONTRATANTE FROM CONTRATANTE_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
         Try
             conect.Open()
             Dim cmdCont As New SqlCommand(sql, conect)
@@ -165,7 +165,7 @@ Public Class Gestion
                 contratantes.Add(New Contratante(drCont("COD_CONTRATANTE"), drCont("NOMBRE_CONTRATANTE"), drCont("DESCRIPCION")))
             End While
         Catch ex As Exception
-
+            ex = ex
         Finally
             conect.Close()
         End Try
@@ -174,7 +174,7 @@ Public Class Gestion
     Private Function ProfesoresDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Profesor)
         Dim profesores = New List(Of Profesor)
         Dim conect As New SqlConnection(cadenaConexion)
-        Dim sql As String = "SELECT ID_PROFESOR, NOMBRE_PROFESOR, APELLIDO1, APELLIDO2, FECHA_NACIMIENTO FROM PROFESORES WHERE ID_PROFESOR=(SELECT ID_PROFESOR FROM PROFESORES_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
+        Dim sql As String = "SELECT ID_PROFESOR, NOMBRE_PROFESOR, APELLIDO1, APELLIDO2, FECHA_NACIMIENTO FROM PROFESORES WHERE ID_PROFESOR IN(SELECT ID_PROFESOR FROM PROFESORES_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
         Try
             conect.Open()
             Dim cmdProfe As New SqlCommand(sql, conect)
@@ -195,7 +195,7 @@ Public Class Gestion
     Private Function MetasDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Meta)
         Dim metas As New List(Of Meta)
         Dim conect As New SqlConnection(cadenaConexion)
-        Dim sql As String = "SELECT NUMERO_ODS, CARACTER_META, DESCRIPCION FROM METAS WHERE NUMERO_ODS=(SELECT NUMERO_ODS FROM METAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO) AND CARACTER_META=(SELECT CARACTER_META FROM METAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
+        Dim sql As String = "SELECT NUMERO_ODS, CARACTER_META, DESCRIPCION FROM METAS WHERE NUMERO_ODS IN(SELECT NUMERO_ODS FROM METAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO) AND CARACTER_META IN(SELECT CARACTER_META FROM METAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
         Try
             conect.Open()
             Dim cmdMeta As New SqlCommand(sql, conect)
@@ -214,7 +214,7 @@ Public Class Gestion
     Private Function AsignaturasDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Asignatura)
         Dim metas As New List(Of Asignatura)
         Dim conect As New SqlConnection(cadenaConexion)
-        Dim sql As String = "SELECT COD_ASIGNATURA, NOMBRE_ASIGNATURA, NOMBRE_CURSO FROM ASIGNATURA WHERE COD_ASIGNATURA=(SELECT COD_ASIGNATURA FROM ASIGNATURAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO) AND CARACTER_META=(SELECT NOMBRE_CURSO FROM ASIGNATURAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
+        Dim sql As String = "SELECT COD_ASIGNATURA, NOMBRE_ASIGNATURA, NOMBRE_CURSO FROM ASIGNATURA WHERE COD_ASIGNATURA IN(SELECT COD_ASIGNATURA FROM ASIGNATURAS_INICIATIVA WHERE COD_INICIATIVA=@CODIGO)"
         Try
             conect.Open()
             Dim cmdMeta As New SqlCommand(sql, conect)
