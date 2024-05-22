@@ -57,8 +57,10 @@ Public Class FrmAltaIniciativas
                     Exit Sub
                 End If
                 metaSeleccionada = TryCast(cboMeta.SelectedItem, Meta)
-                If lstbMeta.Items.Contains(metaSeleccionada) Then MessageBox.Show("Esa meta ya está seleccionada")
-                Exit Sub
+                If lstbMeta.Items.Contains(metaSeleccionada) Then
+                    MessageBox.Show("Esa meta ya está seleccionada")
+                    Exit Sub
+                End If
                 lstbMeta.Items.Add(metaSeleccionada)
             Case "seltdmeta"
                 Dim msgError As String = ""
