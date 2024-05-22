@@ -39,6 +39,8 @@ Partial Class FrmModificarODSyMeta
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.gBoxModMeta = New System.Windows.Forms.GroupBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.txtIDModMeta = New System.Windows.Forms.TextBox()
         Me.cboCarMeta = New System.Windows.Forms.ComboBox()
         Me.txtDescripcionMeta = New System.Windows.Forms.TextBox()
         Me.lblDesMeta = New System.Windows.Forms.Label()
@@ -51,8 +53,6 @@ Partial Class FrmModificarODSyMeta
         Me.txtAnyadirDesc = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.txtIDModMeta = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
         CType(Me.pbODS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gBoxModificar.SuspendLayout()
         Me.gBoxModMeta.SuspendLayout()
@@ -231,6 +231,23 @@ Partial Class FrmModificarODSyMeta
         Me.gBoxModMeta.TabStop = False
         Me.gBoxModMeta.Text = "Modificar Meta"
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(19, 58)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(83, 16)
+        Me.Label6.TabIndex = 27
+        Me.Label6.Text = "Identificador:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'txtIDModMeta
+        '
+        Me.txtIDModMeta.Location = New System.Drawing.Point(116, 55)
+        Me.txtIDModMeta.MaxLength = 2
+        Me.txtIDModMeta.Name = "txtIDModMeta"
+        Me.txtIDModMeta.Size = New System.Drawing.Size(100, 22)
+        Me.txtIDModMeta.TabIndex = 23
+        '
         'cboCarMeta
         '
         Me.cboCarMeta.FormattingEnabled = True
@@ -346,24 +363,7 @@ Partial Class FrmModificarODSyMeta
         Me.Label5.TabIndex = 14
         Me.Label5.Text = "Identificador:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
-        'txtIDModMeta
-        '
-        Me.txtIDModMeta.Location = New System.Drawing.Point(116, 55)
-        Me.txtIDModMeta.MaxLength = 2
-        Me.txtIDModMeta.Name = "txtIDModMeta"
-        Me.txtIDModMeta.Size = New System.Drawing.Size(100, 22)
-        Me.txtIDModMeta.TabIndex = 23
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(19, 58)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(83, 16)
-        Me.Label6.TabIndex = 27
-        Me.Label6.Text = "Identificador:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'ModificarODSyMeta
+        'FrmModificarODSyMeta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -377,7 +377,7 @@ Partial Class FrmModificarODSyMeta
         Me.Controls.Add(Me.gBoxModificar)
         Me.Controls.Add(Me.lblNumODS)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Name = "ModificarODSyMeta"
+        Me.Name = "FrmModificarODSyMeta"
         Me.Text = "ModificarODS"
         CType(Me.pbODS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gBoxModificar.ResumeLayout(False)

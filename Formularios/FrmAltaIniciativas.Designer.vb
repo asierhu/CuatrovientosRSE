@@ -26,25 +26,25 @@ Partial Class FrmAltaIniciativas
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lblmeta = New System.Windows.Forms.Label()
         Me.cboMeta = New System.Windows.Forms.ComboBox()
-        Me.selMeta = New System.Windows.Forms.Button()
+        Me.btnSelMeta = New System.Windows.Forms.Button()
         Me.lstbMeta = New System.Windows.Forms.ListBox()
         Me.btnBorrarMeta = New System.Windows.Forms.Button()
-        Me.selTdMeta = New System.Windows.Forms.Button()
+        Me.btnSelTdMeta = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.selProf = New System.Windows.Forms.Button()
+        Me.btnSelProf = New System.Windows.Forms.Button()
         Me.lstbProf = New System.Windows.Forms.ListBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.cboProf = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.selAsign = New System.Windows.Forms.Button()
+        Me.btnSelAsign = New System.Windows.Forms.Button()
         Me.lstbAsign = New System.Windows.Forms.ListBox()
         Me.lblasign = New System.Windows.Forms.Label()
         Me.cboAsign = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.cboCurso = New System.Windows.Forms.ComboBox()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.selContratante = New System.Windows.Forms.Button()
+        Me.btnSelContratante = New System.Windows.Forms.Button()
         Me.lstbContratantes = New System.Windows.Forms.ListBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.cboContratantes = New System.Windows.Forms.ComboBox()
@@ -57,14 +57,14 @@ Partial Class FrmAltaIniciativas
         Me.btnAlta = New System.Windows.Forms.Button()
         Me.btnReset = New System.Windows.Forms.Button()
         Me.numHoras = New System.Windows.Forms.NumericUpDown()
-        Me.seltdasign = New System.Windows.Forms.Button()
+        Me.btnSelTdAsign = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.btnEliminar = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cboVerDatos = New System.Windows.Forms.ComboBox()
         Me.borrarcont = New System.Windows.Forms.Button()
-        Me.borrarprof = New System.Windows.Forms.Button()
-        Me.borrarasign = New System.Windows.Forms.Button()
+        Me.btnBorrarProf = New System.Windows.Forms.Button()
+        Me.btnBorrarAsign = New System.Windows.Forms.Button()
         Me.calInicio = New System.Windows.Forms.DateTimePicker()
         Me.calFinal = New System.Windows.Forms.DateTimePicker()
         Me.logo1 = New System.Windows.Forms.PictureBox()
@@ -80,7 +80,7 @@ Partial Class FrmAltaIniciativas
         Me.cboOds.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboOds.FormattingEnabled = True
         Me.cboOds.Location = New System.Drawing.Point(256, 256)
-        Me.cboOds.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cboOds.Margin = New System.Windows.Forms.Padding(4)
         Me.cboOds.Name = "cboOds"
         Me.cboOds.Size = New System.Drawing.Size(469, 24)
         Me.cboOds.TabIndex = 0
@@ -112,28 +112,28 @@ Partial Class FrmAltaIniciativas
         Me.cboMeta.Enabled = False
         Me.cboMeta.FormattingEnabled = True
         Me.cboMeta.Location = New System.Drawing.Point(255, 300)
-        Me.cboMeta.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cboMeta.Margin = New System.Windows.Forms.Padding(4)
         Me.cboMeta.Name = "cboMeta"
         Me.cboMeta.Size = New System.Drawing.Size(188, 24)
         Me.cboMeta.TabIndex = 2
         '
-        'selMeta
+        'btnSelMeta
         '
-        Me.selMeta.Enabled = False
-        Me.selMeta.Location = New System.Drawing.Point(465, 300)
-        Me.selMeta.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.selMeta.Name = "selMeta"
-        Me.selMeta.Size = New System.Drawing.Size(100, 28)
-        Me.selMeta.TabIndex = 6
-        Me.selMeta.Text = "Seleccionar"
-        Me.selMeta.UseVisualStyleBackColor = True
+        Me.btnSelMeta.Enabled = False
+        Me.btnSelMeta.Location = New System.Drawing.Point(465, 300)
+        Me.btnSelMeta.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnSelMeta.Name = "btnSelMeta"
+        Me.btnSelMeta.Size = New System.Drawing.Size(100, 28)
+        Me.btnSelMeta.TabIndex = 6
+        Me.btnSelMeta.Text = "Seleccionar"
+        Me.btnSelMeta.UseVisualStyleBackColor = True
         '
         'lstbMeta
         '
         Me.lstbMeta.FormattingEnabled = True
         Me.lstbMeta.ItemHeight = 16
         Me.lstbMeta.Location = New System.Drawing.Point(255, 368)
-        Me.lstbMeta.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lstbMeta.Margin = New System.Windows.Forms.Padding(4)
         Me.lstbMeta.Name = "lstbMeta"
         Me.lstbMeta.Size = New System.Drawing.Size(471, 148)
         Me.lstbMeta.TabIndex = 7
@@ -141,23 +141,23 @@ Partial Class FrmAltaIniciativas
         'btnBorrarMeta
         '
         Me.btnBorrarMeta.Location = New System.Drawing.Point(415, 537)
-        Me.btnBorrarMeta.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnBorrarMeta.Margin = New System.Windows.Forms.Padding(4)
         Me.btnBorrarMeta.Name = "btnBorrarMeta"
         Me.btnBorrarMeta.Size = New System.Drawing.Size(163, 28)
         Me.btnBorrarMeta.TabIndex = 8
         Me.btnBorrarMeta.Text = "Borrar seleccionado"
         Me.btnBorrarMeta.UseVisualStyleBackColor = True
         '
-        'selTdMeta
+        'btnSelTdMeta
         '
-        Me.selTdMeta.Enabled = False
-        Me.selTdMeta.Location = New System.Drawing.Point(585, 300)
-        Me.selTdMeta.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.selTdMeta.Name = "selTdMeta"
-        Me.selTdMeta.Size = New System.Drawing.Size(141, 28)
-        Me.selTdMeta.TabIndex = 10
-        Me.selTdMeta.Text = "Seleccionar todas"
-        Me.selTdMeta.UseVisualStyleBackColor = True
+        Me.btnSelTdMeta.Enabled = False
+        Me.btnSelTdMeta.Location = New System.Drawing.Point(585, 300)
+        Me.btnSelTdMeta.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnSelTdMeta.Name = "btnSelTdMeta"
+        Me.btnSelTdMeta.Size = New System.Drawing.Size(141, 28)
+        Me.btnSelTdMeta.TabIndex = 10
+        Me.btnSelTdMeta.Text = "Seleccionar todas"
+        Me.btnSelTdMeta.UseVisualStyleBackColor = True
         '
         'Label3
         '
@@ -179,22 +179,22 @@ Partial Class FrmAltaIniciativas
         Me.Label4.TabIndex = 18
         Me.Label4.Text = "Profesores seleccionados:"
         '
-        'selProf
+        'btnSelProf
         '
-        Me.selProf.Location = New System.Drawing.Point(1481, 586)
-        Me.selProf.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.selProf.Name = "selProf"
-        Me.selProf.Size = New System.Drawing.Size(100, 28)
-        Me.selProf.TabIndex = 17
-        Me.selProf.Text = "Seleccionar"
-        Me.selProf.UseVisualStyleBackColor = True
+        Me.btnSelProf.Location = New System.Drawing.Point(1481, 586)
+        Me.btnSelProf.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnSelProf.Name = "btnSelProf"
+        Me.btnSelProf.Size = New System.Drawing.Size(100, 28)
+        Me.btnSelProf.TabIndex = 17
+        Me.btnSelProf.Text = "Seleccionar"
+        Me.btnSelProf.UseVisualStyleBackColor = True
         '
         'lstbProf
         '
         Me.lstbProf.FormattingEnabled = True
         Me.lstbProf.ItemHeight = 16
         Me.lstbProf.Location = New System.Drawing.Point(1095, 654)
-        Me.lstbProf.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lstbProf.Margin = New System.Windows.Forms.Padding(4)
         Me.lstbProf.Name = "lstbProf"
         Me.lstbProf.Size = New System.Drawing.Size(361, 148)
         Me.lstbProf.TabIndex = 16
@@ -214,7 +214,7 @@ Partial Class FrmAltaIniciativas
         Me.cboProf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboProf.FormattingEnabled = True
         Me.cboProf.Location = New System.Drawing.Point(1095, 586)
-        Me.cboProf.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cboProf.Margin = New System.Windows.Forms.Padding(4)
         Me.cboProf.Name = "cboProf"
         Me.cboProf.Size = New System.Drawing.Size(367, 24)
         Me.cboProf.TabIndex = 14
@@ -229,23 +229,23 @@ Partial Class FrmAltaIniciativas
         Me.Label6.TabIndex = 23
         Me.Label6.Text = "Asignaturas seleccionados:"
         '
-        'selAsign
+        'btnSelAsign
         '
-        Me.selAsign.Enabled = False
-        Me.selAsign.Location = New System.Drawing.Point(1481, 306)
-        Me.selAsign.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.selAsign.Name = "selAsign"
-        Me.selAsign.Size = New System.Drawing.Size(100, 28)
-        Me.selAsign.TabIndex = 22
-        Me.selAsign.Text = "Seleccionar"
-        Me.selAsign.UseVisualStyleBackColor = True
+        Me.btnSelAsign.Enabled = False
+        Me.btnSelAsign.Location = New System.Drawing.Point(1481, 306)
+        Me.btnSelAsign.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnSelAsign.Name = "btnSelAsign"
+        Me.btnSelAsign.Size = New System.Drawing.Size(100, 28)
+        Me.btnSelAsign.TabIndex = 22
+        Me.btnSelAsign.Text = "Seleccionar"
+        Me.btnSelAsign.UseVisualStyleBackColor = True
         '
         'lstbAsign
         '
         Me.lstbAsign.FormattingEnabled = True
         Me.lstbAsign.ItemHeight = 16
         Me.lstbAsign.Location = New System.Drawing.Point(1095, 368)
-        Me.lstbAsign.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lstbAsign.Margin = New System.Windows.Forms.Padding(4)
         Me.lstbAsign.Name = "lstbAsign"
         Me.lstbAsign.Size = New System.Drawing.Size(361, 148)
         Me.lstbAsign.TabIndex = 21
@@ -267,7 +267,7 @@ Partial Class FrmAltaIniciativas
         Me.cboAsign.Enabled = False
         Me.cboAsign.FormattingEnabled = True
         Me.cboAsign.Location = New System.Drawing.Point(1095, 306)
-        Me.cboAsign.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cboAsign.Margin = New System.Windows.Forms.Padding(4)
         Me.cboAsign.Name = "cboAsign"
         Me.cboAsign.Size = New System.Drawing.Size(361, 24)
         Me.cboAsign.TabIndex = 19
@@ -287,7 +287,7 @@ Partial Class FrmAltaIniciativas
         Me.cboCurso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboCurso.FormattingEnabled = True
         Me.cboCurso.Location = New System.Drawing.Point(1095, 256)
-        Me.cboCurso.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cboCurso.Margin = New System.Windows.Forms.Padding(4)
         Me.cboCurso.Name = "cboCurso"
         Me.cboCurso.Size = New System.Drawing.Size(361, 24)
         Me.cboCurso.TabIndex = 24
@@ -302,22 +302,22 @@ Partial Class FrmAltaIniciativas
         Me.Label10.TabIndex = 33
         Me.Label10.Text = "Contratantes seleccionados:"
         '
-        'selContratante
+        'btnSelContratante
         '
-        Me.selContratante.Location = New System.Drawing.Point(747, 581)
-        Me.selContratante.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.selContratante.Name = "selContratante"
-        Me.selContratante.Size = New System.Drawing.Size(100, 28)
-        Me.selContratante.TabIndex = 32
-        Me.selContratante.Text = "Seleccionar"
-        Me.selContratante.UseVisualStyleBackColor = True
+        Me.btnSelContratante.Location = New System.Drawing.Point(747, 581)
+        Me.btnSelContratante.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnSelContratante.Name = "btnSelContratante"
+        Me.btnSelContratante.Size = New System.Drawing.Size(100, 28)
+        Me.btnSelContratante.TabIndex = 32
+        Me.btnSelContratante.Text = "Seleccionar"
+        Me.btnSelContratante.UseVisualStyleBackColor = True
         '
         'lstbContratantes
         '
         Me.lstbContratantes.FormattingEnabled = True
         Me.lstbContratantes.ItemHeight = 16
         Me.lstbContratantes.Location = New System.Drawing.Point(255, 654)
-        Me.lstbContratantes.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lstbContratantes.Margin = New System.Windows.Forms.Padding(4)
         Me.lstbContratantes.Name = "lstbContratantes"
         Me.lstbContratantes.Size = New System.Drawing.Size(471, 148)
         Me.lstbContratantes.TabIndex = 31
@@ -337,7 +337,7 @@ Partial Class FrmAltaIniciativas
         Me.cboContratantes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboContratantes.FormattingEnabled = True
         Me.cboContratantes.Location = New System.Drawing.Point(249, 586)
-        Me.cboContratantes.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cboContratantes.Margin = New System.Windows.Forms.Padding(4)
         Me.cboContratantes.Name = "cboContratantes"
         Me.cboContratantes.Size = New System.Drawing.Size(476, 24)
         Me.cboContratantes.TabIndex = 29
@@ -364,7 +364,7 @@ Partial Class FrmAltaIniciativas
         'txtTitulo
         '
         Me.txtTitulo.Location = New System.Drawing.Point(753, 68)
-        Me.txtTitulo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtTitulo.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTitulo.Name = "txtTitulo"
         Me.txtTitulo.Size = New System.Drawing.Size(367, 22)
         Me.txtTitulo.TabIndex = 36
@@ -402,7 +402,7 @@ Partial Class FrmAltaIniciativas
         'btnAlta
         '
         Me.btnAlta.Location = New System.Drawing.Point(1331, 946)
-        Me.btnAlta.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnAlta.Margin = New System.Windows.Forms.Padding(4)
         Me.btnAlta.Name = "btnAlta"
         Me.btnAlta.Size = New System.Drawing.Size(363, 63)
         Me.btnAlta.TabIndex = 44
@@ -412,7 +412,7 @@ Partial Class FrmAltaIniciativas
         'btnReset
         '
         Me.btnReset.Location = New System.Drawing.Point(49, 946)
-        Me.btnReset.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnReset.Margin = New System.Windows.Forms.Padding(4)
         Me.btnReset.Name = "btnReset"
         Me.btnReset.Size = New System.Drawing.Size(363, 63)
         Me.btnReset.TabIndex = 45
@@ -422,21 +422,21 @@ Partial Class FrmAltaIniciativas
         'numHoras
         '
         Me.numHoras.Location = New System.Drawing.Point(837, 113)
-        Me.numHoras.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.numHoras.Margin = New System.Windows.Forms.Padding(4)
         Me.numHoras.Name = "numHoras"
         Me.numHoras.Size = New System.Drawing.Size(160, 22)
         Me.numHoras.TabIndex = 46
         '
-        'seltdasign
+        'btnSelTdAsign
         '
-        Me.seltdasign.Enabled = False
-        Me.seltdasign.Location = New System.Drawing.Point(1589, 306)
-        Me.seltdasign.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.seltdasign.Name = "seltdasign"
-        Me.seltdasign.Size = New System.Drawing.Size(141, 28)
-        Me.seltdasign.TabIndex = 47
-        Me.seltdasign.Text = "Seleccionar todas"
-        Me.seltdasign.UseVisualStyleBackColor = True
+        Me.btnSelTdAsign.Enabled = False
+        Me.btnSelTdAsign.Location = New System.Drawing.Point(1589, 306)
+        Me.btnSelTdAsign.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnSelTdAsign.Name = "btnSelTdAsign"
+        Me.btnSelTdAsign.Size = New System.Drawing.Size(141, 28)
+        Me.btnSelTdAsign.TabIndex = 47
+        Me.btnSelTdAsign.Text = "Seleccionar todas"
+        Me.btnSelTdAsign.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
@@ -444,9 +444,9 @@ Partial Class FrmAltaIniciativas
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.cboVerDatos)
         Me.GroupBox1.Location = New System.Drawing.Point(700, 880)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Size = New System.Drawing.Size(437, 135)
         Me.GroupBox1.TabIndex = 49
         Me.GroupBox1.TabStop = False
@@ -456,7 +456,7 @@ Partial Class FrmAltaIniciativas
         '
         Me.btnEliminar.Enabled = False
         Me.btnEliminar.Location = New System.Drawing.Point(137, 85)
-        Me.btnEliminar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnEliminar.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEliminar.Name = "btnEliminar"
         Me.btnEliminar.Size = New System.Drawing.Size(177, 44)
         Me.btnEliminar.TabIndex = 2
@@ -478,7 +478,7 @@ Partial Class FrmAltaIniciativas
         Me.cboVerDatos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboVerDatos.FormattingEnabled = True
         Me.cboVerDatos.Location = New System.Drawing.Point(88, 37)
-        Me.cboVerDatos.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cboVerDatos.Margin = New System.Windows.Forms.Padding(4)
         Me.cboVerDatos.Name = "cboVerDatos"
         Me.cboVerDatos.Size = New System.Drawing.Size(340, 24)
         Me.cboVerDatos.TabIndex = 0
@@ -486,37 +486,37 @@ Partial Class FrmAltaIniciativas
         'borrarcont
         '
         Me.borrarcont.Location = New System.Drawing.Point(356, 810)
-        Me.borrarcont.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.borrarcont.Margin = New System.Windows.Forms.Padding(4)
         Me.borrarcont.Name = "borrarcont"
         Me.borrarcont.Size = New System.Drawing.Size(163, 28)
         Me.borrarcont.TabIndex = 50
         Me.borrarcont.Text = "Borrar seleccionado"
         Me.borrarcont.UseVisualStyleBackColor = True
         '
-        'borrarprof
+        'btnBorrarProf
         '
-        Me.borrarprof.Location = New System.Drawing.Point(1201, 810)
-        Me.borrarprof.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.borrarprof.Name = "borrarprof"
-        Me.borrarprof.Size = New System.Drawing.Size(163, 28)
-        Me.borrarprof.TabIndex = 51
-        Me.borrarprof.Text = "Borrar seleccionado"
-        Me.borrarprof.UseVisualStyleBackColor = True
+        Me.btnBorrarProf.Location = New System.Drawing.Point(1201, 810)
+        Me.btnBorrarProf.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnBorrarProf.Name = "btnBorrarProf"
+        Me.btnBorrarProf.Size = New System.Drawing.Size(163, 28)
+        Me.btnBorrarProf.TabIndex = 51
+        Me.btnBorrarProf.Text = "Borrar seleccionado"
+        Me.btnBorrarProf.UseVisualStyleBackColor = True
         '
-        'borrarasign
+        'btnBorrarAsign
         '
-        Me.borrarasign.Location = New System.Drawing.Point(1196, 524)
-        Me.borrarasign.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.borrarasign.Name = "borrarasign"
-        Me.borrarasign.Size = New System.Drawing.Size(163, 28)
-        Me.borrarasign.TabIndex = 52
-        Me.borrarasign.Text = "Borrar seleccionado"
-        Me.borrarasign.UseVisualStyleBackColor = True
+        Me.btnBorrarAsign.Location = New System.Drawing.Point(1196, 524)
+        Me.btnBorrarAsign.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnBorrarAsign.Name = "btnBorrarAsign"
+        Me.btnBorrarAsign.Size = New System.Drawing.Size(163, 28)
+        Me.btnBorrarAsign.TabIndex = 52
+        Me.btnBorrarAsign.Text = "Borrar seleccionado"
+        Me.btnBorrarAsign.UseVisualStyleBackColor = True
         '
         'calInicio
         '
         Me.calInicio.Location = New System.Drawing.Point(571, 164)
-        Me.calInicio.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.calInicio.Margin = New System.Windows.Forms.Padding(4)
         Me.calInicio.Name = "calInicio"
         Me.calInicio.Size = New System.Drawing.Size(261, 22)
         Me.calInicio.TabIndex = 53
@@ -524,7 +524,7 @@ Partial Class FrmAltaIniciativas
         'calFinal
         '
         Me.calFinal.Location = New System.Drawing.Point(971, 164)
-        Me.calFinal.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.calFinal.Margin = New System.Windows.Forms.Padding(4)
         Me.calFinal.Name = "calFinal"
         Me.calFinal.Size = New System.Drawing.Size(261, 22)
         Me.calFinal.TabIndex = 54
@@ -533,7 +533,7 @@ Partial Class FrmAltaIniciativas
         '
         Me.logo1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.logo1.Location = New System.Drawing.Point(169, 42)
-        Me.logo1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.logo1.Margin = New System.Windows.Forms.Padding(4)
         Me.logo1.Name = "logo1"
         Me.logo1.Size = New System.Drawing.Size(180, 166)
         Me.logo1.TabIndex = 55
@@ -543,7 +543,7 @@ Partial Class FrmAltaIniciativas
         '
         Me.logo2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.logo2.Location = New System.Drawing.Point(1357, 42)
-        Me.logo2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.logo2.Margin = New System.Windows.Forms.Padding(4)
         Me.logo2.Name = "logo2"
         Me.logo2.Size = New System.Drawing.Size(212, 166)
         Me.logo2.TabIndex = 56
@@ -558,11 +558,11 @@ Partial Class FrmAltaIniciativas
         Me.Controls.Add(Me.logo1)
         Me.Controls.Add(Me.calFinal)
         Me.Controls.Add(Me.calInicio)
-        Me.Controls.Add(Me.borrarasign)
-        Me.Controls.Add(Me.borrarprof)
+        Me.Controls.Add(Me.btnBorrarAsign)
+        Me.Controls.Add(Me.btnBorrarProf)
         Me.Controls.Add(Me.borrarcont)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.seltdasign)
+        Me.Controls.Add(Me.btnSelTdAsign)
         Me.Controls.Add(Me.numHoras)
         Me.Controls.Add(Me.btnReset)
         Me.Controls.Add(Me.btnAlta)
@@ -573,32 +573,32 @@ Partial Class FrmAltaIniciativas
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.Label10)
-        Me.Controls.Add(Me.selContratante)
+        Me.Controls.Add(Me.btnSelContratante)
         Me.Controls.Add(Me.lstbContratantes)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.cboContratantes)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.cboCurso)
         Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.selAsign)
+        Me.Controls.Add(Me.btnSelAsign)
         Me.Controls.Add(Me.lstbAsign)
         Me.Controls.Add(Me.lblasign)
         Me.Controls.Add(Me.cboAsign)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.selProf)
+        Me.Controls.Add(Me.btnSelProf)
         Me.Controls.Add(Me.lstbProf)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.cboProf)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.selTdMeta)
+        Me.Controls.Add(Me.btnSelTdMeta)
         Me.Controls.Add(Me.btnBorrarMeta)
         Me.Controls.Add(Me.lstbMeta)
-        Me.Controls.Add(Me.selMeta)
+        Me.Controls.Add(Me.btnSelMeta)
         Me.Controls.Add(Me.lblmeta)
         Me.Controls.Add(Me.cboMeta)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.cboOds)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FrmAltaIniciativas"
         Me.Text = "FrAltaIniciativas"
         CType(Me.numHoras, System.ComponentModel.ISupportInitialize).EndInit()
@@ -615,25 +615,25 @@ Partial Class FrmAltaIniciativas
     Friend WithEvents Label1 As Label
     Friend WithEvents lblmeta As Label
     Friend WithEvents cboMeta As ComboBox
-    Friend WithEvents selMeta As Button
+    Friend WithEvents btnSelMeta As Button
     Friend WithEvents lstbMeta As ListBox
     Friend WithEvents btnBorrarMeta As Button
-    Friend WithEvents selTdMeta As Button
+    Friend WithEvents btnSelTdMeta As Button
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents selProf As Button
+    Friend WithEvents btnSelProf As Button
     Friend WithEvents lstbProf As ListBox
     Friend WithEvents Label5 As Label
     Friend WithEvents cboProf As ComboBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents selAsign As Button
+    Friend WithEvents btnSelAsign As Button
     Friend WithEvents lstbAsign As ListBox
     Friend WithEvents lblasign As Label
     Friend WithEvents cboAsign As ComboBox
     Friend WithEvents Label9 As Label
     Friend WithEvents cboCurso As ComboBox
     Friend WithEvents Label10 As Label
-    Friend WithEvents selContratante As Button
+    Friend WithEvents btnSelContratante As Button
     Friend WithEvents lstbContratantes As ListBox
     Friend WithEvents Label11 As Label
     Friend WithEvents cboContratantes As ComboBox
@@ -646,14 +646,14 @@ Partial Class FrmAltaIniciativas
     Friend WithEvents btnAlta As Button
     Friend WithEvents btnReset As Button
     Friend WithEvents numHoras As NumericUpDown
-    Friend WithEvents seltdasign As Button
+    Friend WithEvents btnSelTdAsign As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label2 As Label
     Friend WithEvents cboVerDatos As ComboBox
     Friend WithEvents btnEliminar As Button
     Friend WithEvents borrarcont As Button
-    Friend WithEvents borrarprof As Button
-    Friend WithEvents borrarasign As Button
+    Friend WithEvents btnBorrarProf As Button
+    Friend WithEvents btnBorrarAsign As Button
     Friend WithEvents calInicio As DateTimePicker
     Friend WithEvents calFinal As DateTimePicker
     Friend WithEvents logo1 As PictureBox

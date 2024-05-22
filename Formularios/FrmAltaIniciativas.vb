@@ -4,7 +4,7 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Tab
 Imports Entidades
 
 Public Class FrmAltaIniciativas
-    Private Sub FrAltaIniciativas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmAltaIniciativas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         logo1.BackgroundImage = Image.FromFile("imagenes/logo.png")
         logo2.BackgroundImage = Image.FromFile("imagenes/logo2.png")
         Dim msgError As String = ""
@@ -41,13 +41,13 @@ Public Class FrmAltaIniciativas
         End If
         lblmeta.Enabled = True
         cboMeta.Enabled = True
-        selMeta.Enabled = True
-        selTdMeta.Enabled = True
+        btnSelMeta.Enabled = True
+        btnSelTdMeta.Enabled = True
         Dim Msgerror As String
         cboMeta.Items.AddRange(gestion.VerMetasDeODS(odsSeleccionado.NumeroODS, Msgerror).ToArray)
     End Sub
 
-    Private Sub selmeta_Click(sender As Object, e As EventArgs) Handles selMeta.Click, selContratante.Click, selProf.Click, selAsign.Click, selTdMeta.Click, seltdasign.Click
+    Private Sub selmeta_Click(sender As Object, e As EventArgs) Handles btnSelMeta.Click, btnSelContratante.Click, btnSelProf.Click, btnSelAsign.Click, btnSelTdMeta.Click, btnSelTdAsign.Click
         Dim control As New Button
         control = TryCast(sender, Control)
         Select Case control.Name.ToLower
@@ -161,7 +161,7 @@ Public Class FrmAltaIniciativas
         MessageBox.Show($"El control '{control}' está vacío")
     End Sub
 
-    Private Sub selProf_Click(sender As Object, e As EventArgs) Handles selProf.Click
+    Private Sub selProf_Click(sender As Object, e As EventArgs) Handles btnSelProf.Click
         If cboProf.SelectedItem Is Nothing Then
             errorTxtVacio("cboProf")
         End If
@@ -173,7 +173,7 @@ Public Class FrmAltaIniciativas
         End If
     End Sub
 
-    Private Sub selAsign_Click(sender As Object, e As EventArgs) Handles selAsign.Click
+    Private Sub selAsign_Click(sender As Object, e As EventArgs) Handles btnSelAsign.Click
         If cboAsign.SelectedItem Is Nothing Then
             errorTxtVacio("cboAsign")
         End If
@@ -188,13 +188,13 @@ Public Class FrmAltaIniciativas
         End If
         lblasign.Enabled = True
         cboAsign.Enabled = True
-        selAsign.Enabled = True
-        seltdasign.Enabled = True
+        btnSelAsign.Enabled = True
+        btnSelTdAsign.Enabled = True
         Dim Msgerror As String = ""
         cboAsign.Items.AddRange(gestion.VerAsignaturasDeCurso(cursoseleccionado.Nombre, Msgerror).ToArray)
     End Sub
 
-    Private Sub borrarLstb(sender As Object, e As EventArgs) Handles borrarcont.Click, borrarprof.Click, btnBorrarMeta.Click, borrarasign.Click
+    Private Sub borrarLstb(sender As Object, e As EventArgs) Handles borrarcont.Click, btnBorrarProf.Click, btnBorrarMeta.Click, btnBorrarAsign.Click
         Dim control As New Button
         control = TryCast(sender, Button)
         Select Case control.Name.ToLower
