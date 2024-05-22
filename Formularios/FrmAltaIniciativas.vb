@@ -20,7 +20,7 @@ Public Class FrmAltaIniciativas
                 MessageBox.Show(msgError)
             End If
         End Try
-        cboVerDatos.Items.AddRange(gestion.IniciativasEnBaseDeDatos(msgError).ToArray)
+        cboVerDatos.Items.AddRange(gestion.Iniciativas(msgError).ToArray)
         If msgError <> "" Then
             MessageBox.Show(msgError)
         End If
@@ -261,5 +261,21 @@ Public Class FrmAltaIniciativas
         If msg <> "" Then
             MessageBox.Show(msg)
         End If
+    End Sub
+
+    Private Sub cboAsign_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboAsign.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cboMeta_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboMeta.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cboContratantes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboContratantes.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cboProf_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboProf.SelectedIndexChanged
+
     End Sub
 End Class

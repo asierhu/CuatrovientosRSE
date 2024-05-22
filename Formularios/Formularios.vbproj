@@ -73,11 +73,11 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.vb">
+    <Compile Include="FrmPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="FrmPrincipal.Designer.vb">
+      <DependentUpon>FrmPrincipal.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmAltaIniciativas.Designer.vb">
@@ -86,10 +86,10 @@
     <Compile Include="FrmAltaIniciativas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmIniciativasCiclo.Designer.vb">
-      <DependentUpon>FrmIniciativasCiclo.vb</DependentUpon>
+    <Compile Include="FrmDatosCiclo.Designer.vb">
+      <DependentUpon>FrmDatosCiclo.vb</DependentUpon>
     </Compile>
-    <Compile Include="FrmIniciativasCiclo.vb">
+    <Compile Include="FrmDatosCiclo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmModificarODSyMeta.Designer.vb">
@@ -123,14 +123,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="FrmPrincipal.resx">
+      <DependentUpon>FrmPrincipal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAltaIniciativas.resx">
       <DependentUpon>FrmAltaIniciativas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmIniciativasCiclo.resx">
-      <DependentUpon>FrmIniciativasCiclo.vb</DependentUpon>
+    <EmbeddedResource Include="FrmDatosCiclo.resx">
+      <DependentUpon>FrmDatosCiclo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmModificarODSyMeta.resx">
       <DependentUpon>FrmModificarODSyMeta.vb</DependentUpon>

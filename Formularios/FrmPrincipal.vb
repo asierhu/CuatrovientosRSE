@@ -1,9 +1,9 @@
 ﻿Imports GestionBd
-Public Class Form1
+Public Class FrmPrincipal
 
     Private Sub btnVerOds_Click(sender As Object, e As EventArgs) Handles btnVerOds.Click
-        Dim verODSMetas = New FrmVerODSMetas
-        verODSMetas.Show()
+        Dim frmVerODSMetas = New FrmVerODSMetas
+        frmVerODSMetas.Show()
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -11,8 +11,8 @@ Public Class Form1
     End Sub
 
     Private Sub btnModOds_Click(sender As Object, e As EventArgs) Handles btnModOds.Click
-        Dim modificarODSyMeta = New FrmModificarODSyMeta
-        modificarODSyMeta.Show()
+        Dim frmModificarODSyMeta = New FrmModificarODSyMeta
+        frmModificarODSyMeta.Show()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -20,7 +20,12 @@ Public Class Form1
     End Sub
 
     Private Sub btncrearini_Click(sender As Object, e As EventArgs) Handles btnCrearIni.Click
-        Dim FrAltaIniciativas As New FrmAltaIniciativas
-        FrAltaIniciativas.Show()
+        Dim frmAltaIniciativas As New FrmAltaIniciativas
+        frmAltaIniciativas.Show()
+    End Sub
+
+    Private Sub btnDatosDeCiclo_Click(sender As Object, e As EventArgs) Handles btnDatosDeCiclo.Click
+        Dim frmDatosCiclo As New FrmDatosCiclo
+        frmDatosCiclo.Show()
     End Sub
 End Class

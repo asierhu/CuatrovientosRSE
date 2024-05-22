@@ -130,8 +130,8 @@ Public Class Gestion
         End Try
         Return profesores.AsReadOnly
     End Function
-    Public Function IniciativasEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of Iniciativa)
-        Dim iniciativas = New List(Of Iniciativa)
+    Public Function Iniciativas(ByRef msgError As String) As ReadOnlyCollection(Of Iniciativa)
+        Dim listaIniciativas = New List(Of Iniciativa)
         Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT COD_INICIATIVA, HORAS, TITULO, FECHA_INICIO, FECHA_FIN FROM INICIATIVAS"
         Try
@@ -141,14 +141,14 @@ Public Class Gestion
             Dim codIniciativa As Integer
             While drIni.Read
                 codIniciativa = drIni("COD_INICIATIVA")
-                iniciativas.Add(New Iniciativa(codIniciativa, ContratantesDeIniciativa(codIniciativa), MetasDeIniciativa(codIniciativa), ProfesoresDeIniciativa(codIniciativa), AsignaturasDeIniciativa(codIniciativa), drIni("HORAS"), drIni("TITULO"), drIni("FECHA_INICIO"), drIni("FECHA_FIN")))
+                listaIniciativas.Add(New Iniciativa(codIniciativa, ContratantesDeIniciativa(codIniciativa), MetasDeIniciativa(codIniciativa), ProfesoresDeIniciativa(codIniciativa), AsignaturasDeIniciativa(codIniciativa), drIni("HORAS"), drIni("TITULO"), drIni("FECHA_INICIO"), drIni("FECHA_FIN")))
             End While
         Catch ex As Exception
             msgError = ex.Message
         Finally
             conect.Close()
         End Try
-        Return iniciativas.AsReadOnly
+        Return listaIniciativas.AsReadOnly
 
     End Function
     Private Function ContratantesDeIniciativa(codIniciativa As Integer) As ReadOnlyCollection(Of Contratante)
@@ -419,7 +419,7 @@ Public Class Gestion
 
     Public Function AnyadirIniciativa(iniciativa As Iniciativa) As String
         Dim msgError As String = ""
-        Dim iniciativas As ReadOnlyCollection(Of Iniciativa) = IniciativasEnBaseDeDatos(msgError)
+        Dim iniciativas As ReadOnlyCollection(Of Iniciativa) = Me.Iniciativas(msgError)
         If msgError <> "" Then
             Return msgError
         End If
@@ -594,7 +594,7 @@ Public Class Gestion
     End Sub
     Public Function DatosDeCiclo(ciclo As Curso, ByRef iniciativas As List(Of String), ByRef metas As List(Of String), ByRef profes As List(Of String), ByRef odss As List(Of String)) As String
         Dim conect As New SqlConnection(cadenaConexion)
-        Dim sql As String = "PROCEDIMIENTO3"
+        Dim sql As String = "EXEC PROCEDIMIENTO3 @CICLO"
         Try
             conect.Open()
             Dim cmdMeta As New SqlCommand(sql, conect)
@@ -611,8 +611,8 @@ Public Class Gestion
                 If Not odss.Contains(drMetas("NOMBRE")) Then
                     odss.Add(drMetas("NOMBRE"))
                 End If
-                If Not iniciativas.Contains(drMetas("NOMBRE_PROFESOR")) Then
-                    iniciativas.Add(drMetas("NOMBRE_PROFESOR"))
+                If Not profes.Contains(drMetas("NOMBRE_PROFESOR")) Then
+                    profes.Add(drMetas("NOMBRE_PROFESOR"))
                 End If
             End While
         Catch ex As Exception

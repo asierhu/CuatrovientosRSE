@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class FrmPrincipal
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -22,7 +22,7 @@ Partial Class Form1
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmPrincipal))
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -36,22 +36,23 @@ Partial Class Form1
         Me.Label15 = New System.Windows.Forms.Label()
         Me.btnCrearIni = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnDatosDeCiclo = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(154, 518)
+        Me.Label2.Location = New System.Drawing.Point(137, 414)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(0, 20)
+        Me.Label2.Size = New System.Drawing.Size(0, 16)
         Me.Label2.TabIndex = 2
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(154, 558)
+        Me.Label3.Location = New System.Drawing.Point(137, 446)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(0, 20)
+        Me.Label3.Size = New System.Drawing.Size(0, 16)
         Me.Label3.TabIndex = 3
         '
         'Label1
@@ -59,9 +60,9 @@ Partial Class Form1
         Me.Label1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(355, 24)
+        Me.Label1.Location = New System.Drawing.Point(316, 19)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(528, 93)
+        Me.Label1.Size = New System.Drawing.Size(469, 74)
         Me.Label1.TabIndex = 10
         Me.Label1.Text = "Cuatrovientos ODS"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -69,9 +70,10 @@ Partial Class Form1
         'btnVerOds
         '
         Me.btnVerOds.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnVerOds.Location = New System.Drawing.Point(501, 167)
+        Me.btnVerOds.Location = New System.Drawing.Point(445, 134)
+        Me.btnVerOds.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnVerOds.Name = "btnVerOds"
-        Me.btnVerOds.Size = New System.Drawing.Size(249, 75)
+        Me.btnVerOds.Size = New System.Drawing.Size(221, 60)
         Me.btnVerOds.TabIndex = 11
         Me.btnVerOds.Text = "Ver ODS y metas"
         Me.btnVerOds.UseVisualStyleBackColor = True
@@ -79,9 +81,10 @@ Partial Class Form1
         'btnModOds
         '
         Me.btnModOds.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnModOds.Location = New System.Drawing.Point(501, 306)
+        Me.btnModOds.Location = New System.Drawing.Point(445, 245)
+        Me.btnModOds.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnModOds.Name = "btnModOds"
-        Me.btnModOds.Size = New System.Drawing.Size(249, 75)
+        Me.btnModOds.Size = New System.Drawing.Size(221, 60)
         Me.btnModOds.TabIndex = 12
         Me.btnModOds.Text = "Modificar ODS"
         Me.btnModOds.UseVisualStyleBackColor = True
@@ -89,57 +92,58 @@ Partial Class Form1
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(478, 437)
+        Me.Label7.Location = New System.Drawing.Point(425, 350)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(0, 20)
+        Me.Label7.Size = New System.Drawing.Size(0, 16)
         Me.Label7.TabIndex = 18
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(478, 397)
+        Me.Label8.Location = New System.Drawing.Point(425, 318)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(0, 20)
+        Me.Label8.Size = New System.Drawing.Size(0, 16)
         Me.Label8.TabIndex = 17
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(376, 490)
+        Me.Label9.Location = New System.Drawing.Point(334, 392)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(0, 20)
+        Me.Label9.Size = New System.Drawing.Size(0, 16)
         Me.Label9.TabIndex = 21
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(376, 450)
+        Me.Label10.Location = New System.Drawing.Point(334, 360)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(0, 20)
+        Me.Label10.Size = New System.Drawing.Size(0, 16)
         Me.Label10.TabIndex = 20
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(1010, 222)
+        Me.Label14.Location = New System.Drawing.Point(898, 178)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(0, 20)
+        Me.Label14.Size = New System.Drawing.Size(0, 16)
         Me.Label14.TabIndex = 18
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(1010, 182)
+        Me.Label15.Location = New System.Drawing.Point(898, 146)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(0, 20)
+        Me.Label15.Size = New System.Drawing.Size(0, 16)
         Me.Label15.TabIndex = 17
         '
         'btnCrearIni
         '
         Me.btnCrearIni.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCrearIni.Location = New System.Drawing.Point(501, 450)
+        Me.btnCrearIni.Location = New System.Drawing.Point(445, 351)
+        Me.btnCrearIni.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnCrearIni.Name = "btnCrearIni"
-        Me.btnCrearIni.Size = New System.Drawing.Size(249, 75)
+        Me.btnCrearIni.Size = New System.Drawing.Size(221, 60)
         Me.btnCrearIni.TabIndex = 23
         Me.btnCrearIni.Text = "Crear iniciativas"
         Me.btnCrearIni.UseVisualStyleBackColor = True
@@ -147,21 +151,33 @@ Partial Class Form1
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(501, 582)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.Button1.Location = New System.Drawing.Point(445, 526)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(249, 75)
+        Me.Button1.Size = New System.Drawing.Size(221, 60)
         Me.Button1.TabIndex = 24
         Me.Button1.Text = "Salir"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'Form1
+        'btnDatosDeCiclo
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.btnDatosDeCiclo.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDatosDeCiclo.Location = New System.Drawing.Point(445, 437)
+        Me.btnDatosDeCiclo.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnDatosDeCiclo.Name = "btnDatosDeCiclo"
+        Me.btnDatosDeCiclo.Size = New System.Drawing.Size(221, 60)
+        Me.btnDatosDeCiclo.TabIndex = 25
+        Me.btnDatosDeCiclo.Text = "Datos de ciclo"
+        Me.btnDatosDeCiclo.UseVisualStyleBackColor = True
+        '
+        'FrmPrincipal
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(1218, 711)
+        Me.ClientSize = New System.Drawing.Size(1083, 627)
+        Me.Controls.Add(Me.btnDatosDeCiclo)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnVerOds)
         Me.Controls.Add(Me.btnCrearIni)
@@ -175,7 +191,8 @@ Partial Class Form1
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
-        Me.Name = "Form1"
+        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Name = "FrmPrincipal"
         Me.Text = "Cuatrovientos ODS"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -194,4 +211,5 @@ Partial Class Form1
     Friend WithEvents Label15 As Label
     Friend WithEvents btnCrearIni As Button
     Friend WithEvents Button1 As Button
+    Friend WithEvents btnDatosDeCiclo As Button
 End Class
