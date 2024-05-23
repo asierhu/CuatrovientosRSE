@@ -19,7 +19,7 @@ Public Class FrmVerODSMetas
 
         Dim msgError As String = ""
         Try
-            cboODS.Items.AddRange(gestion.ODSEnBaseDeDatos(msgError).ToArray)
+            cboODS.Items.AddRange(gestion.ODSs(msgError).ToArray)
         Catch ex As Exception
         Finally
             If msgError <> "" Then
