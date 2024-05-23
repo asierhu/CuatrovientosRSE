@@ -9,10 +9,10 @@ Public Class FrmAltaIniciativas
         logo2.BackgroundImage = Image.FromFile("imagenes/logo2.png")
         Dim msgError As String = ""
         Try
-            cboOds.Items.AddRange(gestion.ODSEnBaseDeDatos(msgError).ToArray)
-            cboContratantes.Items.AddRange(gestion.ContratantesEnBaseDeDatos(msgError).ToArray)
-            cboProf.Items.AddRange(gestion.ProfesoresEnBaseDeDatos(msgError).ToArray)
-            cboCurso.Items.AddRange(gestion.CursosEnBaseDeDatos(msgError).ToArray)
+            cboOds.Items.AddRange(gestion.ODSs(msgError).ToArray)
+            cboContratantes.Items.AddRange(gestion.Contratantes(msgError).ToArray)
+            cboProf.Items.AddRange(gestion.Profesorado(msgError).ToArray)
+            cboCurso.Items.AddRange(gestion.Cursos(msgError).ToArray)
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         Finally

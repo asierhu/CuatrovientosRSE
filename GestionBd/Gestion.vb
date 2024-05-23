@@ -13,7 +13,7 @@ Public Class Gestion
         End If
         cadenaConexion = $"Data Source = {servidor}; Initial Catalog = CUATROVIENTOSRSE; Integrated Security = SSPI; MultipleActiveResultSets=true"
     End Sub
-    Public Function ODSEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of ODS)
+    Public Function ODSs(ByRef msgError As String) As ReadOnlyCollection(Of ODS)
         Dim ods = New List(Of ODS)
         Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT NUMERO_ODS, NOMBRE, DESCRIPCION FROM ODS"
@@ -53,8 +53,8 @@ Public Class Gestion
         End Try
         Return metas.AsReadOnly
     End Function
-    Public Function CursosEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of Curso)
-        Dim cursos = New List(Of Curso)
+    Public Function Cursos(ByRef msgError As String) As ReadOnlyCollection(Of Curso)
+        Dim curso = New List(Of Curso)
         Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT NOMBRE_CURSO FROM CURSO"
         Try
@@ -62,14 +62,14 @@ Public Class Gestion
             Dim cmdODS As New SqlCommand(sql, conect)
             Dim drODS As SqlDataReader = cmdODS.ExecuteReader
             While drODS.Read
-                cursos.Add(New Curso(drODS("NOMBRE_CURSO")))
+                curso.Add(New Curso(drODS("NOMBRE_CURSO")))
             End While
         Catch ex As Exception
             msgError = ex.Message
         Finally
             conect.Close()
         End Try
-        Return cursos.AsReadOnly
+        Return curso.AsReadOnly
     End Function
 
     Public Function VerAsignaturasDeCurso(nombreCurso As String, ByRef msgError As String) As ReadOnlyCollection(Of Asignatura)
@@ -94,8 +94,8 @@ Public Class Gestion
         End Try
         Return asignaturasDeCurso.AsReadOnly
     End Function
-    Public Function ContratantesEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of Contratante)
-        Dim contratantes = New List(Of Contratante)
+    Public Function Contratantes(ByRef msgError As String) As ReadOnlyCollection(Of Contratante)
+        Dim contratante = New List(Of Contratante)
         Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT COD_CONTRATANTE, NOMBRE_CONTRATANTE, DESCRIPCION FROM CONTRATANTE"
         Try
@@ -103,16 +103,16 @@ Public Class Gestion
             Dim cmdCont As New SqlCommand(sql, conect)
             Dim drCont As SqlDataReader = cmdCont.ExecuteReader
             While drCont.Read
-                contratantes.Add(New Contratante(drCont("COD_CONTRATANTE"), drCont("NOMBRE_CONTRATANTE"), drCont("DESCRIPCION")))
+                contratante.Add(New Contratante(drCont("COD_CONTRATANTE"), drCont("NOMBRE_CONTRATANTE"), drCont("DESCRIPCION")))
             End While
         Catch ex As Exception
             msgError = ex.Message
         Finally
             conect.Close()
         End Try
-        Return contratantes.AsReadOnly
+        Return contratante.AsReadOnly
     End Function
-    Public Function ProfesoresEnBaseDeDatos(ByRef msgError As String) As ReadOnlyCollection(Of Profesor)
+    Public Function Profesorado(ByRef msgError As String) As ReadOnlyCollection(Of Profesor)
         Dim profesores = New List(Of Profesor)
         Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT ID_PROFESOR, NOMBRE_PROFESOR, APELLIDO1, APELLIDO2, FECHA_NACIMIENTO FROM PROFESORES"
@@ -233,7 +233,7 @@ Public Class Gestion
 
     Public Function ModificarODS(odsModificado As ODS) As String
         Dim msgError As String = ""
-        Dim ods As ReadOnlyCollection(Of ODS) = ODSEnBaseDeDatos(msgError)
+        Dim ods As ReadOnlyCollection(Of ODS) = ODSs(msgError)
         Dim odsGuardado As ODS = ods(ods.IndexOf(odsModificado))
         If msgError <> "" Then
             Return msgError
@@ -360,12 +360,6 @@ Public Class Gestion
     Public Function AnyadirMeta(meta As Meta) As String
         Dim msgError = ""
         Dim metas As ReadOnlyCollection(Of Meta) = VerMetasDeODS(meta.NumeroODS, msgError)
-        'For i = 0 To odsGuardado.Metas.Count - 1
-        '    If odsGuardado.Metas(i).Equals(meta) Then
-        '        indiceMeta = i
-        '        Exit For
-        '    End If
-        'Next
         Dim indiceMeta As Integer = metas.IndexOf(meta)
         If indiceMeta <> -1 Then
             Return $"La meta {meta} ya existía en el ODS número {meta.NumeroODS}"
@@ -391,7 +385,7 @@ Public Class Gestion
     End Function
     Public Function AnyadirODS(ods As ODS) As String
         Dim msgError = ""
-        Dim odss As ReadOnlyCollection(Of ODS) = ODSEnBaseDeDatos(msgError)
+        Dim odss As ReadOnlyCollection(Of ODS) = Me.ODSs(msgError)
         Dim indiceMeta As Integer = odss.IndexOf(ods)
         If indiceMeta <> -1 Then
             Return $"El ODS {ods} ya existía"
@@ -511,7 +505,6 @@ Public Class Gestion
             Next
         Catch ex As Exception
             msgError = ex.Message
-
         Finally
             conect.Close()
         End Try

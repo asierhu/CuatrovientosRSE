@@ -7,7 +7,7 @@ Public Class FrmModificarODSyMeta
     Private Sub ModificarODSyMeta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim msgError As String = ""
         Try
-            cboODS.Items.AddRange(gestion.ODSEnBaseDeDatos(msgError).ToArray)
+            cboODS.Items.AddRange(gestion.ODSs(msgError).ToArray)
         Catch ex As Exception
         Finally
             If msgError <> "" Then
