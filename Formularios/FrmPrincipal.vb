@@ -6,20 +6,16 @@ Public Class FrmPrincipal
         frmVerODSMetas.Show()
     End Sub
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        gestion = New Gestion
-    End Sub
-
     Private Sub btnModOds_Click(sender As Object, e As EventArgs) Handles btnModOds.Click
         Dim frmModificarODSyMeta = New FrmModificarODSyMeta
         frmModificarODSyMeta.Show()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
         Me.Close()
     End Sub
 
-    Private Sub btncrearini_Click(sender As Object, e As EventArgs) Handles btnCrearIni.Click
+    Private Sub btnCrearIni_Click(sender As Object, e As EventArgs) Handles btnCrearIni.Click
         Dim frmAltaIniciativas As New FrmAltaIniciativas
         frmAltaIniciativas.Show()
     End Sub
@@ -27,5 +23,9 @@ Public Class FrmPrincipal
     Private Sub btnDatosDeCiclo_Click(sender As Object, e As EventArgs) Handles btnDatosDeCiclo.Click
         Dim frmDatosCiclo As New FrmDatosCiclo
         frmDatosCiclo.Show()
+    End Sub
+
+    Private Sub FrmPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        gestion = New Gestion
     End Sub
 End Class

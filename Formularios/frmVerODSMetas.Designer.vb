@@ -34,9 +34,10 @@ Partial Class FrmVerODSMetas
         'cboODS
         '
         Me.cboODS.FormattingEnabled = True
-        Me.cboODS.Location = New System.Drawing.Point(34, 63)
+        Me.cboODS.Location = New System.Drawing.Point(45, 78)
+        Me.cboODS.Margin = New System.Windows.Forms.Padding(4)
         Me.cboODS.Name = "cboODS"
-        Me.cboODS.Size = New System.Drawing.Size(1042, 21)
+        Me.cboODS.Size = New System.Drawing.Size(1388, 24)
         Me.cboODS.TabIndex = 0
         '
         'dgvMetas
@@ -50,41 +51,45 @@ Partial Class FrmVerODSMetas
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvMetas.DefaultCellStyle = DataGridViewCellStyle1
-        Me.dgvMetas.Location = New System.Drawing.Point(34, 114)
+        Me.dgvMetas.Location = New System.Drawing.Point(45, 140)
+        Me.dgvMetas.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvMetas.Name = "dgvMetas"
         Me.dgvMetas.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.dgvMetas.RowHeadersWidth = 51
-        Me.dgvMetas.Size = New System.Drawing.Size(1042, 315)
+        Me.dgvMetas.Size = New System.Drawing.Size(1389, 388)
         Me.dgvMetas.TabIndex = 1
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(469, 34)
+        Me.Label1.Location = New System.Drawing.Point(625, 42)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(196, 13)
+        Me.Label1.Size = New System.Drawing.Size(244, 16)
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "Selecciona un ODS para ver sus metas:"
         '
         'pbODS
         '
         Me.pbODS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pbODS.Location = New System.Drawing.Point(505, 446)
+        Me.pbODS.Location = New System.Drawing.Point(673, 549)
+        Me.pbODS.Margin = New System.Windows.Forms.Padding(4)
         Me.pbODS.Name = "pbODS"
-        Me.pbODS.Size = New System.Drawing.Size(122, 112)
+        Me.pbODS.Size = New System.Drawing.Size(163, 138)
         Me.pbODS.TabIndex = 3
         Me.pbODS.TabStop = False
         '
-        'frmVerODSMetas
+        'FrmVerODSMetas
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1119, 594)
+        Me.ClientSize = New System.Drawing.Size(1492, 731)
         Me.Controls.Add(Me.pbODS)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.dgvMetas)
         Me.Controls.Add(Me.cboODS)
-        Me.Name = "frmVerODSMetas"
+        Me.Margin = New System.Windows.Forms.Padding(4)
+        Me.Name = "FrmVerODSMetas"
         Me.Text = "VerODSMetas"
         CType(Me.dgvMetas, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbODS, System.ComponentModel.ISupportInitialize).EndInit()

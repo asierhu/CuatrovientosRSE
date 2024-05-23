@@ -11,7 +11,6 @@ Public Class FrmDatosCiclo
             MessageBox.Show("No hay cursos/ciclos en la base de datos")
         End If
     End Sub
-
     Private Sub btnVerDatos_Click(sender As Object, e As EventArgs) Handles btnVerDatos.Click
         If cboCurso.SelectedItem Is Nothing Then
             MessageBox.Show("Debes seleccionar un curso")

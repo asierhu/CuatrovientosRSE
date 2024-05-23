@@ -35,7 +35,7 @@ Partial Class FrmPrincipal
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.btnCrearIni = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnSalir = New System.Windows.Forms.Button()
         Me.btnDatosDeCiclo = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
@@ -148,16 +148,16 @@ Partial Class FrmPrincipal
         Me.btnCrearIni.Text = "Crear iniciativas"
         Me.btnCrearIni.UseVisualStyleBackColor = True
         '
-        'Button1
+        'btnSalir
         '
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(445, 526)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(221, 60)
-        Me.Button1.TabIndex = 24
-        Me.Button1.Text = "Salir"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnSalir.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSalir.Location = New System.Drawing.Point(445, 526)
+        Me.btnSalir.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnSalir.Name = "btnSalir"
+        Me.btnSalir.Size = New System.Drawing.Size(221, 60)
+        Me.btnSalir.TabIndex = 24
+        Me.btnSalir.Text = "Salir"
+        Me.btnSalir.UseVisualStyleBackColor = True
         '
         'btnDatosDeCiclo
         '
@@ -178,7 +178,7 @@ Partial Class FrmPrincipal
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1083, 627)
         Me.Controls.Add(Me.btnDatosDeCiclo)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnSalir)
         Me.Controls.Add(Me.btnVerOds)
         Me.Controls.Add(Me.btnCrearIni)
         Me.Controls.Add(Me.Label14)
@@ -210,6 +210,6 @@ Partial Class FrmPrincipal
     Friend WithEvents Label14 As Label
     Friend WithEvents Label15 As Label
     Friend WithEvents btnCrearIni As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnSalir As Button
     Friend WithEvents btnDatosDeCiclo As Button
 End Class
