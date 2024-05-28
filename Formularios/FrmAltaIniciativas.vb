@@ -204,15 +204,19 @@ Public Class FrmAltaIniciativas
     End Sub
 
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
-        If cboVerDatos.SelectedItem Is Nothing Then
-            MessageBox.Show("Selecciona una iniciativa a eliminar")
-            Exit Sub
+        Dim result As DialogResult = MessageBox.Show($"¿Deseas eliminar la iniciativa {cboVerDatos.SelectedItem.ToString}?", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If result = DialogResult.Yes Then
+            If cboVerDatos.SelectedItem Is Nothing Then
+                MessageBox.Show("Selecciona una iniciativa a eliminar")
+                Exit Sub
+            End If
+            Dim msg As String = gestion.EliminarIni(TryCast(cboVerDatos.SelectedItem, Iniciativa).CodIniciativa)
+            If msg <> "" Then
+                MessageBox.Show(msg)
+            End If
+            btnReset_Click(Nothing, Nothing)
         End If
-        Dim msg As String = gestion.EliminarIni(TryCast(cboVerDatos.SelectedItem, Iniciativa).CodIniciativa)
-        If msg <> "" Then
-            MessageBox.Show(msg)
-        End If
-        btnReset_Click(Nothing, Nothing)
     End Sub
 
     Private Sub cboMeta_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboMeta.SelectedIndexChanged
