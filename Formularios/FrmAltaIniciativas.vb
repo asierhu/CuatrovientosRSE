@@ -21,8 +21,11 @@ Public Class FrmAltaIniciativas
         lblmeta.Enabled = True
         cboMeta.Enabled = True
         btnSelTdMeta.Enabled = True
-        Dim Msgerror As String
-        cboMeta.Items.AddRange(gestion.VerMetasDeODS(odsSeleccionado.NumeroODS, Msgerror).ToArray)
+        Dim msgError As String = ""
+        cboMeta.Items.AddRange(gestion.VerMetasDeODS(odsSeleccionado.NumeroODS, msgError).ToArray)
+        If msgError <> "" Then
+            MessageBox.Show(msgError)
+        End If
     End Sub
 
     Private Sub FrmAltaIniciativas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -37,7 +40,6 @@ Public Class FrmAltaIniciativas
             ActualizarCboVerdatos()
         Catch ex As Exception
             MessageBox.Show(ex.Message)
-        Finally
         End Try
         If msgError <> "" Then
             MessageBox.Show(msgError)

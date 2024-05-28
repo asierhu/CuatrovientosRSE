@@ -8,10 +8,6 @@ Public Class FrmVerODSMetas
         Dim odsSeleccionado As ODS = TryCast(cboODS.SelectedItem, ODS)
         dgvMetas.DataSource = gestion.VerMetasDeODS(odsSeleccionado.NumeroODS, mensajerror)
         pbODS.BackgroundImage = Image.FromFile($"imagenes/{odsSeleccionado.NumeroODS}.jpg")
-        For i = 0 To dgvMetas.ColumnCount - 1
-            dgvMetas.Columns.Item(i).Width = 300
-            dgvMetas.Rows.Item(i).Height = 100
-        Next
     End Sub
 
     Private Sub FrmVerODSMetas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
