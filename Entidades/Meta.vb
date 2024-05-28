@@ -14,8 +14,7 @@
         Me.Descripcion = ""
     End Sub
     Public Sub New(numeroODS As Byte, idMeta As String, descripcion As String)
-        Me.NumeroODS = numeroODS
-        Me.IDMeta = idMeta
+        Me.New(numeroODS, idMeta)
         Me.Descripcion = descripcion
     End Sub
     Public Overrides Function Equals(obj As Object) As Boolean
@@ -25,7 +24,7 @@
     Public Overloads Function Equals(other As Meta) As Boolean Implements IEquatable(Of Meta).Equals
         Return other IsNot Nothing AndAlso
                NumeroODS = other.NumeroODS AndAlso
-               (IDMeta = other.IDMeta + " " OrElse IDMeta = other.IDMeta)
+               IDMeta.ToLower = other.IDMeta.ToLower
     End Function
 
 End Class

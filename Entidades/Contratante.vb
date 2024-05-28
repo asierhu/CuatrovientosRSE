@@ -8,7 +8,7 @@
         Me.CodContratante = codContratante
     End Sub
     Public Sub New(codContratante As Integer, nombre As String, descripcion As String)
-        Me.CodContratante = codContratante
+        Me.New(codContratante)
         Me.Nombre = nombre
         Me.Descripcion = descripcion
     End Sub

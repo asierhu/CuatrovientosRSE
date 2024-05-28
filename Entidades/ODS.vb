@@ -21,12 +21,10 @@ Public Class ODS
         Me.NumeroODS = numeroODS
         Me.Nombre = nombre
         Me.Descripcion = descripcion
-        Me.Imagen = $"{numeroODS}.jpg"
+        Me.Imagen = $"./Imagenes/{numeroODS}.jpg"
     End Sub
     Public Sub New(numeroODS As Byte, nombre As String, descripcion As String, imagen As String)
-        Me.NumeroODS = numeroODS
-        Me.Nombre = nombre
-        Me.Descripcion = descripcion
+        Me.New(numeroODS, nombre, descripcion)
         Me.Imagen = imagen
     End Sub
 
@@ -39,6 +37,6 @@ Public Class ODS
                NumeroODS = other.NumeroODS
     End Function
     Public Overrides Function ToString() As String
-        Return $"{NumeroODS}: {Nombre}"
+        Return $"ODS {NumeroODS}: {Nombre}"
     End Function
 End Class

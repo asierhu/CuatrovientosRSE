@@ -2,7 +2,6 @@
 Imports System.Data.SqlClient
 Imports System.IO
 Imports Entidades
-Imports Microsoft.Win32
 Public Class Gestion
 
     Private cadenaConexion As String
@@ -438,10 +437,8 @@ Public Class Gestion
         If String.IsNullOrWhiteSpace(iniciativa.Titulo) Then
             Return "El titulo no puede quedar en blanco"
         End If
-        If Not iniciativa.FechaFin = Nothing Then
-            If iniciativa.FechaFin.ToShortDateString < iniciativa.FechaInicio.ToShortDateString Then
-                Return "La fecha en la que finaliza una iniciativa no puede ser menor que la fecha en la que inicia"
-            End If
+        If iniciativa.FechaFin < iniciativa.FechaInicio Then
+            Return "La fecha en la que finaliza una iniciativa no puede ser menor que la fecha en la que inicia"
         End If
         If iniciativa.Contratantes.Count = 0 Then
             Return "Una iniciativa tiene que ser contratada por un contratante como mínimo"
@@ -471,7 +468,9 @@ Public Class Gestion
             Dim returnValue As New SqlParameter("@ReturnVal", SqlDbType.Int)
             returnValue.Direction = ParameterDirection.ReturnValue
             cmdUltimoNumIni.Parameters.Add(returnValue)
-            cmdUltimoNumIni.ExecuteNonQuery()
+            If cmdUltimoNumIni.ExecuteNonQuery() = 0 Then
+                Return "El procedimiento almacenado para el nuevo codigo no existe"
+            End If
             Dim nuevoCod As Integer = Convert.ToInt32(returnValue.Value)
             'insert iniciativa
             Dim cmdINI As New SqlCommand(sql, conect)
@@ -515,7 +514,7 @@ Public Class Gestion
                 cmdINI.ExecuteNonQuery()
             Next
         Catch ex As Exception
-            msgError = ex.Message
+            Return ex.Message
         Finally
             conect.Close()
         End Try
@@ -526,30 +525,30 @@ Public Class Gestion
         Dim sql As String = "DELETE FROM ASIGNATURAS_INICIATIVA WHERE COD_INICIATIVA=@CODINICIATIVA"
         Try
             conect.Open()
-            Dim cmdINI As New SqlCommand(sql, conect)
-            cmdINI = New SqlCommand(sql, conect)
-            cmdINI.Parameters.AddWithValue("@CODINICIATIVA", codigo)
-            cmdINI.ExecuteNonQuery()
+            Dim cmd As New SqlCommand(sql, conect)
+            cmd = New SqlCommand(sql, conect)
+            cmd.Parameters.AddWithValue("@CODINICIATIVA", codigo)
+            cmd.ExecuteNonQuery()
 
             sql = "DELETE FROM CONTRATANTE_INICIATIVA WHERE COD_INICIATIVA=@CODINICIATIVA"
-            cmdINI = New SqlCommand(sql, conect)
-            cmdINI.Parameters.AddWithValue("@CODINICIATIVA", codigo)
-            cmdINI.ExecuteNonQuery()
+            cmd = New SqlCommand(sql, conect)
+            cmd.Parameters.AddWithValue("@CODINICIATIVA", codigo)
+            cmd.ExecuteNonQuery()
 
             sql = "DELETE FROM METAS_INICIATIVA WHERE COD_INICIATIVA=@CODINICIATIVA"
-            cmdINI = New SqlCommand(sql, conect)
-            cmdINI.Parameters.AddWithValue("@CODINICIATIVA", codigo)
-            cmdINI.ExecuteNonQuery()
+            cmd = New SqlCommand(sql, conect)
+            cmd.Parameters.AddWithValue("@CODINICIATIVA", codigo)
+            cmd.ExecuteNonQuery()
 
             sql = "DELETE FROM PROFESORES_INICIATIVA WHERE COD_INICIATIVA=@CODINICIATIVA"
-            cmdINI = New SqlCommand(sql, conect)
-            cmdINI.Parameters.AddWithValue("@CODINICIATIVA", codigo)
-            cmdINI.ExecuteNonQuery()
+            cmd = New SqlCommand(sql, conect)
+            cmd.Parameters.AddWithValue("@CODINICIATIVA", codigo)
+            cmd.ExecuteNonQuery()
 
             sql = "DELETE FROM INICIATIVAS WHERE COD_INICIATIVA=@CODINICIATIVA"
-            cmdINI = New SqlCommand(sql, conect)
-            cmdINI.Parameters.AddWithValue("@CODINICIATIVA", codigo)
-            cmdINI.ExecuteNonQuery()
+            cmd = New SqlCommand(sql, conect)
+            cmd.Parameters.AddWithValue("@CODINICIATIVA", codigo)
+            cmd.ExecuteNonQuery()
 
         Catch ex As Exception
             Return ex.Message

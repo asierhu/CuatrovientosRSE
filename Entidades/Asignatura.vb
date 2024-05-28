@@ -7,12 +7,11 @@
         Me.CodAsignatura = codAsignatura
     End Sub
     Public Sub New(codAsignatura As Integer, nombreAsignatura As String)
-        Me.CodAsignatura = codAsignatura
+        Me.New(codAsignatura)
         Me.Nombre = nombreAsignatura
     End Sub
     Public Sub New(codAsignatura As Integer, nombreAsignatura As String, nombreCurso As String)
-        Me.CodAsignatura = codAsignatura
-        Me.Nombre = nombreAsignatura
+        Me.New(codAsignatura, nombreAsignatura)
         Me.NombreCurso = nombreCurso
     End Sub
 
