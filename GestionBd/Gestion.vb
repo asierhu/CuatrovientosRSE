@@ -73,8 +73,8 @@ Public Class Gestion
         End Try
         Return metas.AsReadOnly
     End Function
-    Public Function VerMetasDeODS(numODS As Byte, caracterMeta As String, ByRef msgError As String) As ReadOnlyCollection(Of Meta)
-        Dim metas As New List(Of Meta)
+    Public Function VerMetasDeODS(numODS As Byte, caracterMeta As String, ByRef msgError As String) As Meta
+        Dim meta As Meta = Nothing
         Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT NUMERO_ODS, CARACTER_META, DESCRIPCION FROM METAS WHERE METAS.NUMERO_ODS=@NumODS AND CARACTER_META=@CARACTERMETA"
         Try
@@ -87,14 +87,14 @@ Public Class Gestion
                 msgError = "Este ODS no tiene metas registradas"
             End If
             While drMetas.Read
-                metas.Add(New Meta(drMetas("NUMERO_ODS"), drMetas("CARACTER_META"), drMetas("DESCRIPCION")))
+                meta = New Meta(drMetas("NUMERO_ODS"), drMetas("CARACTER_META"), drMetas("DESCRIPCION"))
             End While
         Catch ex As Exception
             msgError = ex.Message
         Finally
             conect.Close()
         End Try
-        Return metas.AsReadOnly
+        Return meta
     End Function
 
     Public Function Cursos(ByRef msgError As String) As ReadOnlyCollection(Of Curso)
@@ -289,8 +289,7 @@ Public Class Gestion
 
     Public Function ModificarODS(odsModificado As ODS) As String
         Dim msgError As String = ""
-        Dim ods As ReadOnlyCollection(Of ODS) = ODSs(msgError)
-        Dim odsGuardado As ODS = ods(ods.IndexOf(odsModificado))
+        Dim odsGuardado As ODS = ODSs(msgError, odsModificado.NumeroODS)
         If msgError <> "" Then
             Return msgError
         End If
@@ -315,11 +314,10 @@ Public Class Gestion
     End Function
     Public Function ModificarMeta(metaModificada As Meta, caracterAnterior As String) As String
         Dim msgError As String = ""
-        Dim metas As ReadOnlyCollection(Of Meta) = VerMetasDeODS(metaModificada.NumeroODS, msgError)
         If msgError <> "" Then
             Return msgError
         End If
-        Dim metaGuardada As Meta = metas(metas.IndexOf(New Meta(metaModificada.NumeroODS, caracterAnterior)))
+        Dim metaGuardada As Meta = VerMetasDeODS(metaModificada.NumeroODS, metaModificada.IDMeta, msgError)
         'UPDATE
         If metaModificada.Descripcion = metaGuardada.Descripcion AndAlso metaModificada.IDMeta = metaGuardada.IDMeta Then
             Return "No has hecho cambios"
@@ -343,17 +341,15 @@ Public Class Gestion
     End Function
     Public Function AnyadirMeta(meta As Meta) As String
         Dim msgError = ""
-        Dim metas As ReadOnlyCollection(Of Meta) = VerMetasDeODS(meta.NumeroODS, msgError)
+        Dim metaGuardada As Meta = VerMetasDeODS(meta.NumeroODS, meta.IDMeta, msgError)
         If msgError <> "" Then
             Return msgError
         End If
-        Dim indiceMeta As Integer = metas.IndexOf(meta)
-        If indiceMeta <> -1 Then
+        If metaGuardada IsNot Nothing Then
             Return $"La meta {meta} ya existía en el ODS número {meta.NumeroODS}"
         End If
-        If meta.Descripcion.Contains("*") Then
-            Return $"La descripcion de la nueva meta {meta.ToString(True)} no puede contener el caracter '*'"
-        End If
+
+        Return $"La descripcion de la nueva meta {meta.ToString(True)} no puede contener el caracter '*'"
         Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "INSERT INTO METAS VALUES (@NUMODS, @CARMETA, @DESCRIPCION)"
         Try
@@ -372,12 +368,11 @@ Public Class Gestion
     End Function
     Public Function AnyadirODS(ods As ODS) As String
         Dim msgError = ""
-        Dim odss As ReadOnlyCollection(Of ODS) = Me.ODSs(msgError)
+        Dim odsGuardado As ODS = ODSs(ods.NumeroODS, msgError)
         If msgError <> "" Then
             Return msgError
         End If
-        Dim indiceMeta As Integer = odss.IndexOf(ods)
-        If indiceMeta <> -1 Then
+        If odsGuardado IsNot Nothing Then
             Return $"El ODS {ods} ya existía"
         End If
         Dim conect As New SqlConnection(cadenaConexion)
