@@ -497,34 +497,34 @@ Public Class Gestion
         End Try
         Return ""
     End Function
-    Public Function EliminarIni(ini As Iniciativa) As String
+    Public Function EliminarIni(codigo As Integer) As String
         Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "DELETE FROM ASIGNATURAS_INICIATIVA WHERE COD_INICIATIVA=@CODINICIATIVA"
         Try
             conect.Open()
             Dim cmdINI As New SqlCommand(sql, conect)
             cmdINI = New SqlCommand(sql, conect)
-            cmdINI.Parameters.AddWithValue("@CODINICIATIVA", ini.CodIniciativa)
+            cmdINI.Parameters.AddWithValue("@CODINICIATIVA", codigo)
             cmdINI.ExecuteNonQuery()
 
             sql = "DELETE FROM CONTRATANTE_INICIATIVA WHERE COD_INICIATIVA=@CODINICIATIVA"
             cmdINI = New SqlCommand(sql, conect)
-            cmdINI.Parameters.AddWithValue("@CODINICIATIVA", ini.CodIniciativa)
+            cmdINI.Parameters.AddWithValue("@CODINICIATIVA", codigo)
             cmdINI.ExecuteNonQuery()
 
             sql = "DELETE FROM METAS_INICIATIVA WHERE COD_INICIATIVA=@CODINICIATIVA"
             cmdINI = New SqlCommand(sql, conect)
-            cmdINI.Parameters.AddWithValue("@CODINICIATIVA", ini.CodIniciativa)
+            cmdINI.Parameters.AddWithValue("@CODINICIATIVA", codigo)
             cmdINI.ExecuteNonQuery()
 
             sql = "DELETE FROM PROFESORES_INICIATIVA WHERE COD_INICIATIVA=@CODINICIATIVA"
             cmdINI = New SqlCommand(sql, conect)
-            cmdINI.Parameters.AddWithValue("@CODINICIATIVA", ini.CodIniciativa)
+            cmdINI.Parameters.AddWithValue("@CODINICIATIVA", codigo)
             cmdINI.ExecuteNonQuery()
 
             sql = "DELETE FROM INICIATIVAS WHERE COD_INICIATIVA=@CODINICIATIVA"
             cmdINI = New SqlCommand(sql, conect)
-            cmdINI.Parameters.AddWithValue("@CODINICIATIVA", ini.CodIniciativa)
+            cmdINI.Parameters.AddWithValue("@CODINICIATIVA", codigo)
             cmdINI.ExecuteNonQuery()
 
         Catch ex As Exception

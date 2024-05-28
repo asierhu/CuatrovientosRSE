@@ -20,7 +20,6 @@ Public Class FrmAltaIniciativas
         End If
         lblmeta.Enabled = True
         cboMeta.Enabled = True
-        btnSelMeta.Enabled = True
         btnSelTdMeta.Enabled = True
         Dim Msgerror As String
         cboMeta.Items.AddRange(gestion.VerMetasDeODS(odsSeleccionado.NumeroODS, Msgerror).ToArray)
@@ -58,22 +57,11 @@ Public Class FrmAltaIniciativas
     End Sub
 
 
-    Private Sub BotonesDeSeleccion_Click(sender As Object, e As EventArgs) Handles btnSelMeta.Click, btnSelContratante.Click, btnSelProf.Click, btnSelAsign.Click, btnSelTdMeta.Click, btnSelTdAsign.Click
+    Private Sub BotonesDeSeleccion_Click(sender As Object, e As EventArgs) Handles btnSelTdMeta.Click, btnSelTdAsign.Click
         Dim control As New Button
         control = TryCast(sender, Control)
         Select Case control.Name.ToLower
-            Case "btnSelMeta"
-                If cboMeta.SelectedItem Is Nothing Then
-                    ErrorTxtVacio("cboMeta")
-                    Exit Sub
-                End If
-                metaSeleccionada = TryCast(cboMeta.SelectedItem, Meta)
-                If lstMeta.Items.Contains(metaSeleccionada) Then
-                    MessageBox.Show("Esa meta ya está seleccionada")
-                    Exit Sub
-                End If
-                lstMeta.Items.Add(metaSeleccionada)
-            Case "btnSelTdMeta"
+            Case "btnseltdmeta"
                 Dim msgError As String = ""
                 Dim metas As ReadOnlyCollection(Of Meta) = gestion.VerMetasDeODS(odsSeleccionado.NumeroODS, msgError)
                 If msgError <> "" Then
@@ -85,40 +73,7 @@ Public Class FrmAltaIniciativas
                 For Each meta In metas
                     lstMeta.Items.Add(meta)
                 Next
-            Case "btnSelContratante"
-                If cboContratantes.SelectedItem Is Nothing Then
-                    ErrorTxtVacio("selcontratantes")
-                    Exit Sub
-                End If
-                contratanteSeleccionado = TryCast(cboContratantes.SelectedItem, Contratante)
-                If lstContratantes.Items.Contains(contratanteSeleccionado) Then
-                    MessageBox.Show("Ese contratante ya está seleccionado")
-                    Exit Sub
-                End If
-                lstContratantes.Items.Add(contratanteSeleccionado)
-            Case "btnSelProf"
-                If cboProf.SelectedItem Is Nothing Then
-                    ErrorTxtVacio("selprof")
-                    Exit Sub
-                End If
-                profesorSeleccionado = TryCast(cboProf.SelectedItem, Profesor)
-                If lstProf.Items.Contains(profesorSeleccionado) Then
-                    MessageBox.Show("Ese profesor ya está seleccionado")
-                    Exit Sub
-                End If
-                lstProf.Items.Add(profesorSeleccionado)
-            Case "btnSelAsign"
-                If cboAsign.SelectedItem Is Nothing Then
-                    ErrorTxtVacio("selasign")
-                    Exit Sub
-                End If
-                asignaturaseleccionada = TryCast(cboAsign.SelectedItem, Asignatura)
-                If lstAsign.Items.Contains(asignaturaseleccionada) Then
-                    MessageBox.Show("Esa asignatura ya está seleccionada")
-                    Exit Sub
-                End If
-                lstAsign.Items.Add(asignaturaseleccionada)
-            Case "btnSelTdAsign"
+            Case "btnseltdasign"
                 Dim msgError As String = ""
                 Dim asigns As ReadOnlyCollection(Of Asignatura) = gestion.VerAsignaturasDeCurso(cursoseleccionado.Nombre, msgError)
                 If msgError <> "" Then
@@ -170,17 +125,6 @@ Public Class FrmAltaIniciativas
         MessageBox.Show($"El control '{control}' está vacío")
     End Sub
 
-    Private Sub btnSelProf_Click(sender As Object, e As EventArgs) Handles btnSelProf.Click
-        If cboProf.SelectedItem Is Nothing Then
-            errorTxtVacio("cboProf")
-        End If
-    End Sub
-    Private Sub btnSelAsign_Click(sender As Object, e As EventArgs) Handles btnSelAsign.Click
-        If cboAsign.SelectedItem Is Nothing Then
-            errorTxtVacio("cboAsign")
-        End If
-    End Sub
-
     Private Sub cboCurso_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCurso.SelectedIndexChanged
         cboAsign.Items.Clear()
         cursoseleccionado = TryCast(cboCurso.SelectedItem, Curso)
@@ -190,7 +134,6 @@ Public Class FrmAltaIniciativas
         End If
         lblasign.Enabled = True
         cboAsign.Enabled = True
-        btnSelAsign.Enabled = True
         btnSelTdAsign.Enabled = True
         Dim Msgerror As String = ""
         cboAsign.Items.AddRange(gestion.VerAsignaturasDeCurso(cursoseleccionado.Nombre, Msgerror).ToArray)
@@ -200,13 +143,13 @@ Public Class FrmAltaIniciativas
         Dim control As New Button
         control = TryCast(sender, Button)
         Select Case control.Name.ToLower
-            Case "btnBorrarCont"
+            Case "btnborrarcont"
                 lstContratantes.Items.Remove(lstContratantes.SelectedItem)
-            Case "btnBorrarProf"
+            Case "btnborrarprof"
                 lstProf.Items.Remove(lstProf.SelectedItem)
-            Case "btnBorrarMeta"
+            Case "btnborrarmeta"
                 lstMeta.Items.Remove(lstMeta.SelectedItem)
-            Case "btnBorrarAsign"
+            Case "btborrarasign"
                 lstAsign.Items.Remove(lstAsign.SelectedItem)
         End Select
     End Sub
@@ -263,9 +206,63 @@ Public Class FrmAltaIniciativas
             MessageBox.Show("Selecciona una iniciativa a eliminar")
             Exit Sub
         End If
-        Dim msg As String = gestion.EliminarIni(TryCast(cboVerDatos.SelectedItem, Iniciativa))
+        Dim msg As String = gestion.EliminarIni(TryCast(cboVerDatos.SelectedItem, Iniciativa).CodIniciativa)
         If msg <> "" Then
             MessageBox.Show(msg)
         End If
+        btnReset_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub cboMeta_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboMeta.SelectedIndexChanged
+        If cboMeta.SelectedItem Is Nothing Then
+            ErrorTxtVacio("cboMeta")
+            Exit Sub
+        End If
+        metaSeleccionada = TryCast(cboMeta.SelectedItem, Meta)
+        If lstMeta.Items.Contains(metaSeleccionada) Then
+            MessageBox.Show("Esa meta ya está seleccionada")
+            Exit Sub
+        End If
+        lstMeta.Items.Add(metaSeleccionada)
+    End Sub
+
+    Private Sub cboContratantes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboContratantes.SelectedIndexChanged
+        If cboContratantes.SelectedItem Is Nothing Then
+            ErrorTxtVacio("selcontratantes")
+            Exit Sub
+        End If
+        contratanteSeleccionado = TryCast(cboContratantes.SelectedItem, Contratante)
+        If lstContratantes.Items.Contains(contratanteSeleccionado) Then
+            MessageBox.Show("Ese contratante ya está seleccionado")
+            Exit Sub
+        End If
+        lstContratantes.Items.Add(contratanteSeleccionado)
+    End Sub
+
+    Private Sub cboProf_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboProf.SelectedIndexChanged
+
+        If cboProf.SelectedItem Is Nothing Then
+            ErrorTxtVacio("selprof")
+            Exit Sub
+        End If
+        profesorSeleccionado = TryCast(cboProf.SelectedItem, Profesor)
+        If lstProf.Items.Contains(profesorSeleccionado) Then
+            MessageBox.Show("Ese profesor ya está seleccionado")
+            Exit Sub
+        End If
+        lstProf.Items.Add(profesorSeleccionado)
+    End Sub
+
+    Private Sub cboAsign_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboAsign.SelectedIndexChanged
+        If cboAsign.SelectedItem Is Nothing Then
+            ErrorTxtVacio("selasign")
+            Exit Sub
+        End If
+        asignaturaseleccionada = TryCast(cboAsign.SelectedItem, Asignatura)
+        If lstAsign.Items.Contains(asignaturaseleccionada) Then
+            MessageBox.Show("Esa asignatura ya está seleccionada")
+            Exit Sub
+        End If
+        lstAsign.Items.Add(asignaturaseleccionada)
     End Sub
 End Class
