@@ -3,7 +3,11 @@
 Public Class FrmDatosCiclo
     Private Sub FrmIniciativasCiclo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim msgError As String = ""
-        cboCurso.Items.AddRange(gestion.Cursos(msgError).ToArray)
+        Try
+            cboCurso.Items.AddRange(gestion.Cursos(msgError).ToArray)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
         If msgError <> "" Then
             MessageBox.Show(msgError)
         End If

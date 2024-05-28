@@ -207,6 +207,38 @@ Public Class Gestion
         Return listaIniciativas.AsReadOnly
 
     End Function
+    Public Function Iniciativas(codIniciativa As Integer, ByRef msgError As String) As Iniciativa
+        Dim ini As Iniciativa = Nothing
+        Dim conect As New SqlConnection(cadenaConexion)
+        Dim sql As String = "SELECT COD_INICIATIVA, HORAS, TITULO, FECHA_INICIO, FECHA_FIN FROM INICIATIVAS WHERE COD_INICIATIVA=@CODINI"
+        Try
+            conect.Open()
+            Dim cmdIni As New SqlCommand(sql, conect)
+            cmdIni.Parameters.AddWithValue("@CODINI", codIniciativa)
+            Dim drIni As SqlDataReader = cmdIni.ExecuteReader
+            Dim contratante As ReadOnlyCollection(Of Contratante)
+            Dim meta As ReadOnlyCollection(Of Meta)
+            Dim profes As ReadOnlyCollection(Of Profesor)
+            Dim asigns As ReadOnlyCollection(Of Asignatura)
+            While drIni.Read
+                codIniciativa = drIni("COD_INICIATIVA")
+                contratante = ContratantesDeIniciativa(codIniciativa, msgError)
+                If msgError <> "" Then
+                    Return Nothing
+                End If
+                meta = MetasDeIniciativa(codIniciativa, msgError)
+                profes = ProfesoresDeIniciativa(codIniciativa, msgError)
+                asigns = AsignaturasDeIniciativa(codIniciativa, msgError)
+                ini = New Iniciativa(codIniciativa, contratante, meta, profes, asigns, drIni("HORAS"), drIni("TITULO"), drIni("FECHA_INICIO"), drIni("FECHA_FIN"))
+            End While
+        Catch ex As Exception
+            msgError = ex.Message
+        Finally
+            conect.Close()
+        End Try
+        Return ini
+    End Function
+
     Private Function ContratantesDeIniciativa(codIniciativa As Integer, ByRef msgError As String) As ReadOnlyCollection(Of Contratante)
         Dim contratantes = New List(Of Contratante)
         Dim conect As New SqlConnection(cadenaConexion)
@@ -314,10 +346,10 @@ Public Class Gestion
     End Function
     Public Function ModificarMeta(metaModificada As Meta, caracterAnterior As String) As String
         Dim msgError As String = ""
+        Dim metaGuardada As Meta = VerMetasDeODS(metaModificada.NumeroODS, metaModificada.IDMeta, msgError)
         If msgError <> "" Then
             Return msgError
         End If
-        Dim metaGuardada As Meta = VerMetasDeODS(metaModificada.NumeroODS, metaModificada.IDMeta, msgError)
         'UPDATE
         If metaModificada.Descripcion = metaGuardada.Descripcion AndAlso metaModificada.IDMeta = metaGuardada.IDMeta Then
             Return "No has hecho cambios"
@@ -348,8 +380,6 @@ Public Class Gestion
         If metaGuardada IsNot Nothing Then
             Return $"La meta {meta} ya existía en el ODS número {meta.NumeroODS}"
         End If
-
-        Return $"La descripcion de la nueva meta {meta.ToString(True)} no puede contener el caracter '*'"
         Dim conect As New SqlConnection(cadenaConexion)
         Dim sql As String = "INSERT INTO METAS VALUES (@NUMODS, @CARMETA, @DESCRIPCION)"
         Try
@@ -395,12 +425,11 @@ Public Class Gestion
 
     Public Function AnyadirIniciativa(iniciativa As Iniciativa) As String
         Dim msgError As String = ""
-        Dim iniciativas As ReadOnlyCollection(Of Iniciativa) = Me.Iniciativas(msgError)
+        Dim iniciativaGuardada As Iniciativa = Iniciativas(iniciativa.CodIniciativa, msgError)
         If msgError <> "" Then
             Return msgError
         End If
-        Dim indiceIniciativa As Integer = iniciativas.IndexOf(iniciativa)
-        If indiceIniciativa <> -1 Then
+        If iniciativaGuardada IsNot Nothing Then
             Return $"La iniciativa ya existe"
         End If
         If iniciativa.Horas < 0 Then
@@ -529,7 +558,6 @@ Public Class Gestion
         End Try
         Return ""
     End Function
-
     Public Sub LeerFichero()
         Const RUTAFICHERODATOS As String = "/Ficheros/ODSMetas.txt"
         Const RUTAFICHEROLOG As String = "/Ficheros/comentariosODS.log"
