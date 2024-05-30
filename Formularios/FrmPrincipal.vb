@@ -28,4 +28,8 @@ Public Class FrmPrincipal
     Private Sub FrmPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         gestion = New Gestion
     End Sub
+
+    Private Sub btnLeerFichero_Click(sender As Object, e As EventArgs) Handles btnLeerFichero.Click
+        gestion.LeerFichero()
+    End Sub
 End Class

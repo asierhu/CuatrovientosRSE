@@ -37,6 +37,7 @@ Partial Class FrmPrincipal
         Me.btnCrearIni = New System.Windows.Forms.Button()
         Me.btnSalir = New System.Windows.Forms.Button()
         Me.btnDatosDeCiclo = New System.Windows.Forms.Button()
+        Me.btnLeerFichero = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label2
@@ -170,6 +171,15 @@ Partial Class FrmPrincipal
         Me.btnDatosDeCiclo.Text = "Datos de ciclo"
         Me.btnDatosDeCiclo.UseVisualStyleBackColor = True
         '
+        'btnLeerFichero
+        '
+        Me.btnLeerFichero.Location = New System.Drawing.Point(859, 51)
+        Me.btnLeerFichero.Name = "btnLeerFichero"
+        Me.btnLeerFichero.Size = New System.Drawing.Size(119, 42)
+        Me.btnLeerFichero.TabIndex = 26
+        Me.btnLeerFichero.Text = "Leer fichero"
+        Me.btnLeerFichero.UseVisualStyleBackColor = True
+        '
         'FrmPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -177,6 +187,7 @@ Partial Class FrmPrincipal
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1083, 627)
+        Me.Controls.Add(Me.btnLeerFichero)
         Me.Controls.Add(Me.btnDatosDeCiclo)
         Me.Controls.Add(Me.btnSalir)
         Me.Controls.Add(Me.btnVerOds)
@@ -212,4 +223,5 @@ Partial Class FrmPrincipal
     Friend WithEvents btnCrearIni As Button
     Friend WithEvents btnSalir As Button
     Friend WithEvents btnDatosDeCiclo As Button
+    Friend WithEvents btnLeerFichero As Button
 End Class

@@ -558,10 +558,10 @@ Public Class Gestion
         Return ""
     End Function
     Public Sub LeerFichero()
-        Const RUTAFICHERODATOS As String = "/Ficheros/ODSMetas.txt"
-        Const RUTAFICHEROLOG As String = "/Ficheros/comentariosODS.log"
+        Const RUTAFICHERODATOS As String = "./Ficheros/ODSMetas.txt"
+        Const RUTAFICHEROLOG As String = "./Ficheros/comentariosODS.log"
         If Not File.Exists(RUTAFICHERODATOS) Then
-            File.AppendAllLines(RUTAFICHEROLOG, "EL fichero no existe".ToArray)
+            File.WriteAllText(RUTAFICHEROLOG, "EL fichero no existe")
         End If
         Dim lineas As String()
         Dim linea As String()
@@ -584,7 +584,7 @@ Public Class Gestion
             End If
             If lineas.Length = 4 Then
                 ods = New ODS(linea(0), linea(1), linea(2), linea(3))
-
+                msgError = AnyadirODS(ods)
             End If
             If Not lineas.Length = 3 Or Not lineas.Length = 4 Then
                 File.AppendAllLines(RUTAFICHEROLOG, New String() {$"EL numero de parametros no es el correcto"})
